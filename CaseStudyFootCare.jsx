@@ -1,5 +1,21 @@
 // CaseStudyFootCare.jsx — Preventive Foot Care Platform case study
 
+if (!document.getElementById('fc-case-styles')) {
+  const s = document.createElement('style');
+  s.id = 'fc-case-styles';
+  s.textContent = `
+    .fc-constraints-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      .fc-constraints-grid { grid-template-columns: 1fr !important; }
+    }
+  `;
+  document.head.appendChild(s);
+}
+
 const CaseStudyFootCare = ({ goTo, goToWork }) => {
   const sections = [
     {
@@ -101,7 +117,7 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
       <section style={{
         minHeight: '100vh', background: '#0c0c0c',
         display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
-        padding: 'clamp(24px,5vw,80px)', paddingTop: '96px',
+        padding: 'var(--page-padding)', paddingTop: '96px',
         position: 'relative', overflow: 'hidden',
       }}>
         {/* Cover video — right side */}
@@ -118,7 +134,7 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px)', backgroundSize: '72px 72px', pointerEvents: 'none' }} />
 
         {/* Back button */}
-        <div style={{ position: 'absolute', top: '52px', left: 'clamp(24px,5vw,80px)', animation: 'fizik-fade-in .7s ease .25s both', zIndex: 10 }}>
+        <div style={{ position: 'absolute', top: '52px', left: 'var(--page-padding)', animation: 'fizik-fade-in .7s ease .25s both', zIndex: 10 }}>
           <button
             onClick={() => goToWork()}
             style={{ background: 'none', border: 'none', padding: 0, color: 'rgba(255,255,255,0.35)', fontSize: '13px', letterSpacing: '.04em', cursor: 'pointer', fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', alignItems: 'center', gap: '8px' }}
@@ -127,14 +143,14 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
           >← All work</button>
         </div>
         {/* Counter */}
-        <div style={{ position: 'absolute', top: '52px', right: 'clamp(24px,5vw,80px)', fontSize: '10px', color: 'rgba(255,255,255,.18)', letterSpacing: '.14em', textTransform: 'uppercase', animation: 'fizik-fade-in .7s ease .3s both', zIndex: 10 }}>
-          Case study — 02 / 02
+        <div style={{ position: 'absolute', top: '52px', right: 'var(--page-padding)', fontSize: '10px', color: 'rgba(255,255,255,.18)', letterSpacing: '.14em', textTransform: 'uppercase', animation: 'fizik-fade-in .7s ease .3s both', zIndex: 10 }}>
+          Case study: 02 / 02
         </div>
 
         {/* Content */}
         <div style={{ position: 'relative', zIndex: 5 }}>
           <div style={{ fontSize: '11px', color: 'rgba(255,255,255,.3)', letterSpacing: '.14em', textTransform: 'uppercase', marginBottom: '36px', animation: 'fizik-fade-up .7s cubic-bezier(.16,1,.3,1) .35s both' }}>
-            Healthtech &nbsp;·&nbsp; Biomechanics &nbsp;·&nbsp; Research-to-Product
+            HCI Master's Thesis &nbsp;·&nbsp; Healthtech &nbsp;·&nbsp; Biomechanics &nbsp;·&nbsp; Research-to-Product
           </div>
           <div style={{ marginBottom: '44px' }}>
             <WordReveal text="Preventive Foot Care" startDelay={0.48} wordDelay={0.09} style={{ fontFamily: "'Space Grotesk',system-ui,sans-serif", fontSize: 'clamp(40px,7vw,96px)', fontWeight: 700, lineHeight: 0.93, letterSpacing: '-0.03em', color: '#fff', marginBottom: '4px' }} />
@@ -149,7 +165,7 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
               { label: 'Role',     value: "Product Designer (HCI Master's Thesis)" },
               { label: 'Scope',    value: 'Domain Research · Product Strategy · UX · Prototyping' },
               { label: 'Industry', value: 'Healthcare · Biomechanics' },
-              { label: 'Context',  value: 'University of Siegen — with clinical & academic experts' },
+              { label: 'Context',  value: 'University of Siegen, with clinical & academic experts' },
             ].map((item, i) => (
               <div key={item.label} style={{ paddingLeft: i > 0 ? '24px' : 0, paddingRight: i < 3 ? '24px' : 0, borderRight: i < 3 ? '1px solid rgba(255,255,255,.07)' : 'none' }}>
                 <div style={{ fontSize: '10px', color: 'rgba(255,255,255,.2)', letterSpacing: '.13em', textTransform: 'uppercase', marginBottom: '6px' }}>{item.label}</div>
@@ -159,7 +175,7 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
           </div>
         </div>
         {/* Scroll indicator */}
-        <div style={{ position: 'absolute', bottom: '36px', right: 'clamp(24px,5vw,80px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', animation: 'fizik-fade-in 1s ease 1.5s both', zIndex: 5 }}>
+        <div style={{ position: 'absolute', bottom: '36px', right: 'var(--page-padding)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', animation: 'fizik-fade-in 1s ease 1.5s both', zIndex: 5 }}>
           <span style={{ fontSize: '9px', color: 'rgba(255,255,255,.18)', letterSpacing: '.16em', textTransform: 'uppercase', writingMode: 'vertical-rl' }}>Scroll</span>
           <div style={{ width: '1px', height: '48px', background: 'linear-gradient(to bottom,rgba(255,255,255,.14),transparent)' }} />
         </div>
@@ -176,7 +192,7 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
       {/* ── Bottom CTA ── */}
       <div style={{
         background: '#272729',
-        padding: '80px clamp(24px, 5vw, 80px)',
+        padding: 'var(--section-spacing-sm) var(--page-padding)',
       }}>
         <div style={{ maxWidth: '680px' }}>
           <div style={{
@@ -244,6 +260,26 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
           </div>
         </div>
       </div>
+
+      {/* ══ NEXT: ABOUT ═════════════════════════════════════════════ */}
+      <div data-snap style={{ background: '#0c0c0c', position: 'relative', overflow: 'hidden', minHeight: '380px' }}>
+        <div style={{ position: 'relative', zIndex: 2, padding: 'var(--section-spacing-sm) var(--page-padding)', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ fontSize: '10px', color: 'rgba(255,255,255,.2)', letterSpacing: '1.5px', textTransform: 'uppercase', fontFamily: "'DM Sans', system-ui, sans-serif", marginBottom: '40px' }}>
+            Next project
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flex: 1 }}>
+            <button className="fz-next-title" onClick={() => goTo('about')} style={{ display: 'block', textAlign: 'right' }}>
+              → More About Me
+            </button>
+          </div>
+          <div style={{ marginTop: '48px' }}>
+            <button onClick={() => goToWork()} style={{ background: 'none', border: '1px solid rgba(255,255,255,.12)', borderRadius: '9999px', padding: '10px 20px', color: 'rgba(255,255,255,.35)', fontSize: '13px', letterSpacing: '.03em', cursor: 'pointer', fontFamily: "'DM Sans', system-ui, sans-serif", transition: 'color .2s,border-color .2s' }}
+              onMouseEnter={e => { e.currentTarget.style.color = 'rgba(255,255,255,.7)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.3)'; }}
+              onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,.35)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.12)'; }}
+            >← Back to all work</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -257,7 +293,7 @@ const FootCareSection = ({ section, idx }) => {
   const isAlt = idx % 2 === 1;
   const isDecisions = section.id === 'decisions';
   const bg = isAlt ? '#f5f5f7' : '#ffffff';
-  const col = { maxWidth: '860px', margin: '0 auto', padding: '0 clamp(24px, 5vw, 80px)' };
+  const col = { maxWidth: 'var(--content-width)', margin: '0 auto', padding: '0 var(--page-padding)' };
 
   const toggleDecision = (id) => {
     accordionOpen[id] = !accordionOpen[id];
@@ -269,7 +305,7 @@ const FootCareSection = ({ section, idx }) => {
       id: 'd1',
       n: '01',
       title: 'Layered detail rather than separate views',
-      text: 'One option was two separate interfaces — one simplified for individuals, one detailed for professionals. The problem: a person and their clinician looking at different representations of the same data creates communication friction rather than reducing it.\n\nI chose a single layered system instead. The default view surfaces a clear signal accessible to anyone. A deeper layer, available on demand, exposes the full data for professional interpretation. Both users see the same event at different depths.',
+      text: 'One option was two separate interfaces, one simplified for individuals, one detailed for professionals. The problem: a person and their clinician looking at different representations of the same data creates communication friction rather than reducing it.\n\nI chose a single layered system instead. The default view surfaces a clear signal accessible to anyone. A deeper layer, available on demand, exposes the full data for professional interpretation. Both users see the same event at different depths.',
       tradeoff: 'Trade-off: the default layer loses some interpretive nuance for expert users. The benefit: individual and professional can look at the same screen and have a meaningful conversation.',
       diagram: (
         <svg viewBox="0 0 560 310" xmlns="http://www.w3.org/2000/svg" style={{ width:'100%', height:'auto', display:'block', fontFamily:"'DM Sans', system-ui, sans-serif" }}>
@@ -293,7 +329,7 @@ const FootCareSection = ({ section, idx }) => {
           <text x="140" y="169" textAnchor="middle" fontSize="12" fill="#888" fontFamily="inherit">Separate interfaces</text>
           {/* Option B — chosen */}
           <rect x="310" y="120" width="220" height="68" rx="14" fill="#2B7A56"/>
-          <text x="420" y="149" textAnchor="middle" fontSize="13" fontWeight="600" fill="white" fontFamily="inherit">Option B — chosen</text>
+          <text x="420" y="149" textAnchor="middle" fontSize="13" fontWeight="600" fill="white" fontFamily="inherit">Option B, chosen</text>
           <text x="420" y="169" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.72)" fontFamily="inherit">Single layered system</text>
           {/* Arrow down from B */}
           <line x1="420" y1="188" x2="420" y2="230" stroke="#2B7A56" strokeWidth="1" markerEnd="url(#d1ag)"/>
@@ -387,7 +423,7 @@ const FootCareSection = ({ section, idx }) => {
       id: 'd4',
       n: '04',
       title: 'Designing for change over time, not a single session',
-      text: 'A monitoring system that only reports current state has limited preventive value. Making change visible required a temporal data model: every measurement stored, compared against previous readings, communicated as a trend rather than a snapshot.\n\nI prioritized a simple directional signal — improving, stable, attention needed — over a detailed historical chart. The chart is available in the professional layer. The individual user sees a clear direction.',
+      text: 'A monitoring system that only reports current state has limited preventive value. Making change visible required a temporal data model: every measurement stored, compared against previous readings, communicated as a trend rather than a snapshot.\n\nI prioritized a simple directional signal (improving, stable, attention needed) over a detailed historical chart. The chart is available in the professional layer. The individual user sees a clear direction.',
       tradeoff: 'Trade-off: simplifying the longitudinal view means expert users see less detail by default. The individual engagement model is also the biggest untested hypothesis in the project.',
       diagram: (
         <svg viewBox="0 0 720 310" xmlns="http://www.w3.org/2000/svg" style={{ width:'100%', height:'auto', display:'block', fontFamily:"'DM Sans', system-ui, sans-serif" }}>
@@ -462,7 +498,7 @@ const FootCareSection = ({ section, idx }) => {
         {section.body && section.body.map((para, i) => (
           <p key={i} style={{
             fontFamily: "'DM Sans', system-ui, sans-serif",
-            fontSize: '17px', fontWeight: 400, lineHeight: 1.65,
+            fontSize: 'var(--body-font-size)', fontWeight: 400, lineHeight: 'var(--body-line-height)',
             letterSpacing: '-0.374px', color: '#1d1d1f', opacity: 0.82,
             marginBottom: i < section.body.length - 1 ? '20px' : (section.users || section.bodyAfter ? '24px' : 0),
             textWrap: 'pretty',
@@ -491,7 +527,7 @@ const FootCareSection = ({ section, idx }) => {
                 </div>
                 <p style={{
                   fontFamily: "'DM Sans', system-ui, sans-serif",
-                  fontSize: '15px', fontWeight: 400, lineHeight: 1.6,
+                  fontSize: 'var(--secondary-font-size)', fontWeight: 400, lineHeight: 'var(--secondary-line-height)',
                   letterSpacing: '-0.2px', color: 'rgba(29,29,31,0.75)',
                 }}>
                   {u.desc}
@@ -562,7 +598,7 @@ const FootCareSection = ({ section, idx }) => {
         {section.bodyAfter && (
           <p style={{
             fontFamily: "'DM Sans', system-ui, sans-serif",
-            fontSize: '17px', fontWeight: 400, lineHeight: 1.65,
+            fontSize: 'var(--body-font-size)', fontWeight: 400, lineHeight: 'var(--body-line-height)',
             letterSpacing: '-0.374px', color: '#1d1d1f', opacity: 0.82, textWrap: 'pretty',
           }}>
             {section.bodyAfter}
@@ -571,10 +607,7 @@ const FootCareSection = ({ section, idx }) => {
 
         {/* Constraints grid — 2×2 */}
         {section.constraints && (
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '16px',
+          <div className="fc-constraints-grid" style={{
             marginTop: '8px',
           }}>
             {section.constraints.map(c => (
@@ -594,7 +627,7 @@ const FootCareSection = ({ section, idx }) => {
                 </div>
                 <p style={{
                   fontFamily: "'DM Sans', system-ui, sans-serif",
-                  fontSize: '15px', fontWeight: 400, lineHeight: 1.6,
+                  fontSize: 'var(--secondary-font-size)', fontWeight: 400, lineHeight: 'var(--secondary-line-height)',
                   letterSpacing: '-0.2px', color: 'rgba(29,29,31,0.72)',
                 }}>
                   {c.body}
@@ -671,13 +704,13 @@ const FootCareSection = ({ section, idx }) => {
                         {d.text.split('\n\n').map((para, pi) => (
                           <p key={pi} style={{
                             fontFamily: "'DM Sans', system-ui, sans-serif",
-                            fontSize: '15px', lineHeight: 1.7,
+                            fontSize: 'var(--secondary-font-size)', lineHeight: 'var(--secondary-line-height)',
                             color: '#3d3d3a', margin: 0,
                           }}>{para}</p>
                         ))}
                         <p style={{
                           fontFamily: "'DM Sans', system-ui, sans-serif",
-                          fontSize: '13px', lineHeight: 1.6,
+                          fontSize: 'var(--caption-font-size)', lineHeight: 'var(--caption-line-height)',
                           color: '#777', margin: 0,
                           paddingLeft: '14px',
                           borderLeft: '2px solid #e0ddd8',
@@ -713,7 +746,7 @@ const FootCareSection = ({ section, idx }) => {
 
       {/* ── Screen recording (after decisions section) ── */}
       {section.id === 'decisions' && (
-        <div style={{ marginTop: '48px', background: '#0d0d0d', display: 'flex', justifyContent: 'center', padding: '48px clamp(24px, 5vw, 80px)' }}>
+        <div style={{ marginTop: '48px', background: '#0d0d0d', display: 'flex', justifyContent: 'center', padding: '48px var(--page-padding)' }}>
           <div style={{ width: '100%', maxWidth: '900px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 8px 48px rgba(0,0,0,0.5)' }}>
             <video src="assets/foot-care/screen-recording-portfolio.mp4" autoPlay muted loop playsInline style={{ width: '100%', display: 'block' }} />
           </div>

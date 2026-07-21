@@ -99,6 +99,7 @@ const HomePage = ({ goTo }) => {
         'Translated a 121-option catalog into a clear, explainable staff-facing recommendation flow',
         'Enabled consistent delivery of the service across dealers without specialist knowledge',
         'Delivered implementation-ready Flutter specs; product now supports six languages',
+        'Design decisions from this project directly informed a second product — a gebioMized saddle pressure app now in its second version as of 2026',
       ],
       decisionSignal: 'The core decision: a locked linear flow over a flexible navigation model, so any staff member could run the full service regardless of prior fitting experience.',
       dark: false,
@@ -106,7 +107,7 @@ const HomePage = ({ goTo }) => {
     },
     {
       id: 'footcare',
-      label: 'Healthtech · Biomechanics · Research-to-Product',
+      label: "HCI Master's Thesis · Healthtech · Biomechanics · Research-to-Product",
       title: 'Preventive Foot Care Platform',
       tagline: 'A dual-user monitoring system that makes biomechanical data interpretable: for individuals managing foot health risk, and the professionals supporting them.',
       outcomes: [
@@ -122,7 +123,7 @@ const HomePage = ({ goTo }) => {
   return (
     <div>
       {/* ── Hero ── */}
-      <section style={{
+      <section className="hero-section" style={{
         position: 'relative',
         minHeight: '100vh',
         overflow: 'hidden',
@@ -141,7 +142,7 @@ const HomePage = ({ goTo }) => {
           position: 'relative',
           zIndex: 1,
           width: '100%',
-          padding: 'clamp(100px, 13vh, 150px) clamp(24px, 5vw, 80px) 80px',
+          padding: 'clamp(100px, 13vh, 150px) var(--page-padding) var(--section-spacing-sm)',
           display: 'grid',
           gridTemplateColumns: '1.25fr 1fr',
           alignItems: 'center',
@@ -164,7 +165,7 @@ const HomePage = ({ goTo }) => {
                 fontFamily: "'DM Sans', system-ui, sans-serif",
               }}
             >
-              Senior Product Designer — Düsseldorf, Germany
+              Senior Product Designer, Düsseldorf, Germany
             </div>
             <span data-anim="hero-line" className="heading-underline" style={{ marginBottom: '24px' }} />
 
@@ -244,7 +245,7 @@ const HomePage = ({ goTo }) => {
                 textWrap: 'pretty',
               }}
             >
-              I work end-to-end — from early discovery and workflow mapping through to implementation-ready handoff.
+              I work end-to-end, from early discovery and workflow mapping through to implementation-ready handoff.
             </p>
 
             {/* ── Frosted glass credential cards — single horizontal row ── */}
@@ -312,7 +313,7 @@ const HomePage = ({ goTo }) => {
       {/* ── Selected Work heading ── */}
       <div id="selected-work" style={{
         background: '#f9f9f7',
-        padding: '100px clamp(24px, 5vw, 80px) 100px',
+        padding: 'var(--section-spacing-md) var(--page-padding) 0',
       }}>
         <div ref={workHeadRef} style={{ maxWidth: '560px', margin: '0 auto', textAlign: 'center' }}>
           <h2
@@ -334,15 +335,15 @@ const HomePage = ({ goTo }) => {
             data-anim="work-sub"
             style={{
               fontFamily: "'DM Sans', system-ui, sans-serif",
-              fontSize: '17px',
+              fontSize: 'var(--body-font-size)',
               fontWeight: 400,
-              lineHeight: 1.55,
+              lineHeight: 'var(--body-line-height)',
               color: 'rgba(29,29,31,0.55)',
               maxWidth: '400px',
               margin: '0 auto',
             }}
           >
-            Two projects that show how I think, decide, and deliver.
+            Selected projects that show how I think, decide, and deliver.
           </p>
         </div>
       </div>
@@ -360,7 +361,7 @@ const HomePage = ({ goTo }) => {
       {/* ── About snippet ── */}
       <section style={{
         background: '#f5f5f7',
-        padding: '80px clamp(24px, 5vw, 80px)',
+        padding: 'var(--section-spacing-sm) var(--page-padding)',
         position: 'relative',
         overflow: 'visible',
       }}>
@@ -372,7 +373,7 @@ const HomePage = ({ goTo }) => {
           className="about-split-char"
           style={{
             position: 'absolute',
-            left: 'clamp(24px, 5vw, 80px)',
+            left: 'var(--page-padding)',
             bottom: 0,
             height: 'clamp(600px, 68vw, 860px)',
             width: 'auto',
@@ -402,39 +403,39 @@ const HomePage = ({ goTo }) => {
             </div>
             <p style={{
               fontFamily: "'DM Sans', system-ui, sans-serif",
-              fontSize: '17px',
+              fontSize: 'var(--body-font-size)',
               fontWeight: 400,
-              lineHeight: 1.6,
+              lineHeight: 'var(--body-line-height)',
               letterSpacing: '-0.374px',
               color: '#1d1d1f',
               opacity: 0.8,
-              marginBottom: '28px',
+              marginBottom: 'var(--paragraph-spacing)',
               textWrap: 'pretty',
             }}>
               I'm a Product Designer with a background in Industrial Design and Human-Computer Interaction. I focus on products where the complexity is real: multi-step workflows, technical data, stakeholders with different mental models, and where structure and clarity in the design process make the difference.
             </p>
             <p style={{
               fontFamily: "'DM Sans', system-ui, sans-serif",
-              fontSize: '17px',
+              fontSize: 'var(--body-font-size)',
               fontWeight: 400,
-              lineHeight: 1.6,
+              lineHeight: 'var(--body-line-height)',
               letterSpacing: '-0.374px',
               color: '#1d1d1f',
               opacity: 0.8,
-              marginBottom: '20px',
+              marginBottom: 'var(--paragraph-spacing)',
               textWrap: 'pretty',
             }}>
               Biomechanical data, clinical workflows, and digital tools for preventive foot care: that's the domain that brought me to GEBIOM Group, where I was promoted to Product Designer in September 2024.
             </p>
             <p style={{
               fontFamily: "'DM Sans', system-ui, sans-serif",
-              fontSize: '17px',
+              fontSize: 'var(--body-font-size)',
               fontWeight: 400,
-              lineHeight: 1.6,
+              lineHeight: 'var(--body-line-height)',
               letterSpacing: '-0.374px',
               color: '#1d1d1f',
               opacity: 0.8,
-              marginBottom: '32px',
+              marginBottom: 'var(--paragraph-spacing)',
               textWrap: 'pretty',
             }}>
               Currently looking for my next Senior Product Designer role in Germany or remote Europe.
@@ -469,7 +470,7 @@ const HomePage = ({ goTo }) => {
         background: '#0e0606',
         position: 'relative',
         overflow: 'hidden',
-        padding: '100px clamp(24px, 5vw, 80px)',
+        padding: 'var(--section-spacing-md) var(--page-padding)',
       }}>
         {/* Content — centered; character bleeds in from About section above */}
         <div style={{
@@ -504,12 +505,12 @@ const HomePage = ({ goTo }) => {
           </h2>
           <p style={{
             fontFamily: "'DM Sans', system-ui, sans-serif",
-            fontSize: '17px',
+            fontSize: 'var(--body-font-size)',
             fontWeight: 400,
-            lineHeight: 1.55,
+            lineHeight: 'var(--body-line-height)',
             letterSpacing: '-0.374px',
             color: 'rgba(255,255,255,0.5)',
-            marginBottom: '32px',
+            marginBottom: 'var(--paragraph-spacing)',
             textWrap: 'pretty',
           }}>
             Open to Senior Product Designer roles in Germany or remote Europe.
@@ -566,14 +567,14 @@ const ProjectCard = ({ proj, idx, goTo }) => {
       style={{
         background: bg,
         width: '100%',
-        padding: '80px clamp(24px, 5vw, 80px)',
+        padding: 'var(--section-spacing-sm) var(--page-padding)',
       }}
     >
       {/* cardRef on inner content — so the section's bg fills its space while content slides up */}
       <div
         ref={cardRef}
         style={{
-          maxWidth: '980px',
+          maxWidth: 'var(--content-width)',
           margin: '0 auto',
           display: 'grid',
           gridTemplateColumns: 'minmax(0,0.85fr) minmax(0,1.15fr)',
@@ -608,12 +609,12 @@ const ProjectCard = ({ proj, idx, goTo }) => {
           </h2>
           <p style={{
             fontFamily: "'DM Sans', system-ui, sans-serif",
-            fontSize: '17px',
+            fontSize: 'var(--body-font-size)',
             fontWeight: 400,
-            lineHeight: 1.6,
+            lineHeight: 'var(--body-line-height)',
             letterSpacing: '-0.374px',
             color: bodyColor,
-            marginBottom: '28px',
+            marginBottom: 'var(--paragraph-spacing)',
             textWrap: 'pretty',
           }}>
             {proj.tagline}
@@ -686,7 +687,7 @@ const ProjectCard = ({ proj, idx, goTo }) => {
                 borderRadius: '9999px',
                 fontFamily: "'DM Sans', system-ui, sans-serif",
               }}>
-                Case study in progress — available soon
+                Case study in progress. Available soon.
               </span>
             </div>
           )}
@@ -695,10 +696,10 @@ const ProjectCard = ({ proj, idx, goTo }) => {
           {proj.decisionSignal && !proj.comingSoon && (
             <p style={{
               fontFamily: "'DM Sans', system-ui, sans-serif",
-              fontSize: '13px',
+              fontSize: 'var(--caption-font-size)',
               fontStyle: 'italic',
               fontWeight: 400,
-              lineHeight: 1.55,
+              lineHeight: 'var(--caption-line-height)',
               letterSpacing: '-0.1px',
               color: bodyColor,
               opacity: 0.62,
@@ -862,6 +863,10 @@ homeStyle.textContent = `
     }
     .cred-cards > div {
       flex: 1 1 calc(50% - 5px) !important;
+    }
+    /* Illustration overlaps hero text once columns stack — hide it below the two-column breakpoint */
+    .hero-section {
+      background-image: none !important;
     }
   }
   /* Pinned panels: sticky stacking applied by animPinnedPanels on desktop */

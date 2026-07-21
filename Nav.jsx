@@ -73,39 +73,45 @@ const Nav = ({ page, goTo, goToWork }) => {
       WebkitBackdropFilter: scrolled ? 'saturate(180%) blur(20px)' : 'none',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: '0 22px',
+      padding: '0 calc(var(--page-padding) / 2)',
       zIndex: 9999,
       transition: 'background 200ms',
     }}>
-      {/* Logo */}
-      <button
-        onClick={() => goToWork()}
-        style={{
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          padding: 0,
-          lineHeight: 1,
-        }}
-        aria-label="Home"
-      >
-        <img
-          src="portfolio/logo.png"
-          alt="Maryam Moradian"
-          style={{ height: '26px', width: '26px', objectFit: 'contain' }}
-        />
-      </button>
+      <div style={{
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}>
+        {/* Logo */}
+        <button
+          onClick={() => goToWork()}
+          style={{
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            padding: 0,
+            lineHeight: 1,
+          }}
+          aria-label="Home"
+        >
+          <img
+            src="portfolio/logo.png"
+            alt="Maryam Moradian"
+            style={{ height: '26px', width: '26px', objectFit: 'contain' }}
+          />
+        </button>
 
-      {/* Right: About link */}
-      <button
-        onClick={() => goTo('about')}
-        style={linkStyle('about')}
-      >
-        About
-      </button>
+        {/* Right: About link */}
+        <button
+          onClick={() => goTo('about')}
+          style={linkStyle('about')}
+        >
+          About
+        </button>
+      </div>
     </nav>
   );
 };

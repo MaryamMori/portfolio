@@ -14,12 +14,12 @@ const Footer = ({ goTo, goToWork }) => {
   return (
     <footer style={{
       background: '#f5f5f7',
-      padding: '56px clamp(24px, 5vw, 80px) 32px',
+      padding: '56px var(--page-padding) 32px',
       fontFamily: "'DM Sans', system-ui, sans-serif",
       borderTop: '1px solid rgba(0,0,0,0.06)',
     }}>
       {/* innerRef on the content wrapper — footer bg fills naturally */}
-      <div ref={innerRef} style={{ maxWidth: '980px', margin: '0 auto' }}>
+      <div ref={innerRef} style={{ maxWidth: 'var(--content-width)', margin: '0 auto' }}>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
@@ -204,7 +204,7 @@ const Footer = ({ goTo, goToWork }) => {
               Email
             </a>
             <a
-              href="01_CV_Maryam_Product_Designer.docx"
+              href="01_CV_Maryam_Product_Designer.pdf"
               download
               style={{
                 display: 'block',

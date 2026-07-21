@@ -18,6 +18,29 @@
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <style>
+  :root {
+    /* Layout */
+    --content-width: 980px;
+    --page-padding: clamp(24px, 5vw, 80px);
+
+    /* Body paragraph text */
+    --body-font-size: 17px;
+    --body-line-height: 1.72;
+    --paragraph-spacing: 20px;
+
+    /* Secondary text tier */
+    --secondary-font-size: 15px;
+    --secondary-line-height: 1.65;
+
+    /* Caption text tier */
+    --caption-font-size: 13px;
+    --caption-line-height: 1.55;
+
+    /* Section-to-section vertical rhythm */
+    --section-spacing-lg: 160px;
+    --section-spacing-md: 100px;
+    --section-spacing-sm: 80px;
+  }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   /* scroll-behavior: auto — Lenis handles all smooth scrolling */
   html { scroll-behavior: auto; }
@@ -67,12 +90,12 @@
 <div id="root"></div>
 <!-- animations.js: defines window.anim* helpers; must load before Babel scripts execute -->
 <script src="animations.js?v=10"></script>
-<script type="text/babel" src="Nav.jsx?v=6"></script>
-<script type="text/babel" src="HomePage.jsx?v=27"></script>
-<script type="text/babel" src="CaseStudyFizik.jsx?v=3"></script>
-<script type="text/babel" src="CaseStudyFootCare.jsx?v=4"></script>
-<script type="text/babel" src="AboutPage.jsx?v=13"></script>
-<script type="text/babel" src="Footer.jsx?v=4"></script>
+<script type="text/babel" src="Nav.jsx?v=10"></script>
+<script type="text/babel" src="HomePage.jsx?v=33"></script>
+<script type="text/babel" src="CaseStudyFizik.jsx?v=4"></script>
+<script type="text/babel" src="CaseStudyFootCare.jsx?v=8"></script>
+<script type="text/babel" src="AboutPage.jsx?v=17"></script>
+<script type="text/babel" src="Footer.jsx?v=6"></script>
 <script type="text/babel" src="App.jsx?v=4"></script>
 </body>
 </html>

@@ -30,9 +30,9 @@ const AboutPage = ({ goTo, goToWork }) => {
       {/* ── Section 1 — Header ── */}
       <section style={{
         background: '#f5f5f7',
-        padding: '120px clamp(24px, 5vw, 80px) 60px',
+        padding: '120px var(--page-padding) 60px',
       }}>
-        <div style={{ maxWidth: '960px', margin: '0 auto' }}>
+        <div style={{ maxWidth: 'var(--content-width)', margin: '0 auto' }}>
 
           {/* Two-column row */}
           <div style={{
@@ -99,7 +99,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               {/* 5. Buttons */}
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 <button
-                  onClick={() => window.open('01_CV_Maryam_Product_Designer.docx', '_blank')}
+                  onClick={() => window.open('01_CV_Maryam_Product_Designer.pdf', '_blank')}
                   style={{
                     background: 'transparent',
                     color: '#1d1d1f',
@@ -125,7 +125,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             }}>
               <img
                 src="profile.png"
-                alt="Maryam Moradian — Senior Product Designer"
+                alt="Maryam Moradian, Senior Product Designer"
                 style={{
                   width: '100%',
                   aspectRatio: '4/5',
@@ -149,7 +149,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             color: 'rgba(29,29,31,0.45)',
             letterSpacing: '-0.12px',
           }}>
-            10+ years experience · 9 projects across 5 brands · B2B medtech &amp; biomechanics · Promoted to Product Designer 2024 · End-to-end from discovery to handoff
+            7+ years experience · 9 projects across 5 brands · B2B medtech &amp; biomechanics · Promoted to Product Designer 2024 · End-to-end from discovery to handoff
           </div>
 
         </div>
@@ -159,9 +159,9 @@ const AboutPage = ({ goTo, goToWork }) => {
       <section style={{
         background: '#ffffff',
         borderTop: '1px solid rgba(0,0,0,0.05)',
-        padding: '80px clamp(24px, 5vw, 80px)',
+        padding: 'var(--section-spacing-sm) var(--page-padding)',
       }}>
-        <div style={{ maxWidth: '860px', margin: '0 auto' }}>
+        <div style={{ maxWidth: 'var(--content-width)', margin: '0 auto' }}>
           <div style={{
             display: 'flex',
             flexDirection: isMobile ? 'column' : 'row',
@@ -199,31 +199,31 @@ const AboutPage = ({ goTo, goToWork }) => {
             <div style={{ flex: 1 }}>
               <p style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontSize: '17px',
+                fontSize: 'var(--body-font-size)',
                 fontWeight: 400,
-                lineHeight: 1.65,
+                lineHeight: 'var(--body-line-height)',
                 letterSpacing: '-0.374px',
                 color: 'rgba(29,29,31,0.82)',
-                marginBottom: '20px',
+                marginBottom: 'var(--paragraph-spacing)',
               }}>
-                That's still how I approach every digital product. Before I design a screen, I want to understand the workflow around it — the people using it, the physical environment it sits in, the constraints no one put in the brief.
+                That's still how I approach every digital product. Before I design a screen, I want to understand the workflow around it: the people using it, the physical environment it sits in, the constraints no one put in the brief.
               </p>
               <p style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontSize: '17px',
+                fontSize: 'var(--body-font-size)',
                 fontWeight: 400,
-                lineHeight: 1.65,
+                lineHeight: 'var(--body-line-height)',
                 letterSpacing: '-0.374px',
                 color: 'rgba(29,29,31,0.82)',
-                marginBottom: '20px',
+                marginBottom: 'var(--paragraph-spacing)',
               }}>
                 A Master's in Human-Computer Interaction added research methods and interaction theory to that foundation. Together, they shaped a perspective I haven't been able to unlearn: the interface is only one part of a much larger system.
               </p>
               <p style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontSize: '15px',
+                fontSize: 'var(--secondary-font-size)',
                 fontWeight: 400,
-                lineHeight: 1.65,
+                lineHeight: 'var(--secondary-line-height)',
                 letterSpacing: '-0.374px',
                 color: 'rgba(29,29,31,0.75)',
                 marginBottom: 0,
@@ -241,7 +241,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 {/* Three nodes in a flex row with arrows between */}
                 <div style={{
                   display: 'flex',
-                  alignItems: 'center',
+                  alignItems: 'flex-start',
                   gap: '0px',
                   flexWrap: 'wrap',
                   rowGap: '16px',
@@ -298,10 +298,10 @@ const AboutPage = ({ goTo, goToWork }) => {
                   <div style={{
                     flex: 1,
                     minWidth: '32px',
+                    height: '64px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    paddingBottom: '28px',
                   }}>
                     <div style={{
                       height: '1px',
@@ -353,10 +353,10 @@ const AboutPage = ({ goTo, goToWork }) => {
                       color: '#1d1d1f',
                       letterSpacing: '-0.1px',
                       textAlign: 'center',
-                      maxWidth: '80px',
+                      maxWidth: '110px',
                       lineHeight: 1.3,
                     }}>
-                      Human-Computer Interaction
+                      <span style={{ whiteSpace: 'nowrap' }}>Human-Computer</span> Interaction
                     </span>
                     <span style={{
                       fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -382,10 +382,10 @@ const AboutPage = ({ goTo, goToWork }) => {
                   <div style={{
                     flex: 1,
                     minWidth: '32px',
+                    height: '64px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    paddingBottom: '28px',
                   }}>
                     <div style={{
                       height: '1px',
@@ -465,9 +465,9 @@ const AboutPage = ({ goTo, goToWork }) => {
       <section style={{
         background: '#272729',
         borderTop: '1px solid rgba(255,255,255,0.06)',
-        padding: '100px clamp(24px, 5vw, 80px)',
+        padding: 'var(--section-spacing-md) var(--page-padding)',
       }}>
-        <div style={{ maxWidth: '860px', margin: '0 auto' }}>
+        <div style={{ maxWidth: 'var(--content-width)', margin: '0 auto' }}>
 
           {/* Two-column row */}
           <div style={{
@@ -507,25 +507,25 @@ const AboutPage = ({ goTo, goToWork }) => {
             <div style={{ flex: 1 }}>
               <p style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontSize: '17px',
+                fontSize: 'var(--body-font-size)',
                 fontWeight: 400,
-                lineHeight: 1.65,
+                lineHeight: 'var(--body-line-height)',
                 letterSpacing: '-0.374px',
                 color: 'rgba(255,255,255,0.70)',
-                marginBottom: '20px',
+                marginBottom: 'var(--paragraph-spacing)',
               }}>
                 For the past few years at GEBIOM Group in Düsseldorf, I've been designing products where the complexity is real: biomechanical measurement data that needs to be interpretable by non-specialists, orthopedic service workflows that exist partly in physical space and partly in software, and B2B retail tools that have to work reliably for staff at every level of expertise.
               </p>
               <p style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontSize: '17px',
+                fontSize: 'var(--body-font-size)',
                 fontWeight: 400,
-                lineHeight: 1.65,
+                lineHeight: 'var(--body-line-height)',
                 letterSpacing: '-0.374px',
                 color: 'rgba(255,255,255,0.70)',
-                marginBottom: '20px',
+                marginBottom: 'var(--paragraph-spacing)',
               }}>
-                I was promoted to Product Designer in September 2024 after demonstrating end-to-end ownership across several of these products. That kind of domain — messy, technical, multi-user — is where I do my best work.
+                I was promoted to Product Designer in September 2024 after demonstrating end-to-end ownership across several of these products. That kind of domain (messy, technical, multi-user) is where I do my best work.
               </p>
               <p style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -553,7 +553,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             marginTop: '64px',
           }}>
             {[
-              { stat: '10+', label: 'years experience' },
+              { stat: '7+', label: 'years experience' },
               { stat: '9',   label: 'projects delivered' },
               { stat: '5',   label: 'brands & products' },
               { stat: '3',   label: 'products funded' },
@@ -600,9 +600,9 @@ const AboutPage = ({ goTo, goToWork }) => {
       <section style={{
         background: '#f5f5f7',
         borderTop: '1px solid rgba(0,0,0,0.05)',
-        padding: '100px clamp(24px, 5vw, 80px)',
+        padding: 'var(--section-spacing-md) var(--page-padding)',
       }}>
-        <div style={{ maxWidth: '860px', margin: '0 auto' }}>
+        <div style={{ maxWidth: 'var(--content-width)', margin: '0 auto' }}>
           <div style={{
             display: 'flex',
             flexDirection: isMobile ? 'column' : 'row',
@@ -642,17 +642,17 @@ const AboutPage = ({ goTo, goToWork }) => {
                 {
                   n: '1',
                   heading: 'I map the workflow before I design the interface.',
-                  body: 'On the Fizik project, I spent the early phase understanding the full in-store service — the staff behavior, the measurement inputs, the catalog logic — before defining a single screen. Without that foundation, the UI would have solved the wrong problem.',
+                  body: 'On the Fizik project, I spent the early phase understanding the full in-store service (the staff behavior, the measurement inputs, the catalog logic) before defining a single screen. Without that foundation, the UI would have solved the wrong problem.',
                 },
                 {
                   n: '2',
                   heading: 'I treat constraints as design inputs, not blockers.',
-                  body: 'On the Foot Care platform, working without real patient data and designing for two very different user types forced explicit trade-offs. Making those decisions visible — rather than hiding them — is part of how I build trust with engineering and stakeholders.',
+                  body: 'On the Foot Care platform, working without real patient data and designing for two very different user types forced explicit trade-offs. Making those decisions visible, rather than hiding them, is part of how I build trust with engineering and stakeholders.',
                 },
                 {
                   n: '3',
                   heading: 'I stay involved through implementation.',
-                  body: 'Handoff is not the end of the design process. I work with developers at component level during build, maintain design system documentation, and support clarification to reduce back-and-forth. In environments where I\'m the only designer, that\'s not unusual — it\'s the job.',
+                  body: 'Handoff is not the end of the design process. I work with developers at component level during build, maintain design system documentation, and support clarification to reduce back-and-forth. In environments where I\'m the only designer, that\'s not unusual. It\'s the job.',
                 },
               ].map(({ n, heading, body }, i, arr) => (
                 <div key={n} style={{
@@ -689,9 +689,9 @@ const AboutPage = ({ goTo, goToWork }) => {
                   </div>
                   <p style={{
                     fontFamily: "'DM Sans', system-ui, sans-serif",
-                    fontSize: '15px',
+                    fontSize: 'var(--secondary-font-size)',
                     fontWeight: 400,
-                    lineHeight: 1.65,
+                    lineHeight: 'var(--secondary-line-height)',
                     color: 'rgba(29,29,31,0.75)',
                     letterSpacing: '-0.2px',
                     margin: 0,
@@ -710,9 +710,9 @@ const AboutPage = ({ goTo, goToWork }) => {
       <section style={{
         background: '#ffffff',
         borderTop: '1px solid rgba(0,0,0,0.05)',
-        padding: '100px clamp(24px, 5vw, 80px)',
+        padding: 'var(--section-spacing-md) var(--page-padding)',
       }}>
-        <div style={{ maxWidth: '860px', margin: '0 auto' }}>
+        <div style={{ maxWidth: 'var(--content-width)', margin: '0 auto' }}>
           <div style={{
             display: 'flex',
             flexDirection: isMobile ? 'column' : 'row',
@@ -750,20 +750,20 @@ const AboutPage = ({ goTo, goToWork }) => {
             <div style={{ flex: 1 }}>
               <p style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontSize: '17px',
+                fontSize: 'var(--body-font-size)',
                 fontWeight: 400,
-                lineHeight: 1.65,
+                lineHeight: 'var(--body-line-height)',
                 letterSpacing: '-0.374px',
                 color: 'rgba(29,29,31,0.82)',
-                marginBottom: '24px',
+                marginBottom: 'var(--paragraph-spacing)',
               }}>
-                B2B platforms, healthtech, medtech, data-heavy workflow products — these are the contexts where my background is strongest and where I can contribute from day one. I work best alongside PMs, developers, and domain experts who want a designer involved in the thinking, not just the delivery.
+                B2B platforms, healthtech, medtech, data-heavy workflow products: these are the contexts where my background is strongest and where I can contribute from day one. I work best alongside PMs, developers, and domain experts who want a designer involved in the thinking, not just the delivery.
               </p>
               <p style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontSize: '17px',
+                fontSize: 'var(--body-font-size)',
                 fontWeight: 400,
-                lineHeight: 1.65,
+                lineHeight: 'var(--body-line-height)',
                 letterSpacing: '-0.374px',
                 color: 'rgba(29,29,31,0.82)',
                 marginBottom: 0,
@@ -803,9 +803,9 @@ const AboutPage = ({ goTo, goToWork }) => {
       <section style={{
         background: '#f5f5f7',
         borderTop: '1px solid rgba(0,0,0,0.05)',
-        padding: '100px clamp(24px, 5vw, 80px)',
+        padding: 'var(--section-spacing-md) var(--page-padding)',
       }}>
-        <div style={{ maxWidth: '860px', margin: '0 auto' }}>
+        <div style={{ maxWidth: 'var(--content-width)', margin: '0 auto' }}>
 
           {/* Section header */}
           <div style={{ marginBottom: '64px' }}>
@@ -841,11 +841,21 @@ const AboutPage = ({ goTo, goToWork }) => {
               dates: 'Feb 2022 – Present',
               promotion: 'Promoted from UX/UI Designer · Sep 2024',
               bullets: [
-                'Own product design end-to-end across web and mobile — from problem definition and early discovery through to implementation-ready specs — for B2B medtech tools and B2C retail experiences.',
+                'Own product design end-to-end across web and mobile (from problem definition and early discovery through to implementation-ready specs) for B2B medtech tools and B2C retail experiences.',
                 'Led user research and usability testing across the full product lifecycle; findings directly shaped workflow redesigns and informed go/no-go decisions on key feature directions.',
                 'Built and evolved scalable design system foundations across 9 projects spanning 5 brands, improving cross-team consistency and reducing design-to-development friction.',
                 'Created product pitches and presentation materials for three products, contributing directly to funding approval for all three.',
                 'Partnered with the University of Siegen research group to integrate academic findings into product decisions.',
+              ],
+            },
+            {
+              role: 'Web Content Manager',
+              company: 'University of Siegen',
+              dates: 'Sep 2021 – May 2023',
+              promotion: null,
+              bullets: [
+                'Managed and updated university website content, improving usability and navigation for student-facing information.',
+                'Implemented HTML and responsive layout updates to improve content presentation and accessibility.',
               ],
             },
             {
@@ -971,9 +981,9 @@ const AboutPage = ({ goTo, goToWork }) => {
       <section style={{
         background: '#ffffff',
         borderTop: '1px solid rgba(0,0,0,0.05)',
-        padding: '100px clamp(24px, 5vw, 80px)',
+        padding: 'var(--section-spacing-md) var(--page-padding)',
       }}>
-        <div style={{ maxWidth: '860px', margin: '0 auto' }}>
+        <div style={{ maxWidth: 'var(--content-width)', margin: '0 auto' }}>
 
           <div style={{ marginBottom: '64px' }}>
             <div style={{
@@ -1064,9 +1074,9 @@ const AboutPage = ({ goTo, goToWork }) => {
                 {ed.description && (
                   <p style={{
                     fontFamily: "'DM Sans', system-ui, sans-serif",
-                    fontSize: '15px',
+                    fontSize: 'var(--secondary-font-size)',
                     fontWeight: 400,
-                    lineHeight: 1.55,
+                    lineHeight: 'var(--secondary-line-height)',
                     color: 'rgba(29,29,31,0.65)',
                     letterSpacing: '-0.2px',
                     margin: 0,
@@ -1085,9 +1095,9 @@ const AboutPage = ({ goTo, goToWork }) => {
       <section style={{
         background: '#f5f5f7',
         borderTop: '1px solid rgba(0,0,0,0.05)',
-        padding: '100px clamp(24px, 5vw, 80px)',
+        padding: 'var(--section-spacing-md) var(--page-padding)',
       }}>
-        <div style={{ maxWidth: '860px', margin: '0 auto' }}>
+        <div style={{ maxWidth: 'var(--content-width)', margin: '0 auto' }}>
 
           <div style={{ marginBottom: '64px' }}>
             <div style={{
@@ -1204,8 +1214,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               {[
                 { lang: 'Persian', level: 'Native' },
                 { lang: 'English', level: 'Professional' },
-                { lang: 'German', level: 'B1' },
-                { lang: 'Turkish', level: 'Elementary' },
+                { lang: 'German', level: 'B1, actively progressing' },
               ].map(({ lang, level }) => (
                 <div key={lang} style={{
                   display: 'flex',
@@ -1242,7 +1251,7 @@ const AboutPage = ({ goTo, goToWork }) => {
       <section style={{
         background: '#272729',
         borderTop: '1px solid rgba(255,255,255,0.06)',
-        padding: '100px clamp(24px, 5vw, 80px)',
+        padding: 'var(--section-spacing-md) var(--page-padding)',
         textAlign: 'center',
       }}>
         <div style={{ maxWidth: '640px', margin: '0 auto' }}>
@@ -1271,9 +1280,9 @@ const AboutPage = ({ goTo, goToWork }) => {
           {/* Subtext */}
           <p style={{
             fontFamily: "'DM Sans', system-ui, sans-serif",
-            fontSize: '17px', fontWeight: 300,
+            fontSize: 'var(--body-font-size)', fontWeight: 300,
             color: 'rgba(255,255,255,0.45)',
-            lineHeight: 1.65, letterSpacing: '-0.374px',
+            lineHeight: 'var(--body-line-height)', letterSpacing: '-0.374px',
             marginBottom: '48px',
           }}>
             Open to Senior Product Designer roles
@@ -1311,7 +1320,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               LinkedIn
             </a>
             <span style={{ color: 'rgba(255,255,255,0.20)' }}>·</span>
-            <a href="01_CV_Maryam_Product_Designer.docx"
+            <a href="01_CV_Maryam_Product_Designer.pdf"
               download
               style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -1358,7 +1367,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             {/* Get in touch button */}
             <button
               onClick={() => window.location.href =
-                'mailto:maryam.moradian38@gmail.com?subject=Senior Product Designer — Let\'s connect'}
+                'mailto:maryam.moradian38@gmail.com?subject=Senior Product Designer: Let\'s connect'}
               style={{
                 background: '#a63636', color: 'white',
                 padding: '14px 32px', borderRadius: '980px',
@@ -1372,7 +1381,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             {/* Download CV button */}
             <button
               onClick={() => window.open(
-                '01_CV_Maryam_Product_Designer.docx', '_blank')}
+                '01_CV_Maryam_Product_Designer.pdf', '_blank')}
               style={{
                 background: 'transparent',
                 color: 'rgba(255,255,255,0.70)',
