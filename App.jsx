@@ -37,12 +37,9 @@ function App() {
 
   // ── Scroll to top on page change ──
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
     const lenis = lenisRef.current;
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }
+    if (lenis) lenis.scrollTo(0, { immediate: true });
   }, [page]);
 
   const goTo = (newPage) => {

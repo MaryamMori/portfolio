@@ -236,27 +236,6 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
             >
               Get in touch
             </a>
-            <button
-              onClick={() => goToWork()}
-              style={{
-                background: 'transparent',
-                color: 'rgba(255,255,255,0.6)',
-                fontSize: '17px',
-                fontWeight: 400,
-                letterSpacing: '-0.374px',
-                padding: '11px 22px',
-                borderRadius: '9999px',
-                border: '1px solid rgba(255,255,255,0.2)',
-                cursor: 'pointer',
-                lineHeight: 1,
-                fontFamily: "'DM Sans', system-ui, sans-serif",
-                transition: 'transform 120ms',
-              }}
-              onMouseDown={e => e.currentTarget.style.transform = 'scale(0.95)'}
-              onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
-            >
-              ← All work
-            </button>
           </div>
         </div>
       </div>
@@ -264,9 +243,6 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
       {/* ══ NEXT: ABOUT ═════════════════════════════════════════════ */}
       <div data-snap style={{ background: '#0c0c0c', position: 'relative', overflow: 'hidden', minHeight: '380px' }}>
         <div style={{ position: 'relative', zIndex: 2, padding: 'var(--section-spacing-sm) var(--page-padding)', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ fontSize: '10px', color: 'rgba(255,255,255,.2)', letterSpacing: '1.5px', textTransform: 'uppercase', fontFamily: "'DM Sans', system-ui, sans-serif", marginBottom: '40px' }}>
-            Next project
-          </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flex: 1 }}>
             <button className="fz-next-title" onClick={() => goTo('about')} style={{ display: 'block', textAlign: 'right' }}>
               → More About Me

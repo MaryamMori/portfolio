@@ -85,7 +85,7 @@ const Nav = ({ page, goTo, goToWork }) => {
       }}>
         {/* Logo */}
         <button
-          onClick={() => goToWork()}
+          onClick={() => goTo('home')}
           style={{
             background: 'none',
             border: 'none',
