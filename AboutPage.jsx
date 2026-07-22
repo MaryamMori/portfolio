@@ -114,7 +114,7 @@ const AboutPage = ({ goTo, goToWork }) => {
 
               {/* 5. Buttons */}
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <button
+                <ScrambleButton
                   onClick={() => window.open('01_CV_Maryam_Product_Designer.pdf', '_blank')}
                   style={{
                     background: 'transparent',
@@ -130,7 +130,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                   }}
                 >
                   Download CV
-                </button>
+                </ScrambleButton>
               </div>
             </div>
 
@@ -1381,7 +1381,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             </div>
 
             {/* Get in touch button */}
-            <button
+            <ScrambleButton
               onClick={() => window.location.href =
                 'mailto:maryam.moradian38@gmail.com?subject=Senior Product Designer: Let\'s connect'}
               style={{
@@ -1392,10 +1392,10 @@ const AboutPage = ({ goTo, goToWork }) => {
                 fontSize: '15px', fontWeight: 500,
               }}>
               Get in touch
-            </button>
+            </ScrambleButton>
 
             {/* Download CV button */}
-            <button
+            <ScrambleButton
               onClick={() => window.open(
                 '01_CV_Maryam_Product_Designer.pdf', '_blank')}
               style={{
@@ -1408,7 +1408,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 fontSize: '15px', fontWeight: 500,
               }}>
               Download CV
-            </button>
+            </ScrambleButton>
 
           </div>
         </div>

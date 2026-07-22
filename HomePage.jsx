@@ -200,7 +200,7 @@ const HomePage = ({ goTo }) => {
 
             {/* CTAs */}
             <div data-anim="hero-cta" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '20px' }}>
-              <button
+              <ScrambleButton
                 onClick={() => document.getElementById('selected-work')?.scrollIntoView({ block: 'start' }) || window.scrollBy(0, 200)}
                 style={{
                   background: '#a63636',
@@ -220,8 +220,8 @@ const HomePage = ({ goTo }) => {
                 onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
               >
                 View Work
-              </button>
-              <button
+              </ScrambleButton>
+              <ScrambleButton
                 onClick={() => goTo('about')}
                 style={{
                   background: 'transparent',
@@ -241,7 +241,7 @@ const HomePage = ({ goTo }) => {
                 onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
               >
                 Contact
-              </button>
+              </ScrambleButton>
             </div>
 
             {/* Supporting line */}
@@ -453,7 +453,7 @@ const HomePage = ({ goTo }) => {
             }}>
               Currently looking for my next Senior Product Designer role in Germany or remote Europe.
             </p>
-            <button
+            <ScrambleButton
               onClick={() => goTo('about')}
               style={{
                 background: 'transparent',
@@ -473,7 +473,7 @@ const HomePage = ({ goTo }) => {
               onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
             >
               Read more
-            </button>
+            </ScrambleButton>
           </div>
         </div>
       </section>
@@ -726,7 +726,7 @@ const ProjectCard = ({ proj, idx, goTo }) => {
           {/* CTAs */}
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
             {!proj.noStudy && (
-              <button
+              <ScrambleButton
                 onClick={() => goTo(proj.id)}
                 style={{
                   background: accentColor,
@@ -746,7 +746,7 @@ const ProjectCard = ({ proj, idx, goTo }) => {
                 onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
               >
                 Read case study
-              </button>
+              </ScrambleButton>
             )}
           </div>
         </div>

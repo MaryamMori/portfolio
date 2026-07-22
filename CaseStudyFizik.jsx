@@ -315,7 +315,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
         <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px)', backgroundSize:'72px 72px', pointerEvents:'none' }} />
 
         <div style={{ position:'absolute', top:'52px', left:'var(--page-padding)', animation:'fizik-fade-in .7s ease .25s both', zIndex:10 }}>
-          <button className="fz-back-btn" onClick={() => goToWork()}>← All work</button>
+          <ScrambleButton className="fz-back-btn" onClick={() => goToWork()}>← All work</ScrambleButton>
         </div>
         <div style={{ position:'absolute', top:'52px', right:'var(--page-padding)', fontSize:'10px', color:'rgba(255,255,255,.18)', letterSpacing:'.14em', textTransform:'uppercase', animation:'fizik-fade-in .7s ease .3s both', zIndex:10 }}>
           Case study: 01 / 02
@@ -546,18 +546,18 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
             Next project
           </div>
           <div style={{ display:'flex', flexDirection:'column', alignItems:'flex-end', flex:1 }}>
-            <button className="fz-next-title" onClick={() => goTo('footcare')} style={{ display:'block', textAlign:'right' }}>
+            <ScrambleButton className="fz-next-title" onClick={() => goTo('footcare')} style={{ display:'block', textAlign:'right' }}>
               → Next Project
-            </button>
+            </ScrambleButton>
             <div style={{ fontSize:'clamp(14px,1.8vw,24px)', color:'rgba(255,255,255,.2)', fontFamily:"'DM Sans',system-ui,sans-serif", letterSpacing:'-0.374px', marginTop:'8px', textAlign:'right' }}>
               Preventive Foot Care Platform
             </div>
           </div>
           <div style={{ marginTop:'48px' }}>
-            <button onClick={() => goToWork()} style={{ background:'none', border:'1px solid rgba(255,255,255,.12)', borderRadius:'9999px', padding:'10px 20px', color:'rgba(255,255,255,.35)', fontSize:'13px', letterSpacing:'.03em', cursor:'pointer', fontFamily:"'DM Sans',system-ui,sans-serif", transition:'color .2s,border-color .2s' }}
+            <ScrambleButton onClick={() => goToWork()} style={{ background:'none', border:'1px solid rgba(255,255,255,.12)', borderRadius:'9999px', padding:'10px 20px', color:'rgba(255,255,255,.35)', fontSize:'13px', letterSpacing:'.03em', cursor:'pointer', fontFamily:"'DM Sans',system-ui,sans-serif", transition:'color .2s,border-color .2s' }}
               onMouseEnter={e => { e.currentTarget.style.color='rgba(255,255,255,.7)'; e.currentTarget.style.borderColor='rgba(255,255,255,.3)'; }}
               onMouseLeave={e => { e.currentTarget.style.color='rgba(255,255,255,.35)'; e.currentTarget.style.borderColor='rgba(255,255,255,.12)'; }}
-            >← Back to all work</button>
+            >← Back to all work</ScrambleButton>
           </div>
         </div>
       </div>
