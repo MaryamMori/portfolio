@@ -168,13 +168,13 @@ const FzLabel = ({ n, text }) => (
 );
 
 const FzHeading = ({ children }) => (
-  <h2 className="fz-heading" style={{ fontFamily:"'Space Grotesk',system-ui,sans-serif", fontSize:'clamp(24px,2.5vw,32px)', fontWeight:700, lineHeight:1.19, letterSpacing:'-0.2px', color:'#1d1d1f', marginBottom:0, textWrap:'pretty' }}>
+  <h2 className="fz-heading" data-anim="work-label" style={{ fontFamily:"'Space Grotesk',system-ui,sans-serif", fontSize:'clamp(24px,2.5vw,32px)', fontWeight:700, lineHeight:1.19, letterSpacing:'-0.2px', color:'#1d1d1f', marginBottom:0, textWrap:'pretty' }}>
     {children}
   </h2>
 );
 
-const FzBody = ({ children, style }) => (
-  <p className="fz-body" style={{ fontFamily:"'DM Sans',system-ui,sans-serif", fontSize:'var(--body-font-size)', fontWeight:400, lineHeight:'var(--body-line-height)', letterSpacing:'-0.374px', color:'rgba(29,29,31,0.68)', marginBottom:'var(--paragraph-spacing)', textWrap:'pretty', ...style }}>
+const FzBody = ({ children, style, animSub }) => (
+  <p className="fz-body" data-anim={animSub ? 'work-sub' : undefined} style={{ fontFamily:"'DM Sans',system-ui,sans-serif", fontSize:'var(--body-font-size)', fontWeight:400, lineHeight:'var(--body-line-height)', letterSpacing:'-0.374px', color:'rgba(29,29,31,0.68)', marginBottom:'var(--paragraph-spacing)', textWrap:'pretty', ...style }}>
     {children}
   </p>
 );
@@ -281,6 +281,19 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
     };
   }, []);
 
+  // Section heading+subtitle blocks: same scroll-reveal as the Selected Work heading
+  useEffect(() => {
+    if (typeof gsap === 'undefined') return;
+    const ids = ['problem', 'users', 'constraints', 'decisions', 'outcome', 'legacy', 'reflection'];
+    const ctx = gsap.context(() => {
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) window.animWorkHeading(el);
+      });
+    });
+    return () => ctx.revert();
+  }, []);
+
   const scrollTo = id => {
     const el = document.getElementById(id); if (!el) return;
     const target = el.getBoundingClientRect().top + window.scrollY - 80;
@@ -343,7 +356,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
       <div className="fz-body-layout">
 
         {/* Sidebar */}
-        <aside className={`fz-sidebar${sidebarVisible?'':' fz-sidebar-hidden'}`} style={{ position:'fixed', right:0, top:'108px', zIndex:50, textAlign:'right' }}>
+        <aside className={`fz-sidebar${sidebarVisible?'':' fz-sidebar-hidden'}`} style={{ position:'fixed', right:0, top:'136px', zIndex:50, textAlign:'right' }}>
           <div style={{ fontSize:'9px', color:'rgba(0,0,0,.2)', letterSpacing:'.15em', textTransform:'uppercase', marginBottom:'18px' }}>Contents</div>
           {navItems.map(item => (
             <button key={item.id} className={`fz-nav-btn${activeSection===item.id?' fz-active':''}`} onClick={() => scrollTo(item.id)}>
@@ -359,7 +372,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
             <FzLabel n="01" text="The problem" />
             <div style={{ display:'flex', flexDirection:'column', gap:'64px' }}>
               <FzHeading>A service that couldn't scale without the right tool.</FzHeading>
-              <FzBody style={{ marginBottom:0 }}>Fizik launched a service that lets cyclists receive a saddle personalized to their body geometry and riding data, custom 3D-printed based on in-store measurements. The service concept was strong. But for it to work in real retail environments, it needed a digital tool that didn't yet exist.</FzBody>
+              <FzBody animSub style={{ marginBottom:0 }}>Fizik launched a service that lets cyclists receive a saddle personalized to their body geometry and riding data, custom 3D-printed based on in-store measurements. The service concept was strong. But for it to work in real retail environments, it needed a digital tool that didn't yet exist.</FzBody>
             </div>
             <div className="fz-diagram-img" style={{ marginTop:'12px' }}>
               <img src="Fizik-1diagram-problem.png" alt="Service flow diagram" style={{ width:'100%', display:'block', borderRadius:'12px' }} />
@@ -371,7 +384,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
             <FzLabel n="02" text="Users & context" />
             <div style={{ display:'flex', flexDirection:'column', gap:'64px', marginBottom:'40px' }}>
               <FzHeading>Designed for the full range of staff expertise, not the best-case user.</FzHeading>
-              <FzBody style={{ marginBottom:0 }}>The primary users were bike shop staff, not product engineers or biomechanics specialists. Some had deep technical knowledge of bike fitting. Many did not.</FzBody>
+              <FzBody animSub style={{ marginBottom:0 }}>The primary users were bike shop staff, not product engineers or biomechanics specialists. Some had deep technical knowledge of bike fitting. Many did not.</FzBody>
             </div>
 
             <div className="fz-user-grid">
@@ -493,7 +506,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
           <FzLabel n="05" text="Outcome" />
           <div style={{ display:'flex', flexDirection:'column', gap:'64px', marginBottom:'28px' }}>
             <FzHeading>The platform delivered on its core product goal.</FzHeading>
-            <FzBody style={{ marginBottom:0 }}>The platform delivered on its core product goal: enabling dealers to run the complete custom saddle service end-to-end without a specialist present.</FzBody>
+            <FzBody animSub style={{ marginBottom:0 }}>The platform delivered on its core product goal: enabling dealers to run the complete custom saddle service end-to-end without a specialist present.</FzBody>
           </div>
           <FzBody>Feedback from an in-house bike fitting technician confirmed the platform served its purpose. The recommendation logic ran with minimal failures, and the guided workflow gave dealers a reliable, repeatable process regardless of prior fitting experience. For a service that had previously depended on individual expertise, that consistency was the prerequisite for it working at scale.</FzBody>
           <FzBody>The platform supports six languages, reflecting the international scope of Fizik's dealer network.</FzBody>
@@ -507,7 +520,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
           <FzLabel n="06" text="Product legacy" />
           <div style={{ display:'flex', flexDirection:'column', gap:'64px', marginBottom:'28px' }}>
             <FzHeading>Design decisions that travelled to a second product.</FzHeading>
-            <FzBody style={{ marginBottom:0 }}>The Fizik 121 Platform did not stay a standalone project. The design system and product thinking developed here directly informed a second product: a gebioMized saddle pressure app for electric bike fitting dealers, now in its second version as of March 2026, optimised for tablet and mobile.</FzBody>
+            <FzBody animSub style={{ marginBottom:0 }}>The Fizik 121 Platform did not stay a standalone project. The design system and product thinking developed here directly informed a second product: a gebioMized saddle pressure app for electric bike fitting dealers, now in its second version as of March 2026, optimised for tablet and mobile.</FzBody>
           </div>
           <FzBody>The interaction patterns, component logic, and workflow structure from Fizik 121 proved reusable in a related but distinct product context. The design decisions were grounded well enough to travel.</FzBody>
         </section>

@@ -74,6 +74,19 @@ const HomePage = ({ goTo }) => {
     return () => ctx.revert();
   }, []);
 
+  // Other heading+subtitle blocks: same scroll-reveal as the Selected Work heading
+  useEffect(() => {
+    if (typeof gsap === 'undefined') return;
+    const ids = ['about-snippet', 'get-in-touch'];
+    const ctx = gsap.context(() => {
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) window.animWorkHeading(el);
+      });
+    });
+    return () => ctx.revert();
+  }, []);
+
 
   // Pinned panels: project cards stack via CSS sticky + GSAP scrub (desktop only)
   useEffect(() => {
@@ -359,7 +372,7 @@ const HomePage = ({ goTo }) => {
       ))}
 
       {/* ── About snippet ── */}
-      <section style={{
+      <section id="about-snippet" style={{
         background: '#f5f5f7',
         padding: 'var(--section-spacing-sm) var(--page-padding)',
         position: 'relative',
@@ -390,7 +403,7 @@ const HomePage = ({ goTo }) => {
           }} />
           {/* Text column */}
           <div style={{ flex: '1 1 0', minWidth: 0, maxWidth: '620px', position: 'relative', zIndex: 6 }}>
-            <div style={{
+            <div data-anim="work-label" style={{
               fontFamily: "'DM Sans', system-ui, sans-serif",
               fontSize: 'clamp(24px, 3vw, 34px)',
               fontWeight: 600,
@@ -401,7 +414,7 @@ const HomePage = ({ goTo }) => {
             }}>
               About
             </div>
-            <p style={{
+            <p data-anim="work-sub" style={{
               fontFamily: "'DM Sans', system-ui, sans-serif",
               fontSize: 'var(--body-font-size)',
               fontWeight: 400,
@@ -466,7 +479,7 @@ const HomePage = ({ goTo }) => {
       </section>
 
       {/* ── Get in Touch CTA ── */}
-      <section style={{
+      <section id="get-in-touch" style={{
         background: '#0e0606',
         position: 'relative',
         overflow: 'hidden',
@@ -491,7 +504,7 @@ const HomePage = ({ goTo }) => {
           }}>
             Get in touch
           </div>
-          <h2 style={{
+          <h2 data-anim="work-label" style={{
             fontFamily: "'DM Sans', system-ui, sans-serif",
             fontSize: 'clamp(26px, 3.2vw, 38px)',
             fontWeight: 600,
@@ -503,7 +516,7 @@ const HomePage = ({ goTo }) => {
           }}>
             If you're hiring for a Senior Product Designer role covering complex workflows, technical domains, or B2B products, I'd be glad to talk.
           </h2>
-          <p style={{
+          <p data-anim="work-sub" style={{
             fontFamily: "'DM Sans', system-ui, sans-serif",
             fontSize: 'var(--body-font-size)',
             fontWeight: 400,

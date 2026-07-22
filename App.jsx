@@ -77,7 +77,7 @@ function App() {
   return (
     <div>
       <Nav page={page} goTo={goTo} goToWork={goToWork} />
-      <main style={{ paddingTop: '44px' }}>
+      <main style={{ paddingTop: '72px' }}>
         {renderPage()}
       </main>
       <Footer goTo={goTo} goToWork={goToWork} />

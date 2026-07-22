@@ -12,6 +12,22 @@ const AboutPage = ({ goTo, goToWork }) => {
     return () => window.removeEventListener('resize', handler);
   }, []);
 
+  // Section heading+subtitle blocks: same scroll-reveal as the Selected Work heading
+  useEffect(() => {
+    if (typeof gsap === 'undefined') return;
+    const ids = [
+      'about-origin', 'about-domain', 'about-approach', 'about-next-role',
+      'about-experience', 'about-education', 'about-skills', 'about-closing',
+    ];
+    const ctx = gsap.context(() => {
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) window.animWorkHeading(el);
+      });
+    });
+    return () => ctx.revert();
+  }, []);
+
   const contactLinks = [
     { label: 'Email', text: 'maryam.moradian38@gmail.com', href: 'mailto:maryam.moradian38@gmail.com', external: false, suffix: '' },
     { label: 'LinkedIn', text: 'linkedin.com/in/maryam-moradian', href: 'https://linkedin.com/in/maryam-moradian', external: true, suffix: '' },
@@ -156,7 +172,7 @@ const AboutPage = ({ goTo, goToWork }) => {
       </section>
 
       {/* ── Section 2 — Beat 1: Origin ── */}
-      <section style={{
+      <section id="about-origin" style={{
         background: '#ffffff',
         borderTop: '1px solid rgba(0,0,0,0.05)',
         padding: 'var(--section-spacing-sm) var(--page-padding)',
@@ -182,7 +198,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               }}>
                 Background
               </div>
-              <h2 style={{
+              <h2 data-anim="work-label" style={{
                 fontFamily: "'Space Grotesk', system-ui, sans-serif",
                 fontSize: 'clamp(20px, 2.2vw, 26px)',
                 fontWeight: 600,
@@ -197,7 +213,7 @@ const AboutPage = ({ goTo, goToWork }) => {
 
             {/* Right column */}
             <div style={{ flex: 1 }}>
-              <p style={{
+              <p data-anim="work-sub" style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
                 fontSize: 'var(--body-font-size)',
                 fontWeight: 400,
@@ -462,7 +478,7 @@ const AboutPage = ({ goTo, goToWork }) => {
       </section>
 
       {/* ── Section 3 — Beat 2: Domain (Dark) ── */}
-      <section style={{
+      <section id="about-domain" style={{
         background: '#272729',
         borderTop: '1px solid rgba(255,255,255,0.06)',
         padding: 'var(--section-spacing-md) var(--page-padding)',
@@ -490,7 +506,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               }}>
                 Domain
               </div>
-              <h2 style={{
+              <h2 data-anim="work-label" style={{
                 fontFamily: "'Space Grotesk', system-ui, sans-serif",
                 fontSize: 'clamp(20px, 2.2vw, 26px)',
                 fontWeight: 600,
@@ -505,7 +521,7 @@ const AboutPage = ({ goTo, goToWork }) => {
 
             {/* Right column */}
             <div style={{ flex: 1 }}>
-              <p style={{
+              <p data-anim="work-sub" style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
                 fontSize: 'var(--body-font-size)',
                 fontWeight: 400,
@@ -597,7 +613,7 @@ const AboutPage = ({ goTo, goToWork }) => {
       </section>
 
       {/* ── Section 4 — Beat 3: How I Work ── */}
-      <section style={{
+      <section id="about-approach" style={{
         background: '#f5f5f7',
         borderTop: '1px solid rgba(0,0,0,0.05)',
         padding: 'var(--section-spacing-md) var(--page-padding)',
@@ -623,7 +639,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               }}>
                 Approach
               </div>
-              <h2 style={{
+              <h2 data-anim="work-label" style={{
                 fontFamily: "'Space Grotesk', system-ui, sans-serif",
                 fontSize: 'clamp(20px, 2.2vw, 26px)',
                 fontWeight: 600,
@@ -707,7 +723,7 @@ const AboutPage = ({ goTo, goToWork }) => {
       </section>
 
       {/* ── Section 5 — Beat 4: What I'm Looking For ── */}
-      <section style={{
+      <section id="about-next-role" style={{
         background: '#ffffff',
         borderTop: '1px solid rgba(0,0,0,0.05)',
         padding: 'var(--section-spacing-md) var(--page-padding)',
@@ -733,7 +749,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               }}>
                 Next Role
               </div>
-              <h2 style={{
+              <h2 data-anim="work-label" style={{
                 fontFamily: "'Space Grotesk', system-ui, sans-serif",
                 fontSize: 'clamp(20px, 2.2vw, 26px)',
                 fontWeight: 600,
@@ -748,7 +764,7 @@ const AboutPage = ({ goTo, goToWork }) => {
 
             {/* Right column */}
             <div style={{ flex: 1 }}>
-              <p style={{
+              <p data-anim="work-sub" style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
                 fontSize: 'var(--body-font-size)',
                 fontWeight: 400,
@@ -800,7 +816,7 @@ const AboutPage = ({ goTo, goToWork }) => {
       </section>
 
       {/* ── Section 6 — Experience ── */}
-      <section style={{
+      <section id="about-experience" style={{
         background: '#f5f5f7',
         borderTop: '1px solid rgba(0,0,0,0.05)',
         padding: 'var(--section-spacing-md) var(--page-padding)',
@@ -820,7 +836,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             }}>
               Experience
             </div>
-            <h2 style={{
+            <h2 data-anim="work-label" style={{
               fontFamily: "'Space Grotesk', system-ui, sans-serif",
               fontSize: 'clamp(24px, 3vw, 34px)',
               fontWeight: 600,
@@ -978,7 +994,7 @@ const AboutPage = ({ goTo, goToWork }) => {
       </section>
 
       {/* ── Section 7 — Education ── */}
-      <section style={{
+      <section id="about-education" style={{
         background: '#ffffff',
         borderTop: '1px solid rgba(0,0,0,0.05)',
         padding: 'var(--section-spacing-md) var(--page-padding)',
@@ -997,7 +1013,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             }}>
               Education
             </div>
-            <h2 style={{
+            <h2 data-anim="work-label" style={{
               fontFamily: "'Space Grotesk', system-ui, sans-serif",
               fontSize: 'clamp(24px, 3vw, 34px)',
               fontWeight: 600,
@@ -1092,7 +1108,7 @@ const AboutPage = ({ goTo, goToWork }) => {
       </section>
 
       {/* ── Section 8 — Skills / Tools / Languages ── */}
-      <section style={{
+      <section id="about-skills" style={{
         background: '#f5f5f7',
         borderTop: '1px solid rgba(0,0,0,0.05)',
         padding: 'var(--section-spacing-md) var(--page-padding)',
@@ -1111,7 +1127,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             }}>
               Capabilities
             </div>
-            <h2 style={{
+            <h2 data-anim="work-label" style={{
               fontFamily: "'Space Grotesk', system-ui, sans-serif",
               fontSize: 'clamp(24px, 3vw, 34px)',
               fontWeight: 600,
@@ -1248,7 +1264,7 @@ const AboutPage = ({ goTo, goToWork }) => {
       </section>
 
       {/* ── Section 10 — CTA Closing (Dark) ── */}
-      <section style={{
+      <section id="about-closing" style={{
         background: '#272729',
         borderTop: '1px solid rgba(255,255,255,0.06)',
         padding: 'var(--section-spacing-md) var(--page-padding)',
@@ -1266,7 +1282,7 @@ const AboutPage = ({ goTo, goToWork }) => {
           }}>GET IN TOUCH</div>
 
           {/* Heading */}
-          <h2 style={{
+          <h2 data-anim="work-label" style={{
             fontFamily: "'Space Grotesk', system-ui, sans-serif",
             fontSize: 'clamp(28px, 3.5vw, 42px)',
             fontWeight: 600, lineHeight: 1.15,
@@ -1278,7 +1294,7 @@ const AboutPage = ({ goTo, goToWork }) => {
           </h2>
 
           {/* Subtext */}
-          <p style={{
+          <p data-anim="work-sub" style={{
             fontFamily: "'DM Sans', system-ui, sans-serif",
             fontSize: 'var(--body-font-size)', fontWeight: 300,
             color: 'rgba(255,255,255,0.45)',

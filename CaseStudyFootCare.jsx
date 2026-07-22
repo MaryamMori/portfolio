@@ -266,10 +266,18 @@ const accordionOpen = {};
 // ── Section renderer for foot care ──
 const FootCareSection = ({ section, idx }) => {
   const [, forceUpdate] = React.useReducer(x => x + 1, 0);
+  const sectionRef = React.useRef(null);
   const isAlt = idx % 2 === 1;
   const isDecisions = section.id === 'decisions';
   const bg = isAlt ? '#f5f5f7' : '#ffffff';
   const col = { maxWidth: 'var(--content-width)', margin: '0 auto', padding: '0 var(--page-padding)' };
+
+  // Heading+subtitle block: same scroll-reveal as the Selected Work heading
+  React.useEffect(() => {
+    if (typeof gsap === 'undefined' || !sectionRef.current) return;
+    const ctx = gsap.context(() => { window.animWorkHeading(sectionRef.current); });
+    return () => ctx.revert();
+  }, []);
 
   const toggleDecision = (id) => {
     accordionOpen[id] = !accordionOpen[id];
@@ -451,7 +459,7 @@ const FootCareSection = ({ section, idx }) => {
   ];
 
   return (
-    <section style={{ background: bg, borderTop: '1px solid rgba(0,0,0,0.05)' }}>
+    <section ref={sectionRef} style={{ background: bg, borderTop: '1px solid rgba(0,0,0,0.05)' }}>
 
       {/* ── Constrained column: label + heading + body ── */}
       <div style={{ ...col, paddingTop: '72px', paddingBottom: '0' }}>
@@ -462,7 +470,7 @@ const FootCareSection = ({ section, idx }) => {
         }}>
           {section.label}
         </div>
-        <h2 style={{
+        <h2 data-anim="work-label" style={{
           fontFamily: "'DM Sans', system-ui, sans-serif",
           fontSize: 'clamp(22px, 2.5vw, 34px)', fontWeight: 600,
           lineHeight: 1.2, letterSpacing: '-0.374px', color: '#1d1d1f',
@@ -472,7 +480,7 @@ const FootCareSection = ({ section, idx }) => {
         </h2>
 
         {section.body && section.body.map((para, i) => (
-          <p key={i} style={{
+          <p key={i} data-anim={i === 0 ? 'work-sub' : undefined} style={{
             fontFamily: "'DM Sans', system-ui, sans-serif",
             fontSize: 'var(--body-font-size)', fontWeight: 400, lineHeight: 'var(--body-line-height)',
             letterSpacing: '-0.374px', color: '#1d1d1f', opacity: 0.82,

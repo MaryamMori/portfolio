@@ -65,12 +65,11 @@ const Nav = ({ page, goTo, goToWork }) => {
       top: 0,
       left: 0,
       right: 0,
-      height: '44px',
-      background: scrolled
-        ? 'rgba(0,0,0,0.85)'
-        : '#000000',
-      backdropFilter: scrolled ? 'saturate(180%) blur(20px)' : 'none',
-      WebkitBackdropFilter: scrolled ? 'saturate(180%) blur(20px)' : 'none',
+      height: '72px',
+      background: 'rgba(5, 5, 5, 0.8)',
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
+      borderBottom: '1px solid rgba(255,255,255,0.08)',
       display: 'flex',
       alignItems: 'center',
       padding: '0 calc(var(--page-padding) / 2)',
@@ -94,13 +93,17 @@ const Nav = ({ page, goTo, goToWork }) => {
             alignItems: 'center',
             padding: 0,
             lineHeight: 1,
+            transform: 'scale(1)',
+            transition: 'transform 200ms ease',
           }}
+          onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
+          onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
           aria-label="Home"
         >
           <img
             src="portfolio/logo.png"
             alt="Maryam Moradian"
-            style={{ height: '26px', width: '26px', objectFit: 'contain' }}
+            style={{ height: '40px', width: '40px', objectFit: 'contain' }}
           />
         </button>
 
