@@ -200,7 +200,7 @@ const HomePage = ({ goTo }) => {
 
             {/* CTAs */}
             <div data-anim="hero-cta" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '20px' }}>
-              <ScrambleButton
+              <button
                 onClick={() => document.getElementById('selected-work')?.scrollIntoView({ block: 'start' }) || window.scrollBy(0, 200)}
                 style={{
                   background: '#a63636',
@@ -220,8 +220,8 @@ const HomePage = ({ goTo }) => {
                 onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
               >
                 View Work
-              </ScrambleButton>
-              <ScrambleButton
+              </button>
+              <button
                 onClick={() => goTo('about')}
                 style={{
                   background: 'transparent',
@@ -241,7 +241,7 @@ const HomePage = ({ goTo }) => {
                 onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
               >
                 Contact
-              </ScrambleButton>
+              </button>
             </div>
 
             {/* Supporting line */}
@@ -381,7 +381,7 @@ const HomePage = ({ goTo }) => {
         {/* Spanning character: positioned absolutely, waist at section bottom (JS sets bottom) */}
         <img
           ref={splitCharRef}
-          src="portfolio/character_Contact.png"
+          src="character_Contact.png"
           alt=""
           className="about-split-char"
           style={{
@@ -453,7 +453,7 @@ const HomePage = ({ goTo }) => {
             }}>
               Currently looking for my next Senior Product Designer role in Germany or remote Europe.
             </p>
-            <ScrambleButton
+            <button
               onClick={() => goTo('about')}
               style={{
                 background: 'transparent',
@@ -473,7 +473,7 @@ const HomePage = ({ goTo }) => {
               onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
             >
               Read more
-            </ScrambleButton>
+            </button>
           </div>
         </div>
       </section>
@@ -726,7 +726,7 @@ const ProjectCard = ({ proj, idx, goTo }) => {
           {/* CTAs */}
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
             {!proj.noStudy && (
-              <ScrambleButton
+              <button
                 onClick={() => goTo(proj.id)}
                 style={{
                   background: accentColor,
@@ -746,7 +746,7 @@ const ProjectCard = ({ proj, idx, goTo }) => {
                 onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
               >
                 Read case study
-              </ScrambleButton>
+              </button>
             )}
           </div>
         </div>
@@ -766,14 +766,14 @@ const ProjectCard = ({ proj, idx, goTo }) => {
         }}>
           {idx === 0 && (
             <img
-              src="portfolio/Fizik-cover-1.png"
+              src="Fizik-cover-1.png"
               alt="Fizik 121 Platform"
               style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px', display: 'block' }}
             />
           )}
           {idx === 1 && (
             <img
-              src="portfolio/footcare-cover-2.png"
+              src="footcare-cover-2.png"
               alt="Preventive Foot Care Platform"
               style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px', display: 'block' }}
             />

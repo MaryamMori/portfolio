@@ -101,7 +101,7 @@ const Nav = ({ page, goTo, goToWork }) => {
           aria-label="Home"
         >
           <img
-            src="portfolio/logo.png"
+            src="logo.png"
             alt="Maryam Moradian"
             style={{ height: '40px', width: '40px', objectFit: 'contain' }}
           />

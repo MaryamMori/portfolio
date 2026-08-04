@@ -12,6 +12,27 @@ if (!document.getElementById('fc-case-styles')) {
     @media (max-width: 900px) {
       .fc-constraints-grid { grid-template-columns: 1fr !important; }
     }
+    @keyframes fc-icon-spin-once {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @keyframes fc-title-reveal-once {
+      from { opacity: 0; transform: translateX(-6px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .fc-decision-title {
+      transition: transform 0.2s ease;
+    }
+    .fc-decision-btn:hover .fc-decision-title {
+      transform: translateX(4px);
+    }
+    .fc-decision-icon-wrap {
+      display: inline-flex;
+      transition: transform 0.25s ease;
+    }
+    .fc-decision-btn:hover .fc-decision-icon-wrap {
+      transform: rotate(90deg);
+    }
   `;
   document.head.appendChild(s);
 }
@@ -120,27 +141,27 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
         padding: 'var(--page-padding)', paddingTop: '96px',
         position: 'relative', overflow: 'hidden',
       }}>
-        {/* Cover video — right side */}
-        <video
-          autoPlay muted loop playsInline
-          style={{ position: 'absolute', top: 0, right: 0, width: '58%', height: '100%', objectFit: 'cover', objectPosition: 'center top', pointerEvents: 'none' }}
-        >
-          <source src="foot-trrim-dashboard.mp4" type="video/mp4" />
-        </video>
-        {/* Gradient overlays */}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right,#0c0c0c 36%,rgba(12,12,12,.75) 54%,rgba(12,12,12,.15) 100%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,#0c0c0c 18%,rgba(12,12,12,.45) 50%,transparent 100%)', pointerEvents: 'none' }} />
-        {/* Subtle grid */}
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px)', backgroundSize: '72px 72px', pointerEvents: 'none' }} />
+        {/* Cover video — bottom-right, scaled to 2/3 */}
+        <div style={{ position: 'absolute', right: '96px', bottom: '96px', width: '66.67%', height: '66.67%', transform: 'scale(1.1)', transformOrigin: 'bottom right', borderRadius: '54px', overflow: 'hidden', pointerEvents: 'none' }}>
+          <video
+            autoPlay muted loop playsInline
+            style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'right center', borderRadius: '54px', display: 'block' }}
+          >
+            <source src="Footcare/footcare-hero.mp4" type="video/mp4" />
+          </video>
+        </div>
+        {/* Gradient overlays — for text legibility only, video stays dominant */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right,rgba(12,12,12,.9) 0%,rgba(12,12,12,.6) 32%,rgba(12,12,12,.15) 58%,transparent 78%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(12,12,12,.8) 0%,rgba(12,12,12,.3) 32%,transparent 55%)', pointerEvents: 'none' }} />
 
         {/* Back button */}
         <div style={{ position: 'absolute', top: '52px', left: 'var(--page-padding)', animation: 'fizik-fade-in .7s ease .25s both', zIndex: 10 }}>
-          <ScrambleButton
+          <button
             onClick={() => goToWork()}
             style={{ background: 'none', border: 'none', padding: 0, color: 'rgba(255,255,255,0.35)', fontSize: '13px', letterSpacing: '.04em', cursor: 'pointer', fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', alignItems: 'center', gap: '8px' }}
             onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}
             onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}
-          >← All work</ScrambleButton>
+          >← All work</button>
         </div>
         {/* Counter */}
         <div style={{ position: 'absolute', top: '52px', right: 'var(--page-padding)', fontSize: '10px', color: 'rgba(255,255,255,.18)', letterSpacing: '.14em', textTransform: 'uppercase', animation: 'fizik-fade-in .7s ease .3s both', zIndex: 10 }}>
@@ -244,15 +265,15 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
       <div data-snap style={{ background: '#0c0c0c', position: 'relative', overflow: 'hidden', minHeight: '380px' }}>
         <div style={{ position: 'relative', zIndex: 2, padding: 'var(--section-spacing-sm) var(--page-padding)', display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flex: 1 }}>
-            <ScrambleButton className="fz-next-title" onClick={() => goTo('about')} style={{ display: 'block', textAlign: 'right' }}>
+            <button className="fz-next-title" onClick={() => goTo('about')} style={{ display: 'block', textAlign: 'right' }}>
               → More About Me
-            </ScrambleButton>
+            </button>
           </div>
           <div style={{ marginTop: '48px' }}>
-            <ScrambleButton onClick={() => goToWork()} style={{ background: 'none', border: '1px solid rgba(255,255,255,.12)', borderRadius: '9999px', padding: '10px 20px', color: 'rgba(255,255,255,.35)', fontSize: '13px', letterSpacing: '.03em', cursor: 'pointer', fontFamily: "'DM Sans', system-ui, sans-serif", transition: 'color .2s,border-color .2s' }}
+            <button onClick={() => goToWork()} style={{ background: 'none', border: '1px solid rgba(255,255,255,.12)', borderRadius: '9999px', padding: '10px 20px', color: 'rgba(255,255,255,.35)', fontSize: '13px', letterSpacing: '.03em', cursor: 'pointer', fontFamily: "'DM Sans', system-ui, sans-serif", transition: 'color .2s,border-color .2s' }}
               onMouseEnter={e => { e.currentTarget.style.color = 'rgba(255,255,255,.7)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.3)'; }}
               onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,.35)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.12)'; }}
-            >← Back to all work</ScrambleButton>
+            >← Back to all work</button>
           </div>
         </div>
       </div>
@@ -267,6 +288,7 @@ const accordionOpen = {};
 const FootCareSection = ({ section, idx }) => {
   const [, forceUpdate] = React.useReducer(x => x + 1, 0);
   const sectionRef = React.useRef(null);
+  const decisionRowRefs = React.useRef({});
   const isAlt = idx % 2 === 1;
   const isDecisions = section.id === 'decisions';
   const bg = isAlt ? '#f5f5f7' : '#ffffff';
@@ -278,6 +300,35 @@ const FootCareSection = ({ section, idx }) => {
     const ctx = gsap.context(() => { window.animWorkHeading(sectionRef.current); });
     return () => ctx.revert();
   }, []);
+
+  // Decision rows — one-time scroll-into-view animation (icon spin + title reveal)
+  React.useEffect(() => {
+    if (!isDecisions) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const rowEl = entry.target;
+        const icon = rowEl.querySelector('.fc-decision-icon');
+        const title = rowEl.querySelector('.fc-decision-title');
+
+        if (icon) {
+          icon.style.animation = 'fc-icon-spin-once 0.4s ease';
+          icon.addEventListener('animationend', () => { icon.style.animation = ''; }, { once: true });
+        }
+        if (title) {
+          title.style.animation = 'fc-title-reveal-once 0.3s ease';
+          title.addEventListener('animationend', () => { title.style.animation = ''; }, { once: true });
+        }
+
+        observer.unobserve(rowEl);
+      });
+    }, { threshold: 0.5 });
+
+    Object.values(decisionRowRefs.current).forEach((el) => { if (el) observer.observe(el); });
+
+    return () => observer.disconnect();
+  }, [isDecisions]);
 
   const toggleDecision = (id) => {
     accordionOpen[id] = !accordionOpen[id];
@@ -579,6 +630,16 @@ const FootCareSection = ({ section, idx }) => {
           </div>
         )}
 
+        {section.id === 'users' && (
+          <div style={{ marginBottom: '32px' }}>
+            <img
+              src="assets/foot-care/results.png"
+              alt="Results"
+              style={{ maxWidth: '600px', display: 'block', margin: '0 auto', borderRadius: '12px' }}
+            />
+          </div>
+        )}
+
         {section.bodyAfter && (
           <p style={{
             fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -627,11 +688,12 @@ const FootCareSection = ({ section, idx }) => {
             {decisions.map((d, i) => {
               const isOpen = !!accordionOpen[d.id];
               return (
-                <div key={d.id} style={{
+                <div key={d.id} ref={el => { decisionRowRefs.current[d.id] = el; }} style={{
                   borderTop: '1px solid #e0ddd8',
                   borderBottom: i === decisions.length - 1 ? '1px solid #e0ddd8' : 'none',
                 }}>
                   <button
+                    className="fc-decision-btn"
                     onClick={() => toggleDecision(d.id)}
                     style={{
                       width: '100%',
@@ -652,25 +714,28 @@ const FootCareSection = ({ section, idx }) => {
                       color: '#a63636', fontWeight: 500,
                       paddingTop: '3px', minWidth: '24px', flexShrink: 0,
                     }}>{d.n}</span>
-                    <span style={{
+                    <span className="fc-decision-title" style={{
                       fontFamily: "'DM Sans', system-ui, sans-serif",
                       fontSize: '18px', fontWeight: 600, lineHeight: 1.3,
                       color: '#1d1d1f', flex: 1,
                       letterSpacing: '-0.374px',
                     }}>{d.title}</span>
-                    <svg
-                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
-                      style={{
-                        width: '20px', height: '20px', flexShrink: 0,
-                        marginTop: '2px', color: isOpen ? '#a63636' : '#999',
-                        transform: isOpen ? 'rotate(45deg)' : 'none',
-                        transition: 'transform 0.3s ease, color 0.2s ease',
-                      }}
-                    >
-                      <line x1="12" y1="5" x2="12" y2="19"/>
-                      <line x1="5" y1="12" x2="19" y2="12"/>
-                    </svg>
+                    <span className="fc-decision-icon-wrap" style={{ flexShrink: 0 }}>
+                      <svg
+                        className="fc-decision-icon"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+                        style={{
+                          width: '20px', height: '20px', flexShrink: 0,
+                          marginTop: '2px', color: isOpen ? '#a63636' : '#999',
+                          transform: isOpen ? 'rotate(45deg)' : 'none',
+                          transition: 'transform 0.3s ease, color 0.2s ease',
+                        }}
+                      >
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                      </svg>
+                    </span>
                   </button>
 
                   <div style={{
@@ -707,6 +772,45 @@ const FootCareSection = ({ section, idx }) => {
                         }}>
                           {d.diagram}
                         </div>
+
+                        {d.id === 'd1' && (
+                          <img
+                            src="assets/foot-care/ux-sitemap.png"
+                            alt="UX sitemap"
+                            style={{ maxWidth: '100%', display: 'block', margin: '0 auto', borderRadius: '12px' }}
+                          />
+                        )}
+
+                        {d.id === 'd2' && (
+                          <div style={{ display: 'flex', gap: '16px' }}>
+                            <img
+                              src="assets/foot-care/questionnaire-pre-examination.png"
+                              alt="Questionnaire and pre-examination screen"
+                              style={{ width: '48%', borderRadius: '12px', objectFit: 'contain' }}
+                            />
+                            <img
+                              src="assets/foot-care/questionnaire-pre-examination-modal.png"
+                              alt="Questionnaire and pre-examination screen with tooltip open"
+                              style={{ width: '48%', borderRadius: '12px', objectFit: 'contain' }}
+                            />
+                          </div>
+                        )}
+
+                        {d.id === 'd3' && (
+                          <img
+                            src="assets/foot-care/new-customer-popup.png"
+                            alt="New customer pop-up"
+                            style={{ maxWidth: '480px', display: 'block', margin: '0 auto', borderRadius: '12px' }}
+                          />
+                        )}
+
+                        {d.id === 'd4' && (
+                          <img
+                            src="assets/foot-care/Data-History-3.png"
+                            alt="Data history view"
+                            style={{ maxWidth: '480px', display: 'block', margin: '0 auto', borderRadius: '12px' }}
+                          />
+                        )}
                       </div>
                     </div>
                   </div>
@@ -728,15 +832,16 @@ const FootCareSection = ({ section, idx }) => {
         </div>
       )}
 
-      {/* ── Screen recording (after decisions section) ── */}
-      {section.id === 'decisions' && (
-        <div style={{ marginTop: '48px', background: '#0d0d0d', display: 'flex', justifyContent: 'center', padding: '48px var(--page-padding)' }}>
-          <div style={{ width: '100%', maxWidth: '900px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 8px 48px rgba(0,0,0,0.5)' }}>
-            <video src="assets/foot-care/screen-recording-portfolio.mp4" autoPlay muted loop playsInline style={{ width: '100%', display: 'block' }} />
-          </div>
+      {/* ── Validation screenshot (after validation section text) ── */}
+      {section.id === 'validation' && (
+        <div style={{ ...col, marginTop: '32px', paddingBottom: '0' }}>
+          <img
+            src="assets/foot-care/drs-diagnosis-v2.png"
+            alt="Doctor's diagnosis view"
+            style={{ maxWidth: '600px', display: 'block', margin: '0 auto', borderRadius: '12px' }}
+          />
         </div>
       )}
-
 
       {/* ── Bottom padding ── */}
       <div style={{ height: '72px' }} />

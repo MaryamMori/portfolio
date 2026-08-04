@@ -307,15 +307,15 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
 
       {/* ══ HERO ══════════════════════════════════════════════════ */}
       <section data-snap style={{ minHeight:'100vh', background:'#0c0c0c', display:'flex', flexDirection:'column', justifyContent:'flex-end', padding:'var(--page-padding)', paddingTop:'96px', position:'relative', overflow:'hidden' }}>
-        <video autoPlay loop muted playsInline style={{ position:'absolute', top:0, right:0, width:'62%', height:'100%', objectFit:'cover', opacity:0.32 }}>
-          <source src="Fizik121/splash_fizik_121.mp4" type="video/mp4" />
+        <video autoPlay loop muted playsInline style={{ position:'absolute', top:0, right:0, width:'62%', height:'100%', objectFit:'contain', opacity:0.32 }}>
+          <source src="fizik-hero-loop.mp4" type="video/mp4" />
         </video>
         <div style={{ position:'absolute', inset:0, background:'linear-gradient(to right,#0c0c0c 32%,rgba(12,12,12,.78) 52%,rgba(12,12,12,.18) 100%)', pointerEvents:'none' }} />
         <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top,#0c0c0c 20%,rgba(12,12,12,.5) 55%,transparent 100%)', pointerEvents:'none' }} />
         <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px)', backgroundSize:'72px 72px', pointerEvents:'none' }} />
 
         <div style={{ position:'absolute', top:'52px', left:'var(--page-padding)', animation:'fizik-fade-in .7s ease .25s both', zIndex:10 }}>
-          <ScrambleButton className="fz-back-btn" onClick={() => goToWork()}>← All work</ScrambleButton>
+          <button className="fz-back-btn" onClick={() => goToWork()}>← All work</button>
         </div>
         <div style={{ position:'absolute', top:'52px', right:'var(--page-padding)', fontSize:'10px', color:'rgba(255,255,255,.18)', letterSpacing:'.14em', textTransform:'uppercase', animation:'fizik-fade-in .7s ease .3s both', zIndex:10 }}>
           Case study: 01 / 02
@@ -459,13 +459,6 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
         </main>
       </div>
 
-      {/* ══ VIDEO — after section 03 ══════════════════════════════ */}
-      <div className="fz-video-section" data-snap style={{ background:'#0c0c0c', padding:'var(--section-spacing-sm) var(--page-padding)', display:'flex', flexDirection:'column', alignItems:'center' }}>
-        <div style={{ width:'100%', maxWidth:'1178px' }}>
-          <VideoBlock src="screen_recording_converted.mp4" type="video/mp4" />
-        </div>
-      </div>
-
       {/* ══ 04 DECISIONS + 04-2 FLOW ══════════════════════════════ */}
       <div className="fz-body-layout">
         <main>
@@ -485,6 +478,28 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
                   <div className="fz-card-number">{d.n}</div>
                   <div className="fz-card-title" style={{ whiteSpace:'normal', lineHeight:1.3, fontSize:'15px' }}>{d.title}</div>
                   <p className="fz-card-body" style={{ marginTop:'4px' }}>{d.body}</p>
+                  {d.n === 'O1' && (
+                    <div style={{ marginTop:'12px', borderRadius:'16px', overflow:'hidden', background:'transparent' }}>
+                      <img src="Fizik121/FIZIK-wireframe-screenshot02.png" alt="Loaders" style={{ width:'100%', display:'block', borderRadius:'16px', background:'transparent' }} />
+                    </div>
+                  )}
+                  {d.n === 'O2' && (
+                    <div style={{ marginTop:'12px', borderRadius:'16px', overflow:'hidden', background:'transparent' }}>
+                      <img src="Fizik121/Saddle selection 1.png" alt="Saddle Selection" style={{ width:'100%', display:'block', borderRadius:'16px', background:'transparent' }} />
+                    </div>
+                  )}
+                  {d.n === 'O3' && (
+                    <div style={{ width:'100%', maxWidth:'380px', margin:'12px auto 0', borderRadius:'64px', overflow:'hidden' }}>
+                      <video autoPlay loop muted playsInline style={{ display:'block', width:'100%', borderRadius:'64px' }}>
+                        <source src="measurement.mp4" type="video/mp4" />
+                      </video>
+                    </div>
+                  )}
+                  {d.n === 'O4' && (
+                    <div style={{ marginTop:'12px', borderRadius:'16px', overflow:'hidden', background:'transparent' }}>
+                      <img src="Fizik121/FIZIK-final-screenshot04.png" alt="Fizik 121 questionnaire screen" style={{ width:'100%', display:'block', borderRadius:'16px', background:'transparent' }} />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -511,6 +526,9 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
           <FzBody>Feedback from an in-house bike fitting technician confirmed the platform served its purpose. The recommendation logic ran with minimal failures, and the guided workflow gave dealers a reliable, repeatable process regardless of prior fitting experience. For a service that had previously depended on individual expertise, that consistency was the prerequisite for it working at scale.</FzBody>
           <FzBody>The platform supports six languages, reflecting the international scope of Fizik's dealer network.</FzBody>
           <FzBody>Market rollout was shaped by business and go-to-market decisions rather than product readiness. The platform was operationally ready. The design delivered what it was asked to deliver.</FzBody>
+          <div className="fz-diagram-img" style={{ marginTop:'12px', textAlign:'center', background:'transparent' }}>
+            <img src="Fizik121/your custom saddle.png" alt="Your Customized Saddle" style={{ width:'100%', maxWidth:'380px', maxHeight:'500px', height:'auto', objectFit:'contain', display:'block', margin:'0 auto', borderRadius:'12px', background:'transparent' }} />
+          </div>
         </section>
       </div>
 
@@ -546,18 +564,18 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
             Next project
           </div>
           <div style={{ display:'flex', flexDirection:'column', alignItems:'flex-end', flex:1 }}>
-            <ScrambleButton className="fz-next-title" onClick={() => goTo('footcare')} style={{ display:'block', textAlign:'right' }}>
+            <button className="fz-next-title" onClick={() => goTo('footcare')} style={{ display:'block', textAlign:'right' }}>
               → Next Project
-            </ScrambleButton>
+            </button>
             <div style={{ fontSize:'clamp(14px,1.8vw,24px)', color:'rgba(255,255,255,.2)', fontFamily:"'DM Sans',system-ui,sans-serif", letterSpacing:'-0.374px', marginTop:'8px', textAlign:'right' }}>
               Preventive Foot Care Platform
             </div>
           </div>
           <div style={{ marginTop:'48px' }}>
-            <ScrambleButton onClick={() => goToWork()} style={{ background:'none', border:'1px solid rgba(255,255,255,.12)', borderRadius:'9999px', padding:'10px 20px', color:'rgba(255,255,255,.35)', fontSize:'13px', letterSpacing:'.03em', cursor:'pointer', fontFamily:"'DM Sans',system-ui,sans-serif", transition:'color .2s,border-color .2s' }}
+            <button onClick={() => goToWork()} style={{ background:'none', border:'1px solid rgba(255,255,255,.12)', borderRadius:'9999px', padding:'10px 20px', color:'rgba(255,255,255,.35)', fontSize:'13px', letterSpacing:'.03em', cursor:'pointer', fontFamily:"'DM Sans',system-ui,sans-serif", transition:'color .2s,border-color .2s' }}
               onMouseEnter={e => { e.currentTarget.style.color='rgba(255,255,255,.7)'; e.currentTarget.style.borderColor='rgba(255,255,255,.3)'; }}
               onMouseLeave={e => { e.currentTarget.style.color='rgba(255,255,255,.35)'; e.currentTarget.style.borderColor='rgba(255,255,255,.12)'; }}
-            >← Back to all work</ScrambleButton>
+            >← Back to all work</button>
           </div>
         </div>
       </div>
