@@ -479,24 +479,24 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
                   <div className="fz-card-title" style={{ whiteSpace:'normal', lineHeight:1.3, fontSize:'15px' }}>{d.title}</div>
                   <p className="fz-card-body" style={{ marginTop:'4px' }}>{d.body}</p>
                   {d.n === 'O1' && (
-                    <div style={{ marginTop:'12px', borderRadius:'16px', overflow:'hidden', background:'transparent' }}>
+                    <div style={{ marginTop:'auto', paddingTop:'12px', borderRadius:'16px', overflow:'hidden', background:'transparent' }}>
                       <img src="Fizik121/FIZIK-wireframe-screenshot02.png" alt="Loaders" style={{ width:'100%', display:'block', borderRadius:'16px', background:'transparent' }} />
                     </div>
                   )}
                   {d.n === 'O2' && (
-                    <div style={{ marginTop:'12px', borderRadius:'16px', overflow:'hidden', background:'transparent' }}>
+                    <div style={{ marginTop:'auto', paddingTop:'12px', borderRadius:'16px', overflow:'hidden', background:'transparent' }}>
                       <img src="Fizik121/Saddle selection 1.png" alt="Saddle Selection" style={{ width:'100%', display:'block', borderRadius:'16px', background:'transparent' }} />
                     </div>
                   )}
                   {d.n === 'O3' && (
-                    <div style={{ width:'100%', maxWidth:'380px', margin:'12px auto 0', borderRadius:'64px', overflow:'hidden' }}>
+                    <div style={{ width:'100%', maxWidth:'380px', margin:'auto auto 0', paddingTop:'12px', borderRadius:'64px', overflow:'hidden' }}>
                       <video autoPlay loop muted playsInline style={{ display:'block', width:'100%', borderRadius:'64px' }}>
                         <source src="measurement.mp4" type="video/mp4" />
                       </video>
                     </div>
                   )}
                   {d.n === 'O4' && (
-                    <div style={{ marginTop:'12px', borderRadius:'16px', overflow:'hidden', background:'transparent' }}>
+                    <div style={{ marginTop:'auto', paddingTop:'12px', borderRadius:'16px', overflow:'hidden', background:'transparent' }}>
                       <img src="Fizik121/FIZIK-final-screenshot04.png" alt="Fizik 121 questionnaire screen" style={{ width:'100%', display:'block', borderRadius:'16px', background:'transparent' }} />
                     </div>
                   )}
