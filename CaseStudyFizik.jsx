@@ -538,7 +538,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
           <FzLabel n="06" text="Product legacy" />
           <div style={{ display:'flex', flexDirection:'column', gap:'64px', marginBottom:'28px' }}>
             <FzHeading>Design decisions that travelled to a second product.</FzHeading>
-            <FzBody animSub style={{ marginBottom:0 }}>The Fizik 121 Platform did not stay a standalone project. The design system and product thinking developed here directly informed a second product: a gebioMized saddle pressure app for electric bike fitting dealers, now in its second version as of March 2026, optimised for tablet and mobile.</FzBody>
+            <FzBody animSub style={{ marginBottom:0 }}>The Fizik 121 Platform did not stay a standalone project. The design system and product thinking developed here directly informed a second product, a saddle pressure app for electric bike fitting dealers, now in its second version as of March 2026, optimised for tablet and mobile.</FzBody>
           </div>
           <FzBody>The interaction patterns, component logic, and workflow structure from Fizik 121 proved reusable in a related but distinct product context. The design decisions were grounded well enough to travel.</FzBody>
         </section>

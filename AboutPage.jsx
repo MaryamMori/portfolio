@@ -96,7 +96,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 letterSpacing: '-0.374px',
                 marginBottom: '32px',
               }}>
-                Senior Product Designer · Düsseldorf, Germany
+                Product Designer · Düsseldorf, Germany
               </div>
 
               {/* 4. Positioning statement */}
@@ -115,7 +115,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               {/* 5. Buttons */}
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 <button
-                  onClick={() => window.open('01_CV_Maryam_Product_Designer.pdf', '_blank')}
+                  onClick={() => window.open('Maryam_Moradian_CV.pdf', '_blank')}
                   style={{
                     background: 'transparent',
                     color: '#1d1d1f',
@@ -141,7 +141,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             }}>
               <img
                 src="profile.png"
-                alt="Maryam Moradian, Senior Product Designer"
+                alt="Maryam Moradian, Product Designer"
                 style={{
                   width: '100%',
                   aspectRatio: '4/5',
@@ -165,7 +165,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             color: 'rgba(29,29,31,0.45)',
             letterSpacing: '-0.12px',
           }}>
-            7+ years experience · 9 projects across 5 brands · B2B medtech &amp; biomechanics · Promoted to Product Designer 2024 · End-to-end from discovery to handoff
+            7+ years experience · 9 projects across 5 brands · B2B medtech &amp; biomechanics · Promoted to Product Designer in October 2023 · End-to-end from discovery to handoff
           </div>
 
         </div>
@@ -541,7 +541,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 color: 'rgba(255,255,255,0.70)',
                 marginBottom: 'var(--paragraph-spacing)',
               }}>
-                I was promoted to Product Designer in September 2024 after demonstrating end-to-end ownership across several of these products. That kind of domain (messy, technical, multi-user) is where I do my best work.
+                I was promoted to Product Designer in October 2023 after demonstrating end-to-end ownership across several of these products. That kind of domain (messy, technical, multi-user) is where I do my best work.
               </p>
               <p style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -572,7 +572,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               { stat: '7+', label: 'years experience' },
               { stat: '9',   label: 'projects delivered' },
               { stat: '5',   label: 'brands & products' },
-              { stat: '3',   label: 'products funded' },
+              { stat: '2',   label: 'platforms: iOS and Android' },
             ].map(({ stat, label }) => (
               <div key={label} style={{
                 background: 'rgba(255,255,255,0.06)',
@@ -791,7 +791,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '40px' }}>
                 {[
                   'B2B SaaS', 'Healthtech', 'Medtech', 'Workflow products',
-                  'Germany', 'Remote Europe', 'Senior Product Designer', 'End-to-end ownership',
+                  'Germany', 'Remote Europe', 'Product Designer', 'End-to-end ownership',
                 ].map(chip => (
                   <span key={chip} style={{
                     background: '#f5f5f7',
@@ -852,15 +852,15 @@ const AboutPage = ({ goTo, goToWork }) => {
           {/* Experience items */}
           {[
             {
-              role: 'Senior Product Designer',
+              role: 'Product Designer',
               company: 'GEBIOM Group',
               dates: 'Feb 2022 – Present',
-              promotion: 'Promoted from UX/UI Designer · Sep 2024',
+              promotion: 'Promoted from UX/UI Designer · Oct 2023',
               bullets: [
                 'Own product design end-to-end across web and mobile (from problem definition and early discovery through to implementation-ready specs) for B2B medtech tools and B2C retail experiences.',
                 'Led user research and usability testing across the full product lifecycle; findings directly shaped workflow redesigns and informed go/no-go decisions on key feature directions.',
                 'Built and evolved scalable design system foundations across 9 projects spanning 5 brands, improving cross-team consistency and reducing design-to-development friction.',
-                'Created product pitches and presentation materials for three products, contributing directly to funding approval for all three.',
+                'Created product pitches and presentation materials for three products across iOS and Android.',
                 'Partnered with the University of Siegen research group to integrate academic findings into product decisions.',
               ],
             },
@@ -1301,7 +1301,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             lineHeight: 'var(--body-line-height)', letterSpacing: '-0.374px',
             marginBottom: '48px',
           }}>
-            Open to Senior Product Designer roles
+            Open to Product Designer roles
             in Germany and remote Europe.
           </p>
 
@@ -1336,7 +1336,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               LinkedIn
             </a>
             <span style={{ color: 'rgba(255,255,255,0.20)' }}>·</span>
-            <a href="01_CV_Maryam_Product_Designer.pdf"
+            <a href="Maryam_Moradian_CV.pdf"
               download
               style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -1383,7 +1383,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             {/* Get in touch button */}
             <button
               onClick={() => window.location.href =
-                'mailto:maryam.moradian38@gmail.com?subject=Senior Product Designer: Let\'s connect'}
+                'mailto:maryam.moradian38@gmail.com?subject=Product Designer: Let\'s connect'}
               style={{
                 background: '#a63636', color: 'white',
                 padding: '14px 32px', borderRadius: '980px',
@@ -1397,7 +1397,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             {/* Download CV button */}
             <button
               onClick={() => window.open(
-                '01_CV_Maryam_Product_Designer.pdf', '_blank')}
+                'Maryam_Moradian_CV.pdf', '_blank')}
               style={{
                 background: 'transparent',
                 color: 'rgba(255,255,255,0.70)',

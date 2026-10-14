@@ -112,7 +112,7 @@ const HomePage = ({ goTo }) => {
         'Translated a 121-option catalog into a clear, explainable staff-facing recommendation flow',
         'Enabled consistent delivery of the service across dealers without specialist knowledge',
         'Delivered implementation-ready Flutter specs; product now supports six languages',
-        'Design decisions from this project directly informed a second product — a gebioMized saddle pressure app now in its second version as of 2026',
+        'Design decisions from this project directly informed a second product: a saddle pressure app for electric bike fitting dealers, now in its second version as of 2026',
       ],
       decisionSignal: 'The core decision: a locked linear flow over a flexible navigation model, so any staff member could run the full service regardless of prior fitting experience.',
       dark: false,
@@ -178,7 +178,7 @@ const HomePage = ({ goTo }) => {
                 fontFamily: "'DM Sans', system-ui, sans-serif",
               }}
             >
-              Senior Product Designer, Düsseldorf, Germany
+              Product Designer, Düsseldorf, Germany
             </div>
             <span data-anim="hero-line" className="heading-underline" style={{ marginBottom: '24px' }} />
 
@@ -273,7 +273,7 @@ const HomePage = ({ goTo }) => {
                 { label: 'Design System', value: '9 Projects · 5 Brands', delay: '0.8s' },
                 { label: 'Ownership',     value: 'End-to-end',             delay: '1.0s' },
                 { label: 'Handoff',       value: 'Dev-ready specs',        delay: '1.2s' },
-                { label: 'Funding',       value: '3 Products approved',    delay: '1.4s' },
+                { label: 'Platforms',     value: 'iOS and Android',        delay: '1.4s' },
               ].map(({ label, value, delay }) => (
                 <div key={label} style={{
                   flex: '1 1 0',
@@ -438,7 +438,7 @@ const HomePage = ({ goTo }) => {
               marginBottom: 'var(--paragraph-spacing)',
               textWrap: 'pretty',
             }}>
-              Biomechanical data, clinical workflows, and digital tools for preventive foot care: that's the domain that brought me to GEBIOM Group, where I was promoted to Product Designer in September 2024.
+              Biomechanical data, clinical workflows, and digital tools for preventive foot care: that's the domain that brought me to GEBIOM Group, where I was promoted to Product Designer in October 2023.
             </p>
             <p style={{
               fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -451,7 +451,7 @@ const HomePage = ({ goTo }) => {
               marginBottom: 'var(--paragraph-spacing)',
               textWrap: 'pretty',
             }}>
-              Currently looking for my next Senior Product Designer role in Germany or remote Europe.
+              Currently looking for my next Product Designer role in Germany or remote Europe.
             </p>
             <button
               onClick={() => goTo('about')}
@@ -514,7 +514,7 @@ const HomePage = ({ goTo }) => {
             marginBottom: '14px',
             textWrap: 'pretty',
           }}>
-            If you're hiring for a Senior Product Designer role covering complex workflows, technical domains, or B2B products, I'd be glad to talk.
+            If you're hiring for a Product Designer role covering complex workflows, technical domains, or B2B products, I'd be glad to talk.
           </h2>
           <p data-anim="work-sub" style={{
             fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -526,7 +526,7 @@ const HomePage = ({ goTo }) => {
             marginBottom: 'var(--paragraph-spacing)',
             textWrap: 'pretty',
           }}>
-            Open to Senior Product Designer roles in Germany or remote Europe.
+            Open to Product Designer roles in Germany or remote Europe.
           </p>
           <a
             href="mailto:maryam.moradian38@gmail.com"

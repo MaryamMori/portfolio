@@ -110,8 +110,34 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
       heading: 'Four decisions that defined the product.',
     },
     {
+      id: 'trust',
+      label: '06 · Trust',
+      heading: 'Designing for trust in a health context',
+      body: [
+        'I designed this as an early warning tool, not a diagnostic one. These are the choices that made that clear.',
+      ],
+      points: [
+        {
+          title: 'Early warning, not diagnosis',
+          body: 'Every message says what was detected, how it compares to the person\'s own baseline, and what they might consider. Clinical judgment stays with the professional.',
+        },
+        {
+          title: 'Insight before data',
+          body: 'Pressure and gait maps are accurate, but hard to read without training. The tool shows named insights and a simple trend: improving, stable, or needs attention.',
+        },
+        {
+          title: 'Two layers, one system',
+          body: 'The default view gives a simple signal. More detail is available on demand for professionals. Both look at the same screen and can talk about the same event.',
+        },
+        {
+          title: 'Honest about the limits',
+          body: 'I had no access to real patient data. I tested the concept with experts in clinical foot care, orthopedic shoe technology, product development and biomechanics. The structure and navigation held up. They also pointed to next steps: clearer feedback states, more flexible recommendation editing, secure data sharing and better visualisation. Whether people would keep using it over weeks is still untested.',
+        },
+      ],
+    },
+    {
       id: 'validation',
-      label: '06 · Validation',
+      label: '07 · Validation',
       heading: 'Expert usability testing with professionals across clinical foot care and biomechanics.',
       body: [
         'Expert usability testing with professionals across clinical foot care, orthopedic shoe technology, product development, and biomechanics-adjacent practice.',
@@ -535,7 +561,7 @@ const FootCareSection = ({ section, idx }) => {
             fontFamily: "'DM Sans', system-ui, sans-serif",
             fontSize: 'var(--body-font-size)', fontWeight: 400, lineHeight: 'var(--body-line-height)',
             letterSpacing: '-0.374px', color: '#1d1d1f', opacity: 0.82,
-            marginBottom: i < section.body.length - 1 ? '20px' : (section.users || section.bodyAfter ? '24px' : 0),
+            marginBottom: i < section.body.length - 1 ? '20px' : (section.users || section.bodyAfter || section.points ? '24px' : 0),
             textWrap: 'pretty',
           }}>
             {para}
@@ -676,6 +702,36 @@ const FootCareSection = ({ section, idx }) => {
                   letterSpacing: '-0.2px', color: 'rgba(29,29,31,0.72)',
                 }}>
                   {c.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Trust points: same 2×2 card grid as constraints, titles as h3 under the section h2 */}
+        {section.points && (
+          <div className="fc-constraints-grid">
+            {section.points.map(p => (
+              <div key={p.title} style={{
+                padding: '20px 24px',
+                background: isAlt ? '#ffffff' : '#f5f5f7',
+                borderRadius: '11px',
+                border: '1px solid rgba(0,0,0,0.07)',
+              }}>
+                <h3 style={{
+                  fontFamily: "'DM Sans', system-ui, sans-serif",
+                  fontSize: '11px', fontWeight: 600, lineHeight: 'inherit',
+                  letterSpacing: '0.08em', textTransform: 'uppercase',
+                  color: '#a63636', margin: '0 0 10px',
+                }}>
+                  {p.title}
+                </h3>
+                <p style={{
+                  fontFamily: "'DM Sans', system-ui, sans-serif",
+                  fontSize: 'var(--secondary-font-size)', fontWeight: 400, lineHeight: 'var(--secondary-line-height)',
+                  letterSpacing: '-0.2px', color: 'rgba(29,29,31,0.72)',
+                }}>
+                  {p.body}
                 </p>
               </div>
             ))}

@@ -57,10 +57,10 @@ function App() {
 
   useEffect(() => {
     const titles = {
-      home: 'Maryam Moradian — Senior Product Designer',
-      about: 'About — Maryam Moradian',
-      fizik: 'Fizik 121 Platform — Maryam Moradian',
-      footcare: 'Preventive Foot Care Platform — Maryam Moradian',
+      home: 'Maryam Moradian | Product Designer',
+      about: 'About | Maryam Moradian',
+      fizik: 'Fizik 121 Platform | Maryam Moradian',
+      footcare: 'Preventive Foot Care Platform | Maryam Moradian',
     };
     document.title = titles[page] || 'Maryam Moradian';
   }, [page]);

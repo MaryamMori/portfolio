@@ -46,7 +46,7 @@ const Footer = ({ goTo, goToWork }) => {
               letterSpacing: '-0.12px',
               lineHeight: 1.5,
             }}>
-              Senior Product Designer<br />Düsseldorf, Germany
+              Product Designer<br />Düsseldorf, Germany
             </div>
           </div>
 
@@ -168,7 +168,7 @@ const Footer = ({ goTo, goToWork }) => {
               Connect
             </div>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/maryam-moradian"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -204,7 +204,7 @@ const Footer = ({ goTo, goToWork }) => {
               Email
             </a>
             <a
-              href="01_CV_Maryam_Product_Designer.pdf"
+              href="Maryam_Moradian_CV.pdf"
               download
               style={{
                 display: 'block',
