@@ -572,7 +572,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               { stat: '7+', label: 'years experience' },
               { stat: '9',   label: 'projects delivered' },
               { stat: '5',   label: 'brands & products' },
-              { stat: '2',   label: 'platforms: iOS and Android' },
+              { stat: '3',   label: 'platforms: Web, iOS and Android' },
             ].map(({ stat, label }) => (
               <div key={label} style={{
                 background: 'rgba(255,255,255,0.06)',
@@ -928,7 +928,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 'Own product design end-to-end across web and mobile (from problem definition and early discovery through to implementation-ready specs) for B2B medtech tools and B2C retail experiences.',
                 'Led user research and usability testing across the full product lifecycle; findings directly shaped workflow redesigns and informed go/no-go decisions on key feature directions.',
                 'Built and evolved scalable design system foundations across 9 projects spanning 5 brands, improving cross-team consistency and reducing design-to-development friction.',
-                'Created product pitches and presentation materials for three products across iOS and Android.',
+                'Created product pitches and presentation materials for three products across web, iOS and Android.',
                 'Partnered with the University of Siegen research group to integrate academic findings into product decisions.',
               ],
             },

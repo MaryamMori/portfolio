@@ -273,7 +273,7 @@ const HomePage = ({ goTo }) => {
                 { label: 'Design System', value: '9 Projects · 5 Brands', delay: '0.8s' },
                 { label: 'Ownership',     value: 'End-to-end',             delay: '1.0s' },
                 { label: 'Handoff',       value: 'Dev-ready specs',        delay: '1.2s' },
-                { label: 'Platforms',     value: 'iOS and Android',        delay: '1.4s' },
+                { label: 'Platforms',     value: 'Web, iOS and Android',   delay: '1.4s' },
               ].map(({ label, value, delay }) => (
                 <div key={label} style={{
                   flex: '1 1 0',
