@@ -722,6 +722,74 @@ const AboutPage = ({ goTo, goToWork }) => {
         </div>
       </section>
 
+      {/* ── Section 4b: How I Work with AI ── */}
+      <section id="about-ai" style={{
+        background: '#ffffff',
+        borderTop: '1px solid rgba(0,0,0,0.05)',
+        padding: 'var(--section-spacing-md) var(--page-padding)',
+      }}>
+        <div style={{ maxWidth: 'var(--content-width)', margin: '0 auto' }}>
+          <div style={{
+            display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row',
+            gap: isMobile ? '48px' : '80px',
+            alignItems: 'flex-start',
+          }}>
+
+            {/* Left column */}
+            <div style={{ flex: isMobile ? undefined : '0 0 300px', width: isMobile ? '100%' : undefined }}>
+              <div style={{
+                fontFamily: "'DM Sans', system-ui, sans-serif",
+                fontSize: '11px',
+                fontWeight: 400,
+                color: '#a63636',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                marginBottom: '20px',
+              }}>
+                Workflow
+              </div>
+              <h2 data-anim="work-label" style={{
+                fontFamily: "'Space Grotesk', system-ui, sans-serif",
+                fontSize: 'clamp(20px, 2.2vw, 26px)',
+                fontWeight: 600,
+                lineHeight: 1.3,
+                letterSpacing: '-0.28px',
+                color: '#1d1d1f',
+                marginBottom: 0,
+              }}>
+                How I work with AI
+              </h2>
+            </div>
+
+            {/* Right column */}
+            <div style={{ flex: 1 }}>
+              {[
+                { lead: null, text: 'I use AI to remove slow, repetitive work, so I can spend my time on the decisions that need judgment.' },
+                { lead: 'Build tools, not shortcuts.', text: 'When a task was slow and manual, I built my own tools for it. One example: a plugin, made with AI, that updates fonts and all their variants across a design system in a few clicks. A job that took about a day now takes a few minutes. I tested several plugins for color updates the same way, to find the one with the least manual work.' },
+                { lead: 'I still decide the design.', text: 'AI speeds up the work. It does not make the design choices. I go through the flow and prototype several times before handoff, to make sure it fits the user. If something is off, I adjust it, or I run a quick test to decide what works best.' },
+                { lead: 'Handoff that stands on its own.', text: 'My handoff has detailed specs and links, so developers do not need me in the room to build it. It is complete whether I am there or not.' },
+              ].map(({ lead, text }, i, arr) => (
+                <p key={i} data-anim={i === 0 ? 'work-sub' : undefined} style={{
+                  fontFamily: "'DM Sans', system-ui, sans-serif",
+                  fontSize: 'var(--body-font-size)',
+                  fontWeight: 400,
+                  lineHeight: 'var(--body-line-height)',
+                  letterSpacing: '-0.374px',
+                  color: 'rgba(29,29,31,0.82)',
+                  marginBottom: i < arr.length - 1 ? 'var(--paragraph-spacing)' : 0,
+                }}>
+                  {lead && <strong style={{ fontWeight: 600, color: '#1d1d1f' }}>{lead}</strong>}
+                  {lead && ' '}
+                  {text}
+                </p>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ── Section 5 — Beat 4: What I'm Looking For ── */}
       <section id="about-next-role" style={{
         background: '#ffffff',
