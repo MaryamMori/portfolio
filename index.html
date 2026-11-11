@@ -3,7 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- base: every relative asset path resolves from the site root, so the same file works at /fizik/, /about/ etc. -->
+<base href="/">
+<!-- route-head:start (build-pages.py rewrites this block for each route from routes.js) -->
 <title>Maryam Moradian | Product Designer</title>
+<meta name="description" content="Maryam Moradian is a product designer in Düsseldorf who shapes complex products into clear, usable systems. Selected work in B2B retail tech and healthtech.">
+<link rel="canonical" href="https://maryammoradian.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Maryam Moradian">
+<meta property="og:title" content="Maryam Moradian | Product Designer">
+<meta property="og:description" content="Maryam Moradian is a product designer in Düsseldorf who shapes complex products into clear, usable systems. Selected work in B2B retail tech and healthtech.">
+<meta property="og:url" content="https://maryammoradian.com/">
+<meta property="og:image" content="https://maryammoradian.com/og-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Maryam Moradian | Product Designer">
+<meta name="twitter:description" content="Maryam Moradian is a product designer in Düsseldorf who shapes complex products into clear, usable systems. Selected work in B2B retail tech and healthtech.">
+<meta name="twitter:image" content="https://maryammoradian.com/og-default.jpg">
+<!-- route-head:end -->
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#b63b3b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
@@ -90,12 +115,14 @@
 <div id="root"></div>
 <!-- animations.js: defines window.anim* helpers; must load before Babel scripts execute -->
 <script src="animations.js?v=10"></script>
+<!-- routes.js: page/URL list shared by App.jsx and build-pages.py -->
+<script src="routes.js?v=1"></script>
 <script type="text/babel" src="Nav.jsx?v=14"></script>
 <script type="text/babel" src="HomePage.jsx?v=38"></script>
 <script type="text/babel" src="CaseStudyFizik.jsx?v=18"></script>
-<script type="text/babel" src="CaseStudyFootCare.jsx?v=30"></script>
+<script type="text/babel" src="CaseStudyFootCare.jsx?v=31"></script>
 <script type="text/babel" src="AboutPage.jsx?v=25"></script>
 <script type="text/babel" src="Footer.jsx?v=7"></script>
-<script type="text/babel" src="App.jsx?v=7"></script>
+<script type="text/babel" src="App.jsx?v=8"></script>
 </body>
 </html>

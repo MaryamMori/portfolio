@@ -2,10 +2,32 @@
 
 const { useState, useEffect, useRef } = React;
 
+// ── Routing: the page list lives in routes.js (window.SITE_ROUTES) ──
+const ROUTES = window.SITE_ROUTES || [{ page: 'home', path: '/' }];
+const routeForPage = (p) => ROUTES.find(r => r.page === p) || ROUTES[0];
+
+// "/fizik", "/fizik/", "/fizik/index.html" all map to the fizik route; unknown paths return null
+const pageFromPath = (pathname) => {
+  const clean = pathname.replace(/\/index\.html$/, '').replace(/\/+$/, '') || '/';
+  const route = ROUTES.find(r => r.path === clean);
+  return route ? route.page : null;
+};
+
+const setHeadTag = (selector, attr, value) => {
+  const el = document.head.querySelector(selector);
+  if (el) el.setAttribute(attr, value);
+};
+
 // ── Main App ──
 function App() {
   const [page, setPage] = useState(() => {
-    return sessionStorage.getItem('mm_page') || 'home';
+    const initial = pageFromPath(window.location.pathname) || 'home';
+    // Normalise the address bar to the canonical path (drops trailing slash, sends unknown paths home)
+    const canonical = routeForPage(initial).path;
+    if (window.location.pathname !== canonical) {
+      window.history.replaceState({ page: initial }, '', canonical + window.location.search);
+    }
+    return initial;
   });
   const lenisRef = useRef(null);
 
@@ -42,9 +64,19 @@ function App() {
     if (lenis) lenis.scrollTo(0, { immediate: true });
   }, [page]);
 
+  // ── Back / forward buttons ──
+  useEffect(() => {
+    const onPop = () => setPage(pageFromPath(window.location.pathname) || 'home');
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
   const goTo = (newPage) => {
+    const path = routeForPage(newPage).path;
+    if (window.location.pathname !== path) {
+      window.history.pushState({ page: newPage }, '', path);
+    }
     setPage(newPage);
-    sessionStorage.setItem('mm_page', newPage);
   };
 
   const goToWork = () => {
@@ -55,14 +87,12 @@ function App() {
     }, 100);
   };
 
+  // ── Keep title, description and canonical in step with the current route ──
   useEffect(() => {
-    const titles = {
-      home: 'Maryam Moradian | Product Designer',
-      about: 'About | Maryam Moradian',
-      fizik: 'Fizik 121 Platform | Maryam Moradian',
-      footcare: 'Preventive Foot Care Platform | Maryam Moradian',
-    };
-    document.title = titles[page] || 'Maryam Moradian';
+    const route = routeForPage(page);
+    document.title = route.title || 'Maryam Moradian';
+    if (route.description) setHeadTag('meta[name="description"]', 'content', route.description);
+    setHeadTag('link[rel="canonical"]', 'href', (window.SITE_ORIGIN || '') + route.path);
   }, [page]);
 
   const renderPage = () => {

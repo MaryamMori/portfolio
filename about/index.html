@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- base: every relative asset path resolves from the site root, so the same file works at /fizik/, /about/ etc. -->
+<base href="/">
+<!-- route-head:start (build-pages.py rewrites this block for each route from routes.js) -->
+<title>About | Maryam Moradian, Product Designer</title>
+<meta name="description" content="About Maryam Moradian, product designer in Düsseldorf, Germany: background, experience, how she works, and how to get in touch.">
+<link rel="canonical" href="https://maryammoradian.com/about">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Maryam Moradian">
+<meta property="og:title" content="About | Maryam Moradian, Product Designer">
+<meta property="og:description" content="About Maryam Moradian, product designer in Düsseldorf, Germany: background, experience, how she works, and how to get in touch.">
+<meta property="og:url" content="https://maryammoradian.com/about">
+<meta property="og:image" content="https://maryammoradian.com/og-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About | Maryam Moradian, Product Designer">
+<meta name="twitter:description" content="About Maryam Moradian, product designer in Düsseldorf, Germany: background, experience, how she works, and how to get in touch.">
+<meta name="twitter:image" content="https://maryammoradian.com/og-default.jpg">
+<!-- route-head:end -->
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#b63b3b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<!-- Spline 3D viewer web component — loaded as module so it self-registers <spline-viewer> -->
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+<!-- GSAP + ScrollTrigger: loaded before React so window.gsap is available when useEffect hooks run -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
+<!-- Lenis smooth scroll — must load before React so window.Lenis is available -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  :root {
+    /* Layout */
+    --content-width: 980px;
+    --page-padding: clamp(24px, 5vw, 80px);
+
+    /* Body paragraph text */
+    --body-font-size: 17px;
+    --body-line-height: 1.72;
+    --paragraph-spacing: 20px;
+
+    /* Secondary text tier */
+    --secondary-font-size: 15px;
+    --secondary-line-height: 1.65;
+
+    /* Caption text tier */
+    --caption-font-size: 13px;
+    --caption-line-height: 1.55;
+
+    /* Section-to-section vertical rhythm */
+    --section-spacing-lg: 160px;
+    --section-spacing-md: 100px;
+    --section-spacing-sm: 80px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  /* scroll-behavior: auto — Lenis handles all smooth scrolling */
+  html { scroll-behavior: auto; }
+  body {
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    background: #ffffff;
+    color: #1d1d1f;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif !important;
+    font-feature-settings: "ss03";
+  }
+  #root { min-height: 100vh; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
+
+  /* Focus ring */
+  *:focus-visible { outline: 2px solid #b63b3b; outline-offset: 2px; border-radius: 2px; }
+
+  /* Responsive base */
+  @media (max-width: 640px) {
+    .hide-mobile { display: none !important; }
+  }
+  @media (min-width: 641px) {
+    .show-mobile { display: none !important; }
+  }
+
+  /* Underline draw element — used by GSAP scaleX animation on section headings.
+     Starts visible (scaleX:1) so it shows without JS; GSAP drives it from 0→1. */
+  .heading-underline {
+    display: block;
+    height: 1.5px;
+    width: 28px;
+    background: #a63636;
+    transform-origin: left center;
+    margin-top: 7px;
+  }
+
+</style>
+</head>
+<body>
+<div id="root"></div>
+<!-- animations.js: defines window.anim* helpers; must load before Babel scripts execute -->
+<script src="animations.js?v=10"></script>
+<!-- routes.js: page/URL list shared by App.jsx and build-pages.py -->
+<script src="routes.js?v=1"></script>
+<script type="text/babel" src="Nav.jsx?v=14"></script>
+<script type="text/babel" src="HomePage.jsx?v=38"></script>
+<script type="text/babel" src="CaseStudyFizik.jsx?v=18"></script>
+<script type="text/babel" src="CaseStudyFootCare.jsx?v=31"></script>
+<script type="text/babel" src="AboutPage.jsx?v=25"></script>
+<script type="text/babel" src="Footer.jsx?v=7"></script>
+<script type="text/babel" src="App.jsx?v=8"></script>
+</body>
+</html>

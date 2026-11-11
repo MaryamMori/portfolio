@@ -173,7 +173,7 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
             autoPlay muted loop playsInline
             style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'right center', borderRadius: '54px', display: 'block' }}
           >
-            <source src="Footcare/footcare-hero.mp4" type="video/mp4" />
+            <source src="assets/foot-care/footcare-hero.mp4" type="video/mp4" />
           </video>
         </div>
         {/* Gradient overlays — for text legibility only, video stays dominant */}
