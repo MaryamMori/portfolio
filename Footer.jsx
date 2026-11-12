@@ -65,6 +65,7 @@ const Footer = ({ goTo, goToWork }) => {
             {[
               { label: 'All projects', action: () => goToWork() },
               { label: 'Fizik 121 Platform', action: () => goTo('fizik') },
+              { label: 'Fleetwatch Cockpit', action: () => goTo('fleetwatch') },
               { label: 'Preventive Foot Care', action: () => goTo('footcare') },
             ].map(item => (
               <button

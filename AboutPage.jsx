@@ -259,8 +259,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                   display: 'flex',
                   alignItems: 'flex-start',
                   gap: '0px',
-                  flexWrap: 'wrap',
-                  rowGap: '16px',
+                  flexWrap: 'nowrap',
                 }}>
 
                   {/* Node 1 */}
@@ -313,7 +312,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                   {/* Arrow 1 */}
                   <div style={{
                     flex: 1,
-                    minWidth: '32px',
+                    minWidth: '8px',
                     height: '64px',
                     display: 'flex',
                     alignItems: 'center',
@@ -397,7 +396,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                   {/* Arrow 2 */}
                   <div style={{
                     flex: 1,
-                    minWidth: '32px',
+                    minWidth: '8px',
                     height: '64px',
                     display: 'flex',
                     alignItems: 'center',
@@ -859,7 +858,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '40px' }}>
                 {[
                   'B2B SaaS', 'Healthtech', 'Medtech', 'Workflow products',
-                  'Germany', 'Remote Europe', 'Product Designer', 'End-to-end ownership',
+                  'Germany', 'Remote or hybrid', 'Product Designer', 'End-to-end ownership',
                 ].map(chip => (
                   <span key={chip} style={{
                     background: '#f5f5f7',
@@ -1370,7 +1369,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             marginBottom: '48px',
           }}>
             Open to Product Designer roles
-            in Germany and remote Europe.
+            in Germany, remote or hybrid.
           </p>
 
           {/* Contact details — one line */}

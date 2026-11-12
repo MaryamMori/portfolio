@@ -29,6 +29,13 @@ window.SITE_ROUTES = [
     "image": "og-fizik.jpg"
   },
   {
+    "page": "fleetwatch",
+    "path": "/fleetwatch",
+    "title": "Fleetwatch Cockpit | Maryam Moradian, Product Designer",
+    "description": "A weekly decision tool for a fleet manager, built to show what needs attention, how sure the system is, and what happens next.",
+    "image": "og-fleetwatch.jpg"
+  },
+  {
     "page": "footcare",
     "path": "/footcare",
     "title": "Preventive Foot Care Platform | Maryam Moradian, Product Designer",

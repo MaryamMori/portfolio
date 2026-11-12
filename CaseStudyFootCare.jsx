@@ -191,7 +191,7 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
         </div>
         {/* Counter */}
         <div style={{ position: 'absolute', top: '52px', right: 'var(--page-padding)', fontSize: '10px', color: 'rgba(255,255,255,.18)', letterSpacing: '.14em', textTransform: 'uppercase', animation: 'fizik-fade-in .7s ease .3s both', zIndex: 10 }}>
-          Case study: 02 / 02
+          Case study: 03 / 03
         </div>
 
         {/* Content */}
@@ -207,7 +207,7 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
             Translating biomechanical research into a digital system for early detection and proactive monitoring.
           </div>
           {/* Meta bar */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', paddingTop: '32px', borderTop: '1px solid rgba(255,255,255,.08)', animation: 'fizik-fade-up .8s cubic-bezier(.16,1,.3,1) 1.1s both' }}>
+          <div className="fz-meta-bar" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', paddingTop: '32px', borderTop: '1px solid rgba(255,255,255,.08)', animation: 'fizik-fade-up .8s cubic-bezier(.16,1,.3,1) 1.1s both' }}>
             {[
               { label: 'Role',     value: "Product Designer (HCI Master's Thesis)" },
               { label: 'Scope',    value: 'Domain Research · Product Strategy · UX · Prototyping' },
@@ -661,7 +661,7 @@ const FootCareSection = ({ section, idx }) => {
             <img
               src="assets/foot-care/results.png"
               alt="Results"
-              style={{ maxWidth: '600px', display: 'block', margin: '0 auto', borderRadius: '12px' }}
+              style={{ maxWidth: 'min(600px, 100%)', display: 'block', margin: '0 auto', borderRadius: '12px' }}
             />
           </div>
         )}
@@ -856,7 +856,7 @@ const FootCareSection = ({ section, idx }) => {
                           <img
                             src="assets/foot-care/new-customer-popup.png"
                             alt="New customer pop-up"
-                            style={{ maxWidth: '480px', display: 'block', margin: '0 auto', borderRadius: '12px' }}
+                            style={{ maxWidth: 'min(480px, 100%)', display: 'block', margin: '0 auto', borderRadius: '12px' }}
                           />
                         )}
 
@@ -864,7 +864,7 @@ const FootCareSection = ({ section, idx }) => {
                           <img
                             src="assets/foot-care/Data-History-3.png"
                             alt="Data history view"
-                            style={{ maxWidth: '480px', display: 'block', margin: '0 auto', borderRadius: '12px' }}
+                            style={{ maxWidth: 'min(480px, 100%)', display: 'block', margin: '0 auto', borderRadius: '12px' }}
                           />
                         )}
                       </div>
@@ -894,7 +894,7 @@ const FootCareSection = ({ section, idx }) => {
           <img
             src="assets/foot-care/drs-diagnosis-v2.png"
             alt="Doctor's diagnosis view"
-            style={{ maxWidth: '600px', display: 'block', margin: '0 auto', borderRadius: '12px' }}
+            style={{ maxWidth: 'min(600px, 100%)', display: 'block', margin: '0 auto', borderRadius: '12px' }}
           />
         </div>
       )}

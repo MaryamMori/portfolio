@@ -98,6 +98,7 @@ function App() {
   const renderPage = () => {
     switch (page) {
       case 'fizik':    return <CaseStudyFizik goTo={goTo} goToWork={goToWork} />;
+      case 'fleetwatch': return <CaseStudyFleetwatch goTo={goTo} goToWork={goToWork} />;
       case 'footcare': return <CaseStudyFootCare goTo={goTo} goToWork={goToWork} />;
       case 'about':    return <AboutPage goTo={goTo} goToWork={goToWork} />;
       default:         return <HomePage goTo={goTo} />;

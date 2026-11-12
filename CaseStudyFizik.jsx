@@ -318,7 +318,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
           <button className="fz-back-btn" onClick={() => goToWork()}>← All work</button>
         </div>
         <div style={{ position:'absolute', top:'52px', right:'var(--page-padding)', fontSize:'10px', color:'rgba(255,255,255,.18)', letterSpacing:'.14em', textTransform:'uppercase', animation:'fizik-fade-in .7s ease .3s both', zIndex:10 }}>
-          Case study: 01 / 02
+          Case study: 01 / 03
         </div>
 
         <div style={{ position:'relative', zIndex:5 }}>
@@ -525,7 +525,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
           </div>
           <FzBody>Feedback from an in-house bike fitting technician confirmed the platform served its purpose. The recommendation logic ran with minimal failures, and the guided workflow gave dealers a reliable, repeatable process regardless of prior fitting experience. For a service that had previously depended on individual expertise, that consistency was the prerequisite for it working at scale.</FzBody>
           <FzBody>The platform supports six languages, reflecting the international scope of Fizik's dealer network.</FzBody>
-          <FzBody>Market rollout was shaped by business and go-to-market decisions rather than product readiness. The platform was operationally ready. The design delivered what it was asked to deliver.</FzBody>
+          <FzBody>The platform is live on the App Store and Google Play, and dealers use it to run the custom saddle service. I am the only designer on the product and I keep designing the updates that the developer team ships. It covers more than 60 screens, with Android and iOS adaptations.</FzBody>
           <div className="fz-diagram-img" style={{ marginTop:'12px', textAlign:'center', background:'transparent' }}>
             <img src="Fizik121/your custom saddle.png" alt="Your Customized Saddle" style={{ width:'100%', maxWidth:'380px', maxHeight:'500px', height:'auto', objectFit:'contain', display:'block', margin:'0 auto', borderRadius:'12px', background:'transparent' }} />
           </div>
@@ -564,11 +564,11 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
             Next project
           </div>
           <div style={{ display:'flex', flexDirection:'column', alignItems:'flex-end', flex:1 }}>
-            <button className="fz-next-title" onClick={() => goTo('footcare')} style={{ display:'block', textAlign:'right' }}>
+            <button className="fz-next-title" onClick={() => goTo('fleetwatch')} style={{ display:'block', textAlign:'right' }}>
               → Next Project
             </button>
             <div style={{ fontSize:'clamp(14px,1.8vw,24px)', color:'rgba(255,255,255,.2)', fontFamily:"'DM Sans',system-ui,sans-serif", letterSpacing:'-0.374px', marginTop:'8px', textAlign:'right' }}>
-              Preventive Foot Care Platform
+              Fleetwatch Cockpit
             </div>
           </div>
           <div style={{ marginTop:'48px' }}>

@@ -109,6 +109,7 @@ const HomePage = ({ goTo }) => {
       title: 'Fizik 121 Platform',
       tagline: 'A guided tool that makes a personalized saddle fitting service work reliably at the point of sale, for staff at any level of expertise.',
       outcomes: [
+        'Live on the App Store and Google Play, used by dealers, with continuous updates',
         'Translated a 121-option catalog into a clear, explainable staff-facing recommendation flow',
         'Enabled consistent delivery of the service across dealers without specialist knowledge',
         'Delivered implementation-ready Flutter specs; product now supports six languages',
@@ -117,6 +118,20 @@ const HomePage = ({ goTo }) => {
       decisionSignal: 'The core decision: a locked linear flow over a flexible navigation model, so any staff member could run the full service regardless of prior fitting experience.',
       dark: false,
       customBg: '#f9f9f7',
+    },
+    {
+      id: 'fleetwatch',
+      label: 'B2B Fleet Tech · Decision Support · Design Case Study',
+      title: 'Fleetwatch Cockpit',
+      tagline: 'A weekly decision tool for a fleet manager, built to show what needs attention, how sure the system is, and what happens next.',
+      outcomesLabel: 'Design decisions',
+      outcomes: [
+        'Ranked 51 findings into three decisions for the week, in order of consequence',
+        'Kept confidence and status apart, with evidence before action and no one-click confirm',
+        'Designed hand-over by email, printout or phone note for people who never log in',
+      ],
+      decisionSignal: 'The core decision: evidence before action, so an inferred finding is never trusted without a check.',
+      dark: false,
     },
     {
       id: 'footcare',
@@ -451,7 +466,7 @@ const HomePage = ({ goTo }) => {
               marginBottom: 'var(--paragraph-spacing)',
               textWrap: 'pretty',
             }}>
-              Currently looking for my next Product Designer role in Germany or remote Europe.
+              Currently looking for my next Product Designer role in Germany, remote or hybrid.
             </p>
             <button
               onClick={() => goTo('about')}
@@ -526,7 +541,7 @@ const HomePage = ({ goTo }) => {
             marginBottom: 'var(--paragraph-spacing)',
             textWrap: 'pretty',
           }}>
-            Open to Product Designer roles in Germany or remote Europe.
+            Open to Product Designer roles in Germany, remote or hybrid.
           </p>
           <a
             href="mailto:maryam.moradian38@gmail.com"
@@ -649,7 +664,7 @@ const ProjectCard = ({ proj, idx, goTo }) => {
               marginBottom: '14px',
               fontFamily: "'DM Sans', system-ui, sans-serif",
             }}>
-              Outcomes
+              {proj.outcomesLabel || 'Outcomes'}
             </div>
             {proj.outcomes.map((o, i) => (
               <div key={i} style={{
@@ -764,21 +779,29 @@ const ProjectCard = ({ proj, idx, goTo }) => {
           gap: '10px',
           border: `1px solid ${borderColor}`,
         }}>
-          {idx === 0 && (
+          {proj.id === 'fizik' && (
             <img
               src="Fizik-cover-1.png"
               alt="Fizik 121 Platform"
               style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px', display: 'block' }}
             />
           )}
-          {idx === 1 && (
+          {proj.id === 'fleetwatch' && (
+            <img
+              src="assets/fleetwatch/fleetwatch-cockpit.png"
+              alt="Fleetwatch Cockpit"
+              width="2880" height="1800" loading="lazy"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'left top', borderRadius: '12px', display: 'block' }}
+            />
+          )}
+          {proj.id === 'footcare' && (
             <img
               src="footcare-cover-2.png"
               alt="Preventive Foot Care Platform"
               style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px', display: 'block' }}
             />
           )}
-          {idx === 2 && (
+          {proj.comingSoon && (
             /* CSS laptop mockup — coming soon visual */
             <div style={{ width: '100%', padding: '28px 20px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div style={{ position: 'relative', width: '88%', maxWidth: '320px' }}>
