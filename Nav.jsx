@@ -110,6 +110,7 @@ const Nav = ({ page, goTo, goToWork }) => {
         {/* Right: About link */}
         <button
           onClick={() => goTo('about')}
+          className="tap-target"
           style={linkStyle('about')}
         >
           About

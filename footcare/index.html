@@ -109,21 +109,72 @@
     margin-top: 7px;
   }
 
+  /* Skip link: first focusable element, shown only on keyboard focus.
+     Uses the site focus ring above (2px #b63b3b outline). */
+  .skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 10001;
+    padding: 12px 18px;
+    background: #ffffff;
+    color: #1d1d1f;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 8px;
+  }
+  .skip-link:not(:focus) {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  #main-content:focus { outline: none; }
+
+  /* Tap targets: invisible hit area of at least 44 x 44 px, centred on the
+     element, so the visible size and layout stay exactly the same. */
+  .tap-target { position: relative; }
+  .tap-target::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: max(100%, 44px);
+    height: max(100%, 44px);
+    transform: translate(-50%, -50%);
+  }
+
+  /* Reduced motion: turn off fade-ins, word reveals and scroll animations.
+     Removing the keyframe animations leaves every element in its normal,
+     fully visible style (the fades only set opacity 0 inside keyframes).
+     GSAP scroll animations and Lenis are switched off in animations.js and App.jsx. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
 </style>
 </head>
 <body>
 <div id="root"></div>
 <!-- animations.js: defines window.anim* helpers; must load before Babel scripts execute -->
-<script src="animations.js?v=10"></script>
+<script src="animations.js?v=14"></script>
 <!-- routes.js: page/URL list shared by App.jsx and build-pages.py -->
 <script src="routes.js?v=2"></script>
-<script type="text/babel" src="Nav.jsx?v=14"></script>
-<script type="text/babel" src="HomePage.jsx?v=41"></script>
-<script type="text/babel" src="CaseStudyFizik.jsx?v=20"></script>
-<script type="text/babel" src="CaseStudyFleetwatch.jsx?v=1"></script>
-<script type="text/babel" src="CaseStudyFootCare.jsx?v=33"></script>
-<script type="text/babel" src="AboutPage.jsx?v=29"></script>
-<script type="text/babel" src="Footer.jsx?v=8"></script>
-<script type="text/babel" src="App.jsx?v=9"></script>
+<script type="text/babel" src="Nav.jsx?v=18"></script>
+<script type="text/babel" src="HomePage.jsx?v=45"></script>
+<script type="text/babel" src="CaseStudyFizik.jsx?v=24"></script>
+<script type="text/babel" src="CaseStudyFleetwatch.jsx?v=5"></script>
+<script type="text/babel" src="CaseStudyFootCare.jsx?v=37"></script>
+<script type="text/babel" src="AboutPage.jsx?v=33"></script>
+<script type="text/babel" src="Footer.jsx?v=12"></script>
+<script type="text/babel" src="App.jsx?v=13"></script>
 </body>
 </html>

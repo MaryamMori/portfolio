@@ -183,26 +183,27 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
         {/* Back button */}
         <div style={{ position: 'absolute', top: '52px', left: 'var(--page-padding)', animation: 'fizik-fade-in .7s ease .25s both', zIndex: 10 }}>
           <button
+            className="tap-target"
             onClick={() => goToWork()}
-            style={{ background: 'none', border: 'none', padding: 0, color: 'rgba(255,255,255,0.35)', fontSize: '13px', letterSpacing: '.04em', cursor: 'pointer', fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', alignItems: 'center', gap: '8px' }}
+            style={{ background: 'none', border: 'none', padding: 0, color: '#A8A8A8', fontSize: '13px', letterSpacing: '.04em', cursor: 'pointer', fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', alignItems: 'center', gap: '8px' }}
             onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}
-            onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}
+            onMouseLeave={e => e.currentTarget.style.color = '#A8A8A8'}
           >← All work</button>
         </div>
         {/* Counter */}
-        <div style={{ position: 'absolute', top: '52px', right: 'var(--page-padding)', fontSize: '10px', color: 'rgba(255,255,255,.18)', letterSpacing: '.14em', textTransform: 'uppercase', animation: 'fizik-fade-in .7s ease .3s both', zIndex: 10 }}>
+        <div style={{ position: 'absolute', top: '52px', right: 'var(--page-padding)', fontSize: '12px', color: '#A8A8A8', letterSpacing: '.14em', textTransform: 'uppercase', animation: 'fizik-fade-in .7s ease .3s both', zIndex: 10 }}>
           Case study: 03 / 03
         </div>
 
         {/* Content */}
         <div style={{ position: 'relative', zIndex: 5 }}>
-          <div style={{ fontSize: '11px', color: 'rgba(255,255,255,.3)', letterSpacing: '.14em', textTransform: 'uppercase', marginBottom: '36px', animation: 'fizik-fade-up .7s cubic-bezier(.16,1,.3,1) .35s both' }}>
+          <div style={{ fontSize: '12px', color: '#A8A8A8', letterSpacing: '.14em', textTransform: 'uppercase', marginBottom: '36px', animation: 'fizik-fade-up .7s cubic-bezier(.16,1,.3,1) .35s both' }}>
             HCI Master's Thesis &nbsp;·&nbsp; Healthtech &nbsp;·&nbsp; Biomechanics &nbsp;·&nbsp; Research-to-Product
           </div>
-          <div style={{ marginBottom: '44px' }}>
+          <h1 aria-label="Preventive Foot Care Platform" style={{ marginBottom: '44px', fontSize: 'inherit', fontWeight: 'inherit', fontFeatureSettings: 'normal' }}>
             <WordReveal text="Preventive Foot Care" startDelay={0.48} wordDelay={0.09} style={{ fontFamily: "'Space Grotesk',system-ui,sans-serif", fontSize: 'clamp(40px,7vw,96px)', fontWeight: 700, lineHeight: 0.93, letterSpacing: '-0.03em', color: '#fff', marginBottom: '4px' }} />
-            <WordReveal text="Platform" startDelay={0.72} wordDelay={0.1} style={{ fontFamily: "'Space Grotesk',system-ui,sans-serif", fontSize: 'clamp(40px,7vw,96px)', fontWeight: 700, lineHeight: 0.93, letterSpacing: '-0.03em', color: 'rgba(255,255,255,.2)' }} />
-          </div>
+            <WordReveal text="Platform" startDelay={0.72} wordDelay={0.1} style={{ fontFamily: "'Space Grotesk',system-ui,sans-serif", fontSize: 'clamp(40px,7vw,96px)', fontWeight: 700, lineHeight: 0.93, letterSpacing: '-0.03em', color: '#6E6E6E' }} />
+          </h1>
           <div style={{ fontSize: 'clamp(15px,1.8vw,19px)', color: 'rgba(255,255,255,.46)', maxWidth: '460px', lineHeight: 1.62, letterSpacing: '-0.2px', marginBottom: '56px', animation: 'fizik-fade-up .85s cubic-bezier(.16,1,.3,1) .9s both', textWrap: 'pretty' }}>
             Translating biomechanical research into a digital system for early detection and proactive monitoring.
           </div>
@@ -215,7 +216,7 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
               { label: 'Context',  value: 'University of Siegen, with clinical & academic experts' },
             ].map((item, i) => (
               <div key={item.label} style={{ paddingLeft: i > 0 ? '24px' : 0, paddingRight: i < 3 ? '24px' : 0, borderRight: i < 3 ? '1px solid rgba(255,255,255,.07)' : 'none' }}>
-                <div style={{ fontSize: '10px', color: 'rgba(255,255,255,.2)', letterSpacing: '.13em', textTransform: 'uppercase', marginBottom: '6px' }}>{item.label}</div>
+                <div style={{ fontSize: '12px', color: '#A8A8A8', letterSpacing: '.13em', textTransform: 'uppercase', marginBottom: '6px' }}>{item.label}</div>
                 <div style={{ fontSize: '13px', color: 'rgba(255,255,255,.58)', lineHeight: 1.4, letterSpacing: '-0.1px' }}>{item.value}</div>
               </div>
             ))}
@@ -223,7 +224,7 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
         </div>
         {/* Scroll indicator */}
         <div style={{ position: 'absolute', bottom: '36px', right: 'var(--page-padding)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', animation: 'fizik-fade-in 1s ease 1.5s both', zIndex: 5 }}>
-          <span style={{ fontSize: '9px', color: 'rgba(255,255,255,.18)', letterSpacing: '.16em', textTransform: 'uppercase', writingMode: 'vertical-rl' }}>Scroll</span>
+          <span style={{ fontSize: '12px', color: '#A8A8A8', letterSpacing: '.16em', textTransform: 'uppercase', writingMode: 'vertical-rl' }}>Scroll</span>
           <div style={{ width: '1px', height: '48px', background: 'linear-gradient(to bottom,rgba(255,255,255,.14),transparent)' }} />
         </div>
       </section>
@@ -243,8 +244,8 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
       }}>
         <div style={{ maxWidth: '680px' }}>
           <div style={{
-            fontSize: '11px',
-            color: 'rgba(255,255,255,0.35)',
+            fontSize: '12px',
+            color: '#A8A8A8',
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
             marginBottom: '16px',
@@ -266,6 +267,7 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
             <a
               href="mailto:maryam.moradian38@gmail.com"
+              className="tap-target"
               style={{
                 background: '#a63636',
                 color: '#fff',
@@ -296,9 +298,9 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
             </button>
           </div>
           <div style={{ marginTop: '48px' }}>
-            <button onClick={() => goToWork()} style={{ background: 'none', border: '1px solid rgba(255,255,255,.12)', borderRadius: '9999px', padding: '10px 20px', color: 'rgba(255,255,255,.35)', fontSize: '13px', letterSpacing: '.03em', cursor: 'pointer', fontFamily: "'DM Sans', system-ui, sans-serif", transition: 'color .2s,border-color .2s' }}
+            <button className="tap-target" onClick={() => goToWork()} style={{ background: 'none', border: '1px solid rgba(255,255,255,.12)', borderRadius: '9999px', padding: '10px 20px', color: '#A8A8A8', fontSize: '13px', letterSpacing: '.03em', cursor: 'pointer', fontFamily: "'DM Sans', system-ui, sans-serif", transition: 'color .2s,border-color .2s' }}
               onMouseEnter={e => { e.currentTarget.style.color = 'rgba(255,255,255,.7)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.3)'; }}
-              onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,.35)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.12)'; }}
+              onMouseLeave={e => { e.currentTarget.style.color = '#A8A8A8'; e.currentTarget.style.borderColor = 'rgba(255,255,255,.12)'; }}
             >← Back to all work</button>
           </div>
         </div>
@@ -541,7 +543,7 @@ const FootCareSection = ({ section, idx }) => {
       {/* ── Constrained column: label + heading + body ── */}
       <div style={{ ...col, paddingTop: '72px', paddingBottom: '0' }}>
         <div style={{
-          fontSize: '11px', fontWeight: 400, color: '#a63636',
+          fontSize: '12px', fontWeight: 400, color: '#a63636',
           letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '16px',
           fontFamily: "'DM Sans', system-ui, sans-serif",
         }}>
@@ -720,7 +722,7 @@ const FootCareSection = ({ section, idx }) => {
               }}>
                 <h3 style={{
                   fontFamily: "'DM Sans', system-ui, sans-serif",
-                  fontSize: '11px', fontWeight: 600, lineHeight: 'inherit',
+                  fontSize: '12px', fontWeight: 600, lineHeight: 'inherit',
                   letterSpacing: '0.08em', textTransform: 'uppercase',
                   color: '#a63636', margin: '0 0 10px',
                 }}>
@@ -766,7 +768,7 @@ const FootCareSection = ({ section, idx }) => {
                   >
                     <span style={{
                       fontFamily: "'DM Sans', system-ui, sans-serif",
-                      fontSize: '11px', letterSpacing: '0.08em',
+                      fontSize: '12px', letterSpacing: '0.08em',
                       color: '#a63636', fontWeight: 500,
                       paddingTop: '3px', minWidth: '24px', flexShrink: 0,
                     }}>{d.n}</span>
@@ -816,7 +818,7 @@ const FootCareSection = ({ section, idx }) => {
                         <p style={{
                           fontFamily: "'DM Sans', system-ui, sans-serif",
                           fontSize: 'var(--caption-font-size)', lineHeight: 'var(--caption-line-height)',
-                          color: '#777', margin: 0,
+                          color: '#666666', margin: 0,
                           paddingLeft: '14px',
                           borderLeft: '2px solid #e0ddd8',
                         }}>{d.tradeoff}</p>

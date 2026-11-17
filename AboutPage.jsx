@@ -64,7 +64,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               {/* 1. Eyebrow */}
               <div style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontSize: '11px',
+                fontSize: '12px',
                 fontWeight: 400,
                 color: '#a63636',
                 letterSpacing: '0.1em',
@@ -162,7 +162,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             fontFamily: "'DM Sans', system-ui, sans-serif",
             fontSize: '13px',
             fontWeight: 400,
-            color: 'rgba(29,29,31,0.45)',
+            color: '#666666',
             letterSpacing: '-0.12px',
           }}>
             7+ years experience · 9 projects across 5 brands · B2B medtech &amp; biomechanics · Promoted to Product Designer in October 2023 · End-to-end from discovery to handoff
@@ -189,7 +189,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             <div style={{ flex: isMobile ? undefined : '0 0 300px', width: isMobile ? '100%' : undefined }}>
               <div style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontSize: '11px',
+                fontSize: '12px',
                 fontWeight: 400,
                 color: '#a63636',
                 letterSpacing: '0.1em',
@@ -300,9 +300,9 @@ const AboutPage = ({ goTo, goToWork }) => {
                     </span>
                     <span style={{
                       fontFamily: "'DM Sans', system-ui, sans-serif",
-                      fontSize: '11px',
+                      fontSize: '12px',
                       fontWeight: 400,
-                      color: 'rgba(29,29,31,0.40)',
+                      color: '#666666',
                       textAlign: 'center',
                     }}>
                       2011–2019
@@ -375,18 +375,18 @@ const AboutPage = ({ goTo, goToWork }) => {
                     </span>
                     <span style={{
                       fontFamily: "'DM Sans', system-ui, sans-serif",
-                      fontSize: '11px',
+                      fontSize: '12px',
                       fontWeight: 400,
-                      color: 'rgba(29,29,31,0.40)',
+                      color: '#666666',
                       textAlign: 'center',
                     }}>
                       University of Siegen
                     </span>
                     <span style={{
                       fontFamily: "'DM Sans', system-ui, sans-serif",
-                      fontSize: '11px',
+                      fontSize: '12px',
                       fontWeight: 400,
-                      color: 'rgba(29,29,31,0.40)',
+                      color: '#666666',
                       textAlign: 'center',
                     }}>
                       M.Sc. · 2020–2024
@@ -459,9 +459,9 @@ const AboutPage = ({ goTo, goToWork }) => {
                     </span>
                     <span style={{
                       fontFamily: "'DM Sans', system-ui, sans-serif",
-                      fontSize: '11px',
+                      fontSize: '12px',
                       fontWeight: 400,
-                      color: 'rgba(29,29,31,0.40)',
+                      color: '#666666',
                       textAlign: 'center',
                     }}>
                       2022–present
@@ -496,9 +496,9 @@ const AboutPage = ({ goTo, goToWork }) => {
             <div style={{ flex: isMobile ? undefined : '0 0 300px', width: isMobile ? '100%' : undefined }}>
               <div style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontSize: '11px',
+                fontSize: '12px',
                 fontWeight: 400,
-                color: '#a63636',
+                color: '#D27575',
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
                 marginBottom: '20px',
@@ -598,7 +598,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                   fontFamily: "'DM Sans', system-ui, sans-serif",
                   fontSize: '13px',
                   fontWeight: 400,
-                  color: 'rgba(255,255,255,0.40)',
+                  color: '#A8A8A8',
                   letterSpacing: '0.02em',
                   textTransform: 'uppercase',
                 }}>
@@ -629,7 +629,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             <div style={{ flex: isMobile ? undefined : '0 0 300px', width: isMobile ? '100%' : undefined }}>
               <div style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontSize: '11px',
+                fontSize: '12px',
                 fontWeight: 400,
                 color: '#a63636',
                 letterSpacing: '0.1em',
@@ -739,7 +739,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             <div style={{ flex: isMobile ? undefined : '0 0 300px', width: isMobile ? '100%' : undefined }}>
               <div style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontSize: '11px',
+                fontSize: '12px',
                 fontWeight: 400,
                 color: '#a63636',
                 letterSpacing: '0.1em',
@@ -807,7 +807,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             <div style={{ flex: isMobile ? undefined : '0 0 300px', width: isMobile ? '100%' : undefined }}>
               <div style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontSize: '11px',
+                fontSize: '12px',
                 fontWeight: 400,
                 color: '#a63636',
                 letterSpacing: '0.1em',
@@ -894,7 +894,7 @@ const AboutPage = ({ goTo, goToWork }) => {
           <div style={{ marginBottom: '64px' }}>
             <div style={{
               fontFamily: "'DM Sans', system-ui, sans-serif",
-              fontSize: '11px',
+              fontSize: '12px',
               fontWeight: 400,
               color: '#a63636',
               letterSpacing: '0.1em',
@@ -1017,7 +1017,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                     fontFamily: "'DM Sans', system-ui, sans-serif",
                     fontSize: '13px',
                     fontWeight: 400,
-                    color: 'rgba(29,29,31,0.45)',
+                    color: '#666666',
                     letterSpacing: '-0.12px',
                     marginBottom: job.promotion ? '4px' : 0,
                   }}>
@@ -1028,7 +1028,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                       fontFamily: "'DM Sans', system-ui, sans-serif",
                       fontSize: '12px',
                       fontWeight: 400,
-                      color: 'rgba(29,29,31,0.45)',
+                      color: '#666666',
                       letterSpacing: '-0.12px',
                       fontStyle: 'italic',
                     }}>
@@ -1101,7 +1101,7 @@ const AboutPage = ({ goTo, goToWork }) => {
           <div style={{ marginBottom: '64px' }}>
             <div style={{
               fontFamily: "'DM Sans', system-ui, sans-serif",
-              fontSize: '11px',
+              fontSize: '12px',
               fontWeight: 400,
               color: '#a63636',
               letterSpacing: '0.1em',
@@ -1177,7 +1177,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                   fontFamily: "'DM Sans', system-ui, sans-serif",
                   fontSize: '13px',
                   fontWeight: 400,
-                  color: 'rgba(29,29,31,0.45)',
+                  color: '#666666',
                   letterSpacing: '-0.12px',
                 }}>
                   {ed.dates}
@@ -1215,7 +1215,7 @@ const AboutPage = ({ goTo, goToWork }) => {
           <div style={{ marginBottom: '64px' }}>
             <div style={{
               fontFamily: "'DM Sans', system-ui, sans-serif",
-              fontSize: '11px',
+              fontSize: '12px',
               fontWeight: 400,
               color: '#a63636',
               letterSpacing: '0.1em',
@@ -1348,7 +1348,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                     fontFamily: "'DM Sans', system-ui, sans-serif",
                     fontSize: '13px',
                     fontWeight: 400,
-                    color: 'rgba(29,29,31,0.40)',
+                    color: '#666666',
                     letterSpacing: '-0.12px',
                   }}>
                     {level}
@@ -1372,8 +1372,8 @@ const AboutPage = ({ goTo, goToWork }) => {
 
           {/* Eyebrow */}
           <div style={{
-            fontSize: '11px', fontWeight: 400,
-            color: 'rgba(255,255,255,0.35)',
+            fontSize: '12px', fontWeight: 400,
+            color: '#A8A8A8',
             letterSpacing: '0.1em', textTransform: 'uppercase',
             fontFamily: "'DM Sans', system-ui, sans-serif",
             marginBottom: '24px',
@@ -1395,7 +1395,7 @@ const AboutPage = ({ goTo, goToWork }) => {
           <p data-anim="work-sub" style={{
             fontFamily: "'DM Sans', system-ui, sans-serif",
             fontSize: 'var(--body-font-size)', fontWeight: 300,
-            color: 'rgba(255,255,255,0.45)',
+            color: '#A8A8A8',
             lineHeight: 'var(--body-line-height)', letterSpacing: '-0.374px',
             marginBottom: '48px',
           }}>
@@ -1412,6 +1412,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             marginBottom: '48px',
           }}>
             <a href="mailto:maryam.moradian38@gmail.com"
+              className="tap-target"
               style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
                 fontSize: '14px',
@@ -1424,6 +1425,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             <span style={{ color: 'rgba(255,255,255,0.20)' }}>·</span>
             <a href="https://linkedin.com/in/maryam-moradian"
               target="_blank" rel="noopener noreferrer"
+              className="tap-target"
               style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
                 fontSize: '14px',
@@ -1436,6 +1438,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             <span style={{ color: 'rgba(255,255,255,0.20)' }}>·</span>
             <a href="Maryam_Moradian_CV.pdf"
               download
+              className="tap-target"
               style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
                 fontSize: '14px',
@@ -1473,7 +1476,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               <span style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
                 fontSize: '13px',
-                color: 'rgba(255,255,255,0.40)',
+                color: '#A8A8A8',
                 letterSpacing: '-0.12px',
               }}>Open to work</span>
             </div>
@@ -1482,6 +1485,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             <button
               onClick={() => window.location.href =
                 'mailto:maryam.moradian38@gmail.com?subject=Product Designer: Let\'s connect'}
+              className="tap-target"
               style={{
                 background: '#a63636', color: 'white',
                 padding: '14px 32px', borderRadius: '980px',

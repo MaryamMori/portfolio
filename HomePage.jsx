@@ -310,7 +310,7 @@ const HomePage = ({ goTo }) => {
                     fontWeight: 600,
                     letterSpacing: '0.1em',
                     textTransform: 'uppercase',
-                    color: '#9B6B6B',
+                    color: '#8C5A5A',
                     lineHeight: 1,
                   }}>
                     {label}
@@ -366,7 +366,7 @@ const HomePage = ({ goTo }) => {
               fontSize: 'var(--body-font-size)',
               fontWeight: 400,
               lineHeight: 'var(--body-line-height)',
-              color: 'rgba(29,29,31,0.55)',
+              color: '#666666',
               maxWidth: '400px',
               margin: '0 auto',
             }}
@@ -470,6 +470,7 @@ const HomePage = ({ goTo }) => {
             </p>
             <button
               onClick={() => goTo('about')}
+              className="tap-target"
               style={{
                 background: 'transparent',
                 color: '#a63636',
@@ -509,9 +510,9 @@ const HomePage = ({ goTo }) => {
           margin: '0 auto',
         }}>
           <div style={{
-            fontSize: '11px',
+            fontSize: '12px',
             fontWeight: 400,
-            color: 'rgba(255,255,255,0.35)',
+            color: '#A8A8A8',
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
             marginBottom: '20px',
@@ -545,6 +546,7 @@ const HomePage = ({ goTo }) => {
           </p>
           <a
             href="mailto:maryam.moradian38@gmail.com"
+            className="tap-target"
             style={{
               background: '#a63636',
               color: '#fff',
@@ -584,8 +586,8 @@ const ProjectCard = ({ proj, idx, goTo }) => {
   const bg = proj.customBg || (proj.dark ? '#272729' : proj.parchment ? '#f5f5f7' : '#ffffff');
   const headColor = proj.dark ? '#ffffff' : '#1d1d1f';
   const bodyColor = proj.dark ? 'rgba(255,255,255,0.62)' : 'rgba(29,29,31,0.68)';
-  const metaColor = proj.dark ? 'rgba(255,255,255,0.38)' : 'rgba(0,0,0,0.38)';
-  const accentColor = proj.dark ? '#c56262' : '#a63636';
+  const metaColor = proj.dark ? '#A8A8A8' : '#666666';
+  const accentColor = proj.dark ? '#B83030' : '#a63636';
   const bulletColor = proj.dark ? 'rgba(197,98,98,0.7)' : '#a63636';
   const borderColor = proj.dark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.10)';
 
@@ -656,7 +658,7 @@ const ProjectCard = ({ proj, idx, goTo }) => {
             marginBottom: '32px',
           }}>
             <div style={{
-              fontSize: '11px',
+              fontSize: '12px',
               fontWeight: 600,
               color: metaColor,
               letterSpacing: '0.1em',
@@ -704,7 +706,7 @@ const ProjectCard = ({ proj, idx, goTo }) => {
             }}>
               <span style={{
                 display: 'inline-block',
-                fontSize: '11px',
+                fontSize: '12px',
                 fontWeight: 500,
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
@@ -729,8 +731,7 @@ const ProjectCard = ({ proj, idx, goTo }) => {
               fontWeight: 400,
               lineHeight: 'var(--caption-line-height)',
               letterSpacing: '-0.1px',
-              color: bodyColor,
-              opacity: 0.62,
+              color: proj.dark ? '#A8A8A8' : '#666666',
               marginBottom: '24px',
               textWrap: 'pretty',
             }}>
@@ -743,6 +744,7 @@ const ProjectCard = ({ proj, idx, goTo }) => {
             {!proj.noStudy && (
               <button
                 onClick={() => goTo(proj.id)}
+                className="tap-target"
                 style={{
                   background: accentColor,
                   color: '#fff',

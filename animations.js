@@ -11,6 +11,20 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
+  // Reduced motion: skip every fade-in and scroll animation. The helpers become
+  // no-ops, so content keeps its normal, fully visible state (never opacity 0).
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var noop = function () {};
+    window.animHero = noop;
+    window.animWorkHeading = noop;
+    window.animProjectCard = noop;
+    window.animApproach = noop;
+    window.animAbout = noop;
+    window.animCTA = noop;
+    window.animPinnedPanels = function () { return null; };
+    return;
+  }
+
   // Default ScrollTrigger config
   const ST_START = 'top 80%';
   const EASE     = 'power2.out';

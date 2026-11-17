@@ -34,6 +34,8 @@ function App() {
   // ── Lenis smooth scroll — init once, integrate with GSAP ScrollTrigger ──
   useEffect(() => {
     if (typeof Lenis === 'undefined') return;
+    // Reduced motion: keep native scrolling instead of Lenis smooth scrolling
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const lenis = new Lenis({
       duration: 1.2,
@@ -95,6 +97,16 @@ function App() {
     setHeadTag('link[rel="canonical"]', 'href', (window.SITE_ORIGIN || '') + route.path);
   }, [page]);
 
+  const skipToMain = (e) => {
+    e.preventDefault();
+    const main = document.getElementById('main-content');
+    if (!main) return;
+    main.focus({ preventScroll: true });
+    const lenis = lenisRef.current;
+    if (lenis) lenis.scrollTo(main, { immediate: true });
+    else main.scrollIntoView();
+  };
+
   const renderPage = () => {
     switch (page) {
       case 'fizik':    return <CaseStudyFizik goTo={goTo} goToWork={goToWork} />;
@@ -107,8 +119,11 @@ function App() {
 
   return (
     <div>
+      {/* Skip link: href is kept for semantics, but <base href="/"> would turn a plain
+          "#main-content" into a jump to the home page, so focus is moved by hand. */}
+      <a href="#main-content" className="skip-link" onClick={skipToMain}>Skip to main content</a>
       <Nav page={page} goTo={goTo} goToWork={goToWork} />
-      <main style={{ paddingTop: '72px' }}>
+      <main id="main-content" tabIndex={-1} style={{ paddingTop: '72px' }}>
         {renderPage()}
       </main>
       <Footer goTo={goTo} goToWork={goToWork} />

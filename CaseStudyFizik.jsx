@@ -10,9 +10,9 @@ if (!document.getElementById('fz-case-styles')) {
 
     /* ── Nav ── */
     .fz-nav-btn {
-      font-family:'DM Sans',system-ui,sans-serif; font-size:11px;
+      font-family:'DM Sans',system-ui,sans-serif; font-size:12px;
       letter-spacing:.09em; text-transform:uppercase; font-weight:400;
-      color:rgba(0,0,0,0.25); background:none; border:none; padding:9px 0;
+      color:#666666; background:none; border:none; padding:9px 0;
       cursor:pointer; display:flex; align-items:center; flex-direction:row;
       justify-content:flex-end; gap:10px; width:100%; transition:color .25s; line-height:1;
     }
@@ -28,7 +28,7 @@ if (!document.getElementById('fz-case-styles')) {
     .fz-sidebar.fz-sidebar-hidden { opacity:0; pointer-events:none; transform:translateX(12px); }
 
     .fz-back-btn {
-      background:none; border:none; padding:0; color:rgba(255,255,255,0.35);
+      background:none; border:none; padding:0; color:#A8A8A8;
       font-size:13px; letter-spacing:.04em; cursor:pointer;
       font-family:'DM Sans',system-ui,sans-serif;
       display:flex; align-items:center; gap:8px; transition:color .2s;
@@ -53,14 +53,14 @@ if (!document.getElementById('fz-case-styles')) {
     }
     .fz-card-number {
       font-family:'Space Grotesk',system-ui,sans-serif; font-size:15px; font-weight:500;
-      line-height:26px; letter-spacing:-0.2px; color:rgba(182,59,59,0.7); margin-bottom:2px;
+      line-height:26px; letter-spacing:-0.2px; color:#B63B3B; margin-bottom:2px;
     }
     .fz-card-title {
       font-family:'Space Grotesk',system-ui,sans-serif; font-size:15px; font-weight:500;
       line-height:26px; letter-spacing:-0.2px; color:#1d1d1f; margin-bottom:4px;
     }
     .fz-card-body {
-      font-family:'DM Sans',system-ui,sans-serif; font-size:11px; font-weight:400;
+      font-family:'DM Sans',system-ui,sans-serif; font-size:12px; font-weight:400;
       line-height:1.5; color:rgba(29,29,31,0.65);
     }
     .fz-card-icon { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
@@ -74,7 +74,7 @@ if (!document.getElementById('fz-case-styles')) {
     .fz-user-card-a { background:#fff; border:1px solid #b4b2a9; }
     .fz-user-card-b { background:#b63b3b; border:1px solid #b63b3b; }
     .fz-user-eyebrow {
-      font-family:'DM Sans',system-ui,sans-serif; font-size:11px; font-weight:400;
+      font-family:'DM Sans',system-ui,sans-serif; font-size:12px; font-weight:400;
       line-height:16.5px; letter-spacing:1.1px; text-transform:uppercase;
     }
     .fz-user-name {
@@ -84,13 +84,13 @@ if (!document.getElementById('fz-case-styles')) {
     .fz-user-divider { height:1px; background:rgba(29,29,31,0.38); margin-bottom:14px; }
     .fz-user-trait   { font-family:'DM Sans',system-ui,sans-serif; font-size:15px; font-weight:400; line-height:23.25px; }
     .fz-user-needs-label {
-      font-family:'DM Sans',system-ui,sans-serif; font-size:11px; font-weight:400;
+      font-family:'DM Sans',system-ui,sans-serif; font-size:12px; font-weight:400;
       line-height:16.5px; letter-spacing:1.1px; text-transform:uppercase;
       margin-top:20px; margin-bottom:10px;
     }
     .fz-user-tags    { display:flex; flex-wrap:wrap; gap:8px; }
     .fz-user-tag {
-      font-family:'DM Sans',system-ui,sans-serif; font-size:11px; font-weight:400;
+      font-family:'DM Sans',system-ui,sans-serif; font-size:12px; font-weight:400;
       line-height:16.5px; letter-spacing:0.44px; border-radius:6px;
       padding:4px 9px; border:1px solid rgba(29,29,31,0.38);
     }
@@ -100,7 +100,7 @@ if (!document.getElementById('fz-case-styles')) {
     }
     .fz-user-caption {
       font-family:'DM Sans',system-ui,sans-serif; font-size:13px; font-weight:400;
-      line-height:1.6; letter-spacing:-0.1px; color:#888780; text-align:center;
+      line-height:1.6; letter-spacing:-0.1px; color:#666666; text-align:center;
       margin-top:24px;
     }
 
@@ -115,13 +115,13 @@ if (!document.getElementById('fz-case-styles')) {
       animation:fizik-fade-up .8s cubic-bezier(.16,1,.3,1) 1.1s both;
     }
     .fz-caption {
-      font-family:'DM Sans',system-ui,sans-serif; font-size:13px; color:#888780;
+      font-family:'DM Sans',system-ui,sans-serif; font-size:13px; color:#666666;
       letter-spacing:-0.1px; text-align:center; margin-top:16px;
     }
 
     /* ── Next project button ── */
     .fz-next-title {
-      font-size:clamp(28px,4vw,56px); font-weight:700; color:rgba(255,255,255,0.15);
+      font-size:clamp(28px,4vw,56px); font-weight:700; color:#6E6E6E;
       letter-spacing:-0.025em; line-height:1.1; transition:color .35s;
       font-family:'Space Grotesk',system-ui,sans-serif; cursor:pointer;
       background:none; border:none; padding:0; text-align:left;
@@ -226,7 +226,7 @@ const CaseSection = ({ section, idx }) => {
   return (
     <section style={{ background:isAlt?'#f5f5f7':'#fff', padding:'72px var(--page-padding)', borderTop:'1px solid rgba(0,0,0,0.05)' }}>
       <div style={{ maxWidth:'680px', margin:'0 auto' }}>
-        <div style={{ fontSize:'11px', fontWeight:400, color:'#a63636', letterSpacing:'.1em', textTransform:'uppercase', marginBottom:'16px', fontFamily:"'DM Sans',system-ui,sans-serif" }}>{section.label}</div>
+        <div style={{ fontSize:'12px', fontWeight:400, color:'#a63636', letterSpacing:'.1em', textTransform:'uppercase', marginBottom:'16px', fontFamily:"'DM Sans',system-ui,sans-serif" }}>{section.label}</div>
         <h2 style={{ fontFamily:"'DM Sans',system-ui,sans-serif", fontSize:'clamp(22px,2.5vw,34px)', fontWeight:600, lineHeight:1.2, letterSpacing:'-0.374px', color:'#1d1d1f', marginBottom:'24px' }}>{section.heading}</h2>
         {section.body && section.body.map((para,i) => (
           <p key={i} style={{ fontFamily:"'DM Sans',system-ui,sans-serif", fontSize:'var(--body-font-size)', lineHeight:'var(--body-line-height)', letterSpacing:'-0.374px', color:'rgba(29,29,31,0.8)', marginBottom: i<section.body.length-1?'20px':0 }}>{para}</p>
@@ -315,20 +315,20 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
         <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px)', backgroundSize:'72px 72px', pointerEvents:'none' }} />
 
         <div style={{ position:'absolute', top:'52px', left:'var(--page-padding)', animation:'fizik-fade-in .7s ease .25s both', zIndex:10 }}>
-          <button className="fz-back-btn" onClick={() => goToWork()}>← All work</button>
+          <button className="fz-back-btn tap-target" onClick={() => goToWork()}>← All work</button>
         </div>
-        <div style={{ position:'absolute', top:'52px', right:'var(--page-padding)', fontSize:'10px', color:'rgba(255,255,255,.18)', letterSpacing:'.14em', textTransform:'uppercase', animation:'fizik-fade-in .7s ease .3s both', zIndex:10 }}>
+        <div style={{ position:'absolute', top:'52px', right:'var(--page-padding)', fontSize:'12px', color:'#A8A8A8', letterSpacing:'.14em', textTransform:'uppercase', animation:'fizik-fade-in .7s ease .3s both', zIndex:10 }}>
           Case study: 01 / 03
         </div>
 
         <div style={{ position:'relative', zIndex:5 }}>
-          <div style={{ fontSize:'11px', color:'rgba(255,255,255,.3)', letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'36px', animation:'fizik-fade-up .7s cubic-bezier(.16,1,.3,1) .35s both' }}>
+          <div style={{ fontSize:'12px', color:'#A8A8A8', letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'36px', animation:'fizik-fade-up .7s cubic-bezier(.16,1,.3,1) .35s both' }}>
             B2B Retail Tech &nbsp;·&nbsp; Hardware + Software &nbsp;·&nbsp; 0→1 Product
           </div>
-          <div style={{ marginBottom:'44px' }}>
+          <h1 aria-label="Fizik 121 Platform" style={{ marginBottom:'44px', fontSize:'inherit', fontWeight:'inherit', fontFeatureSettings:'normal' }}>
             <WordReveal text="Fizik 121" startDelay={0.48} wordDelay={0.1} style={{ fontFamily:"'Space Grotesk',system-ui,sans-serif", fontSize:'clamp(52px,10vw,124px)', fontWeight:700, lineHeight:0.93, letterSpacing:'-0.035em', color:'#fff', marginBottom:'4px' }} />
-            <WordReveal text="Platform"  startDelay={0.65} wordDelay={0.1} style={{ fontFamily:"'Space Grotesk',system-ui,sans-serif", fontSize:'clamp(52px,10vw,124px)', fontWeight:700, lineHeight:0.93, letterSpacing:'-0.035em', color:'rgba(255,255,255,.2)' }} />
-          </div>
+            <WordReveal text="Platform"  startDelay={0.65} wordDelay={0.1} style={{ fontFamily:"'Space Grotesk',system-ui,sans-serif", fontSize:'clamp(52px,10vw,124px)', fontWeight:700, lineHeight:0.93, letterSpacing:'-0.035em', color:'#6E6E6E' }} />
+          </h1>
           <div style={{ fontSize:'clamp(15px,1.8vw,19px)', color:'rgba(255,255,255,.46)', maxWidth:'460px', lineHeight:1.62, letterSpacing:'-0.2px', marginBottom:'56px', animation:'fizik-fade-up .85s cubic-bezier(.16,1,.3,1) .9s both', textWrap:'pretty' }}>
             Designing the tool that makes a personalized saddle service work reliably at the point of sale, for staff at any level of expertise.
           </div>
@@ -340,14 +340,14 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
               { label:'Output',   value:'Flutter · 6 Languages' },
             ].map((item,i) => (
               <div key={item.label} style={{ paddingLeft:i>0?'24px':0, paddingRight:i<3?'24px':0, borderRight:i<3?'1px solid rgba(255,255,255,.07)':'none' }}>
-                <div style={{ fontSize:'10px', color:'rgba(255,255,255,.2)', letterSpacing:'.13em', textTransform:'uppercase', marginBottom:'6px' }}>{item.label}</div>
+                <div style={{ fontSize:'12px', color:'#A8A8A8', letterSpacing:'.13em', textTransform:'uppercase', marginBottom:'6px' }}>{item.label}</div>
                 <div style={{ fontSize:'13px', color:'rgba(255,255,255,.58)', lineHeight:1.4, letterSpacing:'-0.1px' }}>{item.value}</div>
               </div>
             ))}
           </div>
         </div>
         <div style={{ position:'absolute', bottom:'36px', right:'var(--page-padding)', display:'flex', flexDirection:'column', alignItems:'center', gap:'10px', animation:'fizik-fade-in 1s ease 1.5s both', zIndex:5 }}>
-          <span style={{ fontSize:'9px', color:'rgba(255,255,255,.18)', letterSpacing:'.16em', textTransform:'uppercase', writingMode:'vertical-rl' }}>Scroll</span>
+          <span style={{ fontSize:'12px', color:'#A8A8A8', letterSpacing:'.16em', textTransform:'uppercase', writingMode:'vertical-rl' }}>Scroll</span>
           <div style={{ width:'1px', height:'48px', background:'linear-gradient(to bottom,rgba(255,255,255,.14),transparent)' }} />
         </div>
       </section>
@@ -357,7 +357,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
 
         {/* Sidebar */}
         <aside className={`fz-sidebar${sidebarVisible?'':' fz-sidebar-hidden'}`} style={{ position:'fixed', right:0, top:'136px', zIndex:50, textAlign:'right' }}>
-          <div style={{ fontSize:'9px', color:'rgba(0,0,0,.2)', letterSpacing:'.15em', textTransform:'uppercase', marginBottom:'18px' }}>Contents</div>
+          <div style={{ fontSize:'12px', color:'#666666', letterSpacing:'.15em', textTransform:'uppercase', marginBottom:'18px' }}>Contents</div>
           {navItems.map(item => (
             <button key={item.id} className={`fz-nav-btn${activeSection===item.id?' fz-active':''}`} onClick={() => scrollTo(item.id)}>
               {item.label}
@@ -390,13 +390,13 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
             <div className="fz-user-grid">
               {/* Type A */}
               <div className="fz-user-card fz-user-card-a">
-                <div className="fz-user-eyebrow" style={{ color:'rgba(29,29,31,.55)' }}>User Type A</div>
+                <div className="fz-user-eyebrow" style={{ color:'#666666' }}>User Type A</div>
                 <div className="fz-user-name"    style={{ color:'#1d1d1f' }}>Experienced fitter</div>
                 <div className="fz-user-divider" />
                 {['Reads measurement data intuitively','Navigates 121 options confidently','Builds recommendation from experience'].map(t => (
-                  <div key={t} className="fz-user-trait" style={{ color:'rgba(29,29,31,.55)' }}>{t}</div>
+                  <div key={t} className="fz-user-trait" style={{ color:'#666666' }}>{t}</div>
                 ))}
-                <div className="fz-user-needs-label" style={{ color:'rgba(29,29,31,.55)' }}>Needs from the platform</div>
+                <div className="fz-user-needs-label" style={{ color:'#666666' }}>Needs from the platform</div>
                 <div className="fz-user-tags">
                   {['Flexibility','Depth','Override'].map(tag => (
                     <span key={tag} className="fz-user-tag" style={{ background:'rgba(0,0,0,.08)', color:'#1d1d1f' }}>{tag}</span>
@@ -560,21 +560,21 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
       {/* ══ 08 FOOTER ═════════════════════════════════════════════ */}
       <div data-snap style={{ background:'#0c0c0c', position:'relative', overflow:'hidden', minHeight:'380px' }}>
         <div style={{ position:'relative', zIndex:2, padding:'var(--section-spacing-sm) var(--page-padding)', display:'flex', flexDirection:'column' }}>
-          <div style={{ fontSize:'10px', color:'rgba(255,255,255,.2)', letterSpacing:'1.5px', textTransform:'uppercase', fontFamily:"'DM Sans',system-ui,sans-serif", marginBottom:'40px' }}>
+          <div style={{ fontSize:'12px', color:'#A8A8A8', letterSpacing:'1.5px', textTransform:'uppercase', fontFamily:"'DM Sans',system-ui,sans-serif", marginBottom:'40px' }}>
             Next project
           </div>
           <div style={{ display:'flex', flexDirection:'column', alignItems:'flex-end', flex:1 }}>
             <button className="fz-next-title" onClick={() => goTo('fleetwatch')} style={{ display:'block', textAlign:'right' }}>
               → Next Project
             </button>
-            <div style={{ fontSize:'clamp(14px,1.8vw,24px)', color:'rgba(255,255,255,.2)', fontFamily:"'DM Sans',system-ui,sans-serif", letterSpacing:'-0.374px', marginTop:'8px', textAlign:'right' }}>
+            <div style={{ fontSize:'clamp(14px,1.8vw,24px)', color:'#A8A8A8', fontFamily:"'DM Sans',system-ui,sans-serif", letterSpacing:'-0.374px', marginTop:'8px', textAlign:'right' }}>
               Fleetwatch Cockpit
             </div>
           </div>
           <div style={{ marginTop:'48px' }}>
-            <button onClick={() => goToWork()} style={{ background:'none', border:'1px solid rgba(255,255,255,.12)', borderRadius:'9999px', padding:'10px 20px', color:'rgba(255,255,255,.35)', fontSize:'13px', letterSpacing:'.03em', cursor:'pointer', fontFamily:"'DM Sans',system-ui,sans-serif", transition:'color .2s,border-color .2s' }}
+            <button className="tap-target" onClick={() => goToWork()} style={{ background:'none', border:'1px solid rgba(255,255,255,.12)', borderRadius:'9999px', padding:'10px 20px', color:'#A8A8A8', fontSize:'13px', letterSpacing:'.03em', cursor:'pointer', fontFamily:"'DM Sans',system-ui,sans-serif", transition:'color .2s,border-color .2s' }}
               onMouseEnter={e => { e.currentTarget.style.color='rgba(255,255,255,.7)'; e.currentTarget.style.borderColor='rgba(255,255,255,.3)'; }}
-              onMouseLeave={e => { e.currentTarget.style.color='rgba(255,255,255,.35)'; e.currentTarget.style.borderColor='rgba(255,255,255,.12)'; }}
+              onMouseLeave={e => { e.currentTarget.style.color='#A8A8A8'; e.currentTarget.style.borderColor='rgba(255,255,255,.12)'; }}
             >← Back to all work</button>
           </div>
         </div>

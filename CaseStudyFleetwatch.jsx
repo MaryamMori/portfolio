@@ -13,16 +13,16 @@ if (!document.getElementById('fw-case-styles')) {
     }
     /* Trade-off line: same treatment as the Foot Care page, sized for the decision cards */
     .fw-tradeoff {
-      font-family:'DM Sans',system-ui,sans-serif; font-size:11px; line-height:1.5;
-      color:#777; margin-top:12px; padding-left:14px; border-left:2px solid #e0ddd8;
+      font-family:'DM Sans',system-ui,sans-serif; font-size:12px; line-height:1.5;
+      color:#666666; margin-top:12px; padding-left:14px; border-left:2px solid #e0ddd8;
     }
     .fw-card-figure { margin-top:auto; padding-top:16px; }
     .fw-card-figure + .fw-card-figure { margin-top:0; }
-    .fw-card-figure .fz-caption { font-size:11px; line-height:1.5; margin-top:10px; }
+    .fw-card-figure .fz-caption { font-size:12px; line-height:1.5; margin-top:10px; }
     .fw-measures-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:56px; }
     .fw-note {
       font-family:'DM Sans',system-ui,sans-serif; font-size:var(--caption-font-size);
-      line-height:var(--caption-line-height); letter-spacing:-0.1px; color:#888780;
+      line-height:var(--caption-line-height); letter-spacing:-0.1px; color:#666666;
     }
     .fw-note a { color:#a63636; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
     .fw-note a:hover { color:#1d1d1f; }
@@ -196,20 +196,20 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
         <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px)', backgroundSize:'72px 72px', pointerEvents:'none' }} />
 
         <div style={{ position:'absolute', top:'52px', left:'var(--page-padding)', animation:'fizik-fade-in .7s ease .25s both', zIndex:10 }}>
-          <button className="fz-back-btn" onClick={() => goToWork()}>← All work</button>
+          <button className="fz-back-btn tap-target" onClick={() => goToWork()}>← All work</button>
         </div>
-        <div style={{ position:'absolute', top:'52px', right:'var(--page-padding)', fontSize:'10px', color:'rgba(255,255,255,.18)', letterSpacing:'.14em', textTransform:'uppercase', animation:'fizik-fade-in .7s ease .3s both', zIndex:10 }}>
+        <div style={{ position:'absolute', top:'52px', right:'var(--page-padding)', fontSize:'12px', color:'#A8A8A8', letterSpacing:'.14em', textTransform:'uppercase', animation:'fizik-fade-in .7s ease .3s both', zIndex:10 }}>
           Case study: 02 / 03
         </div>
 
         <div style={{ position:'relative', zIndex:5 }}>
-          <div style={{ fontSize:'11px', color:'rgba(255,255,255,.3)', letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'36px', animation:'fizik-fade-up .7s cubic-bezier(.16,1,.3,1) .35s both' }}>
+          <div style={{ fontSize:'12px', color:'#A8A8A8', letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'36px', animation:'fizik-fade-up .7s cubic-bezier(.16,1,.3,1) .35s both' }}>
             B2B Fleet Tech &nbsp;·&nbsp; Decision Support &nbsp;·&nbsp; Design Case Study
           </div>
-          <div style={{ marginBottom:'44px' }}>
+          <h1 aria-label="Fleetwatch Cockpit" style={{ marginBottom:'44px', fontSize:'inherit', fontWeight:'inherit', fontFeatureSettings:'normal' }}>
             <WordReveal text="Fleetwatch" startDelay={0.48} wordDelay={0.1} style={{ fontFamily:"'Space Grotesk',system-ui,sans-serif", fontSize:'clamp(52px,10vw,124px)', fontWeight:700, lineHeight:0.93, letterSpacing:'-0.035em', color:'#fff', marginBottom:'4px' }} />
-            <WordReveal text="Cockpit"    startDelay={0.65} wordDelay={0.1} style={{ fontFamily:"'Space Grotesk',system-ui,sans-serif", fontSize:'clamp(52px,10vw,124px)', fontWeight:700, lineHeight:0.93, letterSpacing:'-0.035em', color:'rgba(255,255,255,.2)' }} />
-          </div>
+            <WordReveal text="Cockpit"    startDelay={0.65} wordDelay={0.1} style={{ fontFamily:"'Space Grotesk',system-ui,sans-serif", fontSize:'clamp(52px,10vw,124px)', fontWeight:700, lineHeight:0.93, letterSpacing:'-0.035em', color:'#6E6E6E' }} />
+          </h1>
           <div style={{ fontSize:'clamp(15px,1.8vw,19px)', color:'rgba(255,255,255,.46)', maxWidth:'460px', lineHeight:1.62, letterSpacing:'-0.2px', marginBottom:'56px', animation:'fizik-fade-up .85s cubic-bezier(.16,1,.3,1) .9s both', textWrap:'pretty' }}>
             A weekly decision tool for a fleet manager, built to show what needs attention, how sure the system is, and what happens next.
           </div>
@@ -221,14 +221,14 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
               { label:'Format',   value:'Take-home design case study · 8 hours · sample data' },
             ].map((item,i) => (
               <div key={item.label} style={{ paddingLeft:i>0?'24px':0, paddingRight:i<3?'24px':0, borderRight:i<3?'1px solid rgba(255,255,255,.07)':'none' }}>
-                <div style={{ fontSize:'10px', color:'rgba(255,255,255,.2)', letterSpacing:'.13em', textTransform:'uppercase', marginBottom:'6px' }}>{item.label}</div>
+                <div style={{ fontSize:'12px', color:'#A8A8A8', letterSpacing:'.13em', textTransform:'uppercase', marginBottom:'6px' }}>{item.label}</div>
                 <div style={{ fontSize:'13px', color:'rgba(255,255,255,.58)', lineHeight:1.4, letterSpacing:'-0.1px' }}>{item.value}</div>
               </div>
             ))}
           </div>
         </div>
         <div style={{ position:'absolute', bottom:'36px', right:'var(--page-padding)', display:'flex', flexDirection:'column', alignItems:'center', gap:'10px', animation:'fizik-fade-in 1s ease 1.5s both', zIndex:5 }}>
-          <span style={{ fontSize:'9px', color:'rgba(255,255,255,.18)', letterSpacing:'.16em', textTransform:'uppercase', writingMode:'vertical-rl' }}>Scroll</span>
+          <span style={{ fontSize:'12px', color:'#A8A8A8', letterSpacing:'.16em', textTransform:'uppercase', writingMode:'vertical-rl' }}>Scroll</span>
           <div style={{ width:'1px', height:'48px', background:'linear-gradient(to bottom,rgba(255,255,255,.14),transparent)' }} />
         </div>
       </section>
@@ -248,7 +248,7 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
 
         {/* Sidebar */}
         <aside className={`fz-sidebar${sidebarVisible?'':' fz-sidebar-hidden'}`} style={{ position:'fixed', right:0, top:'136px', zIndex:50, textAlign:'right' }}>
-          <div style={{ fontSize:'9px', color:'rgba(0,0,0,.2)', letterSpacing:'.15em', textTransform:'uppercase', marginBottom:'18px' }}>Contents</div>
+          <div style={{ fontSize:'12px', color:'#666666', letterSpacing:'.15em', textTransform:'uppercase', marginBottom:'18px' }}>Contents</div>
           {navItems.map(item => (
             <button key={item.id} className={`fz-nav-btn${activeSection===item.id?' fz-active':''}`} onClick={() => scrollTo(item.id)}>
               {item.label}
@@ -367,21 +367,21 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
       {/* ══ FOOTER ════════════════════════════════════════════════ */}
       <div data-snap style={{ background:'#0c0c0c', position:'relative', overflow:'hidden', minHeight:'380px' }}>
         <div style={{ position:'relative', zIndex:2, padding:'var(--section-spacing-sm) var(--page-padding)', display:'flex', flexDirection:'column' }}>
-          <div style={{ fontSize:'10px', color:'rgba(255,255,255,.2)', letterSpacing:'1.5px', textTransform:'uppercase', fontFamily:"'DM Sans',system-ui,sans-serif", marginBottom:'40px' }}>
+          <div style={{ fontSize:'12px', color:'#A8A8A8', letterSpacing:'1.5px', textTransform:'uppercase', fontFamily:"'DM Sans',system-ui,sans-serif", marginBottom:'40px' }}>
             Next project
           </div>
           <div style={{ display:'flex', flexDirection:'column', alignItems:'flex-end', flex:1 }}>
             <button className="fz-next-title" onClick={() => goTo('footcare')} style={{ display:'block', textAlign:'right' }}>
               → Next Project
             </button>
-            <div style={{ fontSize:'clamp(14px,1.8vw,24px)', color:'rgba(255,255,255,.2)', fontFamily:"'DM Sans',system-ui,sans-serif", letterSpacing:'-0.374px', marginTop:'8px', textAlign:'right' }}>
+            <div style={{ fontSize:'clamp(14px,1.8vw,24px)', color:'#A8A8A8', fontFamily:"'DM Sans',system-ui,sans-serif", letterSpacing:'-0.374px', marginTop:'8px', textAlign:'right' }}>
               Preventive Foot Care Platform
             </div>
           </div>
           <div style={{ marginTop:'48px' }}>
-            <button onClick={() => goToWork()} style={{ background:'none', border:'1px solid rgba(255,255,255,.12)', borderRadius:'9999px', padding:'10px 20px', color:'rgba(255,255,255,.35)', fontSize:'13px', letterSpacing:'.03em', cursor:'pointer', fontFamily:"'DM Sans',system-ui,sans-serif", transition:'color .2s,border-color .2s' }}
+            <button className="tap-target" onClick={() => goToWork()} style={{ background:'none', border:'1px solid rgba(255,255,255,.12)', borderRadius:'9999px', padding:'10px 20px', color:'#A8A8A8', fontSize:'13px', letterSpacing:'.03em', cursor:'pointer', fontFamily:"'DM Sans',system-ui,sans-serif", transition:'color .2s,border-color .2s' }}
               onMouseEnter={e => { e.currentTarget.style.color='rgba(255,255,255,.7)'; e.currentTarget.style.borderColor='rgba(255,255,255,.3)'; }}
-              onMouseLeave={e => { e.currentTarget.style.color='rgba(255,255,255,.35)'; e.currentTarget.style.borderColor='rgba(255,255,255,.12)'; }}
+              onMouseLeave={e => { e.currentTarget.style.color='#A8A8A8'; e.currentTarget.style.borderColor='rgba(255,255,255,.12)'; }}
             >← Back to all work</button>
           </div>
         </div>

@@ -42,7 +42,7 @@ const Footer = ({ goTo, goToWork }) => {
             <div style={{
               fontSize: '13px',
               fontWeight: 400,
-              color: 'rgba(29,29,31,0.5)',
+              color: '#666666',
               letterSpacing: '-0.12px',
               lineHeight: 1.5,
             }}>
@@ -53,7 +53,7 @@ const Footer = ({ goTo, goToWork }) => {
           {/* Work col */}
           <div>
             <div style={{
-              fontSize: '11px',
+              fontSize: '12px',
               fontWeight: 600,
               color: '#1d1d1f',
               letterSpacing: '0.08em',
@@ -70,6 +70,7 @@ const Footer = ({ goTo, goToWork }) => {
             ].map(item => (
               <button
                 key={item.label}
+                className="tap-target"
                 onClick={item.action}
                 style={{
                   display: 'block',
@@ -97,7 +98,7 @@ const Footer = ({ goTo, goToWork }) => {
           {/* Pages col */}
           <div>
             <div style={{
-              fontSize: '11px',
+              fontSize: '12px',
               fontWeight: 600,
               color: '#1d1d1f',
               letterSpacing: '0.08em',
@@ -111,6 +112,7 @@ const Footer = ({ goTo, goToWork }) => {
             ].map(item => (
               <button
                 key={item.label}
+                className="tap-target"
                 onClick={item.action}
                 style={{
                   display: 'block',
@@ -134,6 +136,7 @@ const Footer = ({ goTo, goToWork }) => {
             ))}
             <a
               href="mailto:maryam.moradian38@gmail.com"
+              className="tap-target"
               style={{
                 display: 'block',
                 background: 'none',
@@ -159,7 +162,7 @@ const Footer = ({ goTo, goToWork }) => {
           {/* Connect col */}
           <div>
             <div style={{
-              fontSize: '11px',
+              fontSize: '12px',
               fontWeight: 600,
               color: '#1d1d1f',
               letterSpacing: '0.08em',
@@ -172,6 +175,7 @@ const Footer = ({ goTo, goToWork }) => {
               href="https://www.linkedin.com/in/maryam-moradian"
               target="_blank"
               rel="noopener noreferrer"
+              className="tap-target"
               style={{
                 display: 'block',
                 fontSize: '15px',
@@ -189,6 +193,7 @@ const Footer = ({ goTo, goToWork }) => {
             </a>
             <a
               href="mailto:maryam.moradian38@gmail.com"
+              className="tap-target"
               style={{
                 display: 'block',
                 fontSize: '15px',
@@ -207,6 +212,7 @@ const Footer = ({ goTo, goToWork }) => {
             <a
               href="Maryam_Moradian_CV.pdf"
               download
+              className="tap-target"
               style={{
                 display: 'block',
                 fontSize: '15px',
@@ -236,7 +242,7 @@ const Footer = ({ goTo, goToWork }) => {
           <span style={{
             fontSize: '12px',
             fontWeight: 400,
-            color: 'rgba(29,29,31,0.38)',
+            color: '#666666',
             letterSpacing: '-0.12px',
           }}>
             © 2026 Maryam Moradian
@@ -244,7 +250,7 @@ const Footer = ({ goTo, goToWork }) => {
           <span style={{
             fontSize: '12px',
             fontWeight: 400,
-            color: 'rgba(29,29,31,0.38)',
+            color: '#666666',
             letterSpacing: '-0.12px',
           }}>
             Düsseldorf, Germany · Open to work
