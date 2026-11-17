@@ -921,8 +921,8 @@ const AboutPage = ({ goTo, goToWork }) => {
             {
               role: 'Product Designer',
               company: 'GEBIOM Group',
-              dates: 'Feb 2022 – Present',
-              promotion: 'Promoted from UX/UI Designer · Oct 2023',
+              dates: 'Oct 2023 – Present',
+              promotion: 'Full-time. Promoted from UX/UI Designer.',
               bullets: [
                 'Own product design end-to-end across web and mobile (from problem definition and early discovery through to implementation-ready specs) for B2B medtech tools and B2C retail experiences.',
                 'Led user research and usability testing across the full product lifecycle; findings directly shaped workflow redesigns and informed go/no-go decisions on key feature directions.',
@@ -932,19 +932,34 @@ const AboutPage = ({ goTo, goToWork }) => {
               ],
             },
             {
-              role: 'Web Content Manager',
+              role: 'UX/UI Designer',
+              company: 'GEBIOM Group',
+              dates: 'Feb 2022 – Aug 2023',
+              promotion: 'Part-time, before moving to full-time Product Designer.',
+              bullets: [],
+            },
+            {
+              role: 'Research Assistant, Web Content Manager',
               company: 'University of Siegen',
               dates: 'Sep 2021 – May 2023',
-              promotion: null,
+              promotion: 'Part-time, alongside my M.Sc.',
               bullets: [
                 'Managed and updated university website content, improving usability and navigation for student-facing information.',
                 'Implemented HTML and responsive layout updates to improve content presentation and accessibility.',
               ],
             },
             {
+              role: 'Freelance 3D Designer',
+              company: 'Independent',
+              dates: 'Feb 2019 – Sep 2020',
+              promotion: null,
+              text: '3D modeling in Rhino for several clients on varied topics, alongside English study for graduate admission in Germany.',
+              bullets: [],
+            },
+            {
               role: 'Lead Industrial Designer',
               company: 'Mesina Group',
-              dates: 'Feb 2018 – May 2019',
+              dates: 'Jul 2018 – Jan 2019',
               promotion: null,
               bullets: [
                 'Led an industrial design team developing ergonomic, user-centred hardware products from concept through production refinement.',
@@ -954,9 +969,9 @@ const AboutPage = ({ goTo, goToWork }) => {
               ],
             },
             {
-              role: 'Industrial Designer',
+              role: 'Lead Industrial Designer',
               company: 'NTP Design',
-              dates: 'Sep 2017 – Mar 2018',
+              dates: 'Aug 2017 – May 2018',
               promotion: null,
               bullets: [
                 'Developed 3D models and supported design validation to translate concepts into production-ready directions.',
@@ -964,7 +979,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               ],
             },
           ].map((job, i) => (
-            <div key={job.company} style={{
+            <div key={job.role + job.company} style={{
               borderTop: i === 0 ? 'none' : '1px solid rgba(0,0,0,0.06)',
               paddingTop: '40px',
               paddingBottom: '40px',
@@ -1023,7 +1038,21 @@ const AboutPage = ({ goTo, goToWork }) => {
                 </div>
 
                 {/* Right — bullets */}
+                {(job.text || job.bullets.length > 0) && (
                 <div style={{ flex: 1 }}>
+                  {job.text && (
+                    <p style={{
+                      fontFamily: "'DM Sans', system-ui, sans-serif",
+                      fontSize: '15px',
+                      fontWeight: 400,
+                      lineHeight: 1.55,
+                      color: 'rgba(29,29,31,0.75)',
+                      letterSpacing: '-0.2px',
+                      margin: 0,
+                    }}>
+                      {job.text}
+                    </p>
+                  )}
                   {job.bullets.map((b, bi) => (
                     <div key={bi} style={{
                       display: 'flex',
@@ -1052,6 +1081,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                     </div>
                   ))}
                 </div>
+                )}
 
               </div>
             </div>
@@ -1098,7 +1128,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               degree: 'M.Sc. Human-Computer Interaction',
               institution: 'University of Siegen, Germany',
               dates: 'Oct 2020 – 2024',
-              description: 'Thesis: Promoting regular care for preventing diabetic foot diseases using foot mapping technologies and artificial intelligence',
+              description: 'Thesis: Promoting regular care for preventing diabetic foot diseases using foot mapping technologies and artificial intelligence. Thesis grade 1.0.',
             },
             {
               degree: 'M.Sc. Industrial Design',
@@ -1240,6 +1270,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 'Developer handoff',
                 'Accessibility (WCAG)',
                 'Discovery & definition',
+                'A/B tests on features',
               ].map(s => (
                 <div key={s} style={{
                   fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -1267,7 +1298,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               }}>
                 Tools
               </div>
-              {['Figma', 'FigJam', 'Miro', 'Jira', 'Azure DevOps', 'Confluence', 'HTML / CSS'].map(t => (
+              {['Figma', 'FigJam', 'Miro', 'Jira', 'Azure DevOps', 'Confluence', 'HTML / CSS', 'Rhino', 'Claude Code'].map(t => (
                 <div key={t} style={{
                   fontFamily: "'DM Sans', system-ui, sans-serif",
                   fontSize: '15px',
