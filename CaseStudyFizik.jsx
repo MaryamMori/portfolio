@@ -25,6 +25,12 @@ if (!document.getElementById('fz-case-styles')) {
     .fz-nav-btn:hover { color:#1d1d1f; }
 
     .fz-sidebar { transition:opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
+    /* Shared Contents nav (FzContents): when hidden it is also removed from the tab order */
+    .fz-contents { transition:opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1), visibility 0s; }
+    .fz-contents.fz-contents-hidden {
+      opacity:0; visibility:hidden; pointer-events:none; transform:translateX(12px);
+      transition:opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1), visibility 0s .6s;
+    }
     .fz-sidebar.fz-sidebar-hidden { opacity:0; pointer-events:none; transform:translateX(12px); }
 
     .fz-back-btn {
@@ -134,8 +140,38 @@ if (!document.getElementById('fz-case-styles')) {
       border-left:2px solid #a63636;
     }
 
+    /* ── 3-item meta bar ── */
+    /* padding-right keeps the longer third column clear of the vertical "Scroll" marker */
+    .fz-meta-bar.fz-meta-bar-3 { grid-template-columns:repeat(3,1fr); padding-right:40px; }
+
+    /* ── Impact at a glance ── */
+    .fz-impact {
+      background:#0c0c0c; padding:0 var(--page-padding) var(--section-spacing-sm);
+    }
+    .fz-impact-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .fz-impact-card {
+      background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.10);
+      border-radius:16px; padding:28px;
+    }
+
+    /* ── Bulleted lists in body copy ── */
+    .fz-list { list-style:none; margin:0 0 var(--paragraph-spacing); padding:0; }
+    .fz-list li {
+      position:relative; padding-left:18px; margin-bottom:12px;
+      font-family:'DM Sans',system-ui,sans-serif; font-size:var(--body-font-size);
+      line-height:var(--body-line-height); letter-spacing:-0.374px; color:rgba(29,29,31,0.68);
+    }
+    .fz-list li:last-child { margin-bottom:0; }
+    .fz-list li::before {
+      content:''; position:absolute; left:0; top:0.72em; width:5px; height:5px;
+      border-radius:50%; background:#a63636;
+    }
+
     @media (max-width:900px) {
       .fz-body-layout  { padding-top:64px !important; }
+      .fz-meta-bar.fz-meta-bar-3 { grid-template-columns:1fr !important; gap:20px 0 !important; }
+      .fz-meta-bar-3 > div { padding-left:0 !important; padding-right:0 !important; border-right:none !important; }
+      .fz-impact-grid { grid-template-columns:1fr !important; }
       .fz-sidebar      { display:none !important; }
       .fz-meta-bar     { grid-template-columns:repeat(2,1fr) !important; gap:20px 0 !important; }
       .fz-constraints-row { grid-template-columns:1fr 1fr !important; }
@@ -178,6 +214,100 @@ const FzBody = ({ children, style, animSub }) => (
     {children}
   </p>
 );
+
+// Bold lead-in ("The Decision:") at the start of a paragraph or list item
+const FzLead = ({ children }) => (
+  <strong style={{ fontWeight:600, color:'#1d1d1f' }}>{children}</strong>
+);
+
+const FzList = ({ items }) => (
+  <ul className="fz-list">
+    {items.map((it, i) => (
+      <li key={i}>
+        {it.lead && <><FzLead>{it.lead}:</FzLead>{' '}</>}
+        {it.text}
+      </li>
+    ))}
+  </ul>
+);
+
+// Dark band of three highlight cards under a case study hero (bold lead + one sentence each).
+// Used for "Impact at a glance" (Fizik) and "Core Design Thesis" (Fleetwatch).
+const FzHighlights = ({ id, title, items }) => (
+  <section className="fz-impact" aria-labelledby={id}>
+    <h2 id={id} style={{ fontFamily:"'DM Sans',system-ui,sans-serif", fontSize:'12px', fontWeight:400, color:'#A8A8A8', letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'20px', paddingTop:'40px', borderTop:'1px solid rgba(255,255,255,0.08)' }}>
+      {title}
+    </h2>
+    <div className="fz-impact-grid">
+      {items.map(item => (
+        <div key={item.lead} className="fz-impact-card">
+          <h3 style={{ fontFamily:"'Space Grotesk',system-ui,sans-serif", fontSize:'19px', fontWeight:600, lineHeight:1.25, letterSpacing:'-0.2px', color:'#ffffff', marginBottom:'10px' }}>{item.lead}</h3>
+          <p style={{ fontFamily:"'DM Sans',system-ui,sans-serif", fontSize:'15px', lineHeight:1.55, letterSpacing:'-0.2px', color:'#A8A8A8' }}>{item.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+);
+
+// Shared "Contents" side navigation for case study pages.
+// items: [{ id, label }] in page order; each id must be on a section wrapper.
+// contentSelector: the text column it must never overlap. The nav only shows while the
+// sections are on screen AND there is room for it beside that column; otherwise it is
+// hidden and taken out of the tab order.
+const FzContents = ({ items, contentSelector }) => {
+  const { useState, useEffect, useRef } = React;
+  const [active, setActive] = useState(items[0].id);
+  const [inRange, setInRange] = useState(false);
+  const [fits, setFits] = useState(false);
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    const update = () => {
+      const els = items.map(i => document.getElementById(i.id)).filter(Boolean);
+      if (!els.length) return;
+      const vh = window.innerHeight;
+      // Active = last section whose top has passed 40% of the viewport
+      let current = els[0].id;
+      els.forEach(el => { if (el.getBoundingClientRect().top < vh * 0.4) current = el.id; });
+      // The last section may never reach that line, so it becomes active once it is fully on screen
+      const lastEl = els[els.length - 1];
+      if (lastEl.getBoundingClientRect().bottom <= vh) current = lastEl.id;
+      setActive(current);
+      setInRange(els[0].getBoundingClientRect().top < vh * 0.9 && els[els.length - 1].getBoundingClientRect().bottom > 0);
+      // Room check: nav width plus a 24px gap must fit right of the text column
+      const nav = navRef.current;
+      const cols = [...document.querySelectorAll(contentSelector)];
+      if (nav && cols.length) {
+        const colRight = Math.max(...cols.map(c => c.getBoundingClientRect().right));
+        setFits(window.innerWidth - nav.offsetWidth - 24 >= colRight);
+      }
+    };
+    update();
+    window.addEventListener('scroll', update, { passive:true });
+    window.addEventListener('resize', update);
+    return () => { window.removeEventListener('scroll', update); window.removeEventListener('resize', update); };
+  }, []);
+
+  const scrollTo = id => {
+    const el = document.getElementById(id); if (!el) return;
+    const target = el.getBoundingClientRect().top + window.scrollY - 80;
+    const lenis = window.__lenis;
+    if (lenis) lenis.scrollTo(target, { duration:1.4 });
+    else window.scrollTo({ top:target, behavior:'smooth' });
+  };
+
+  const visible = inRange && fits;
+  return (
+    <nav ref={navRef} aria-label="Contents" className={`fz-sidebar fz-contents${visible ? '' : ' fz-contents-hidden'}`} style={{ position:'fixed', right:0, top:'136px', zIndex:50, textAlign:'right' }}>
+      <div aria-hidden="true" style={{ fontSize:'12px', color:'#666666', letterSpacing:'.15em', textTransform:'uppercase', marginBottom:'18px' }}>Contents</div>
+      {items.map(item => (
+        <button key={item.id} className={`fz-nav-btn${active === item.id ? ' fz-active' : ''}`} aria-current={active === item.id ? 'true' : undefined} onClick={() => scrollTo(item.id)}>
+          {item.label}
+        </button>
+      ))}
+    </nav>
+  );
+};
 
 const VideoBlock = ({ src, caption, style, type }) => {
   const { useRef, useEffect } = React;
@@ -247,11 +377,10 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
 
   const navItems = [
     { id:'problem',     label:'Problem' },
-    { id:'users',       label:'Users' },
+    { id:'strategy',    label:'Strategy' },
     { id:'constraints', label:'Constraints' },
     { id:'decisions',   label:'Decisions' },
     { id:'outcome',     label:'Outcome' },
-    { id:'legacy',      label:'Legacy' },
     { id:'reflection',  label:'Reflection' },
   ];
 
@@ -284,7 +413,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
   // Section heading+subtitle blocks: same scroll-reveal as the Selected Work heading
   useEffect(() => {
     if (typeof gsap === 'undefined') return;
-    const ids = ['problem', 'users', 'constraints', 'decisions', 'outcome', 'legacy', 'reflection'];
+    const ids = ['problem', 'strategy', 'constraints', 'decisions', 'outcome', 'reflection'];
     const ctx = gsap.context(() => {
       ids.forEach(id => {
         const el = document.getElementById(id);
@@ -330,16 +459,15 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
             <WordReveal text="Platform"  startDelay={0.65} wordDelay={0.1} style={{ fontFamily:"'Space Grotesk',system-ui,sans-serif", fontSize:'clamp(52px,10vw,124px)', fontWeight:700, lineHeight:0.93, letterSpacing:'-0.035em', color:'#6E6E6E' }} />
           </h1>
           <div style={{ fontSize:'clamp(15px,1.8vw,19px)', color:'rgba(255,255,255,.46)', maxWidth:'460px', lineHeight:1.62, letterSpacing:'-0.2px', marginBottom:'56px', animation:'fizik-fade-up .85s cubic-bezier(.16,1,.3,1) .9s both', textWrap:'pretty' }}>
-            Designing the tool that makes a personalized saddle service work reliably at the point of sale, for staff at any level of expertise.
+            Turning a complex, specialist-dependent 3D-printed saddle service into a repeatable point-of-sale workflow for global bike retailers.
           </div>
-          <div className="fz-meta-bar">
+          <div className="fz-meta-bar fz-meta-bar-3">
             {[
-              { label:'Role',     value:'Sole Product Designer' },
-              { label:'Scope',    value:'Strategy · UX · UI · Design System · Handoff' },
-              { label:'Industry', value:'Retail Tech · Sports' },
-              { label:'Output',   value:'Flutter · 6 Languages' },
+              { label:'Role',              value:'Sole Product Designer (Ongoing owner through post-launch iterations)' },
+              { label:'Scope',             value:'0→1 Product Strategy · UX/UI · Hardware Integration · Retail Design System' },
+              { label:'Platform & Reach',  value:'iOS & Android (Flutter) · 60+ Screens · 6 Languages · Live on App Store & Google Play' },
             ].map((item,i) => (
-              <div key={item.label} style={{ paddingLeft:i>0?'24px':0, paddingRight:i<3?'24px':0, borderRight:i<3?'1px solid rgba(255,255,255,.07)':'none' }}>
+              <div key={item.label} style={{ paddingLeft:i>0?'24px':0, paddingRight:i<2?'24px':0, borderRight:i<2?'1px solid rgba(255,255,255,.07)':'none' }}>
                 <div style={{ fontSize:'12px', color:'#A8A8A8', letterSpacing:'.13em', textTransform:'uppercase', marginBottom:'6px' }}>{item.label}</div>
                 <div style={{ fontSize:'13px', color:'rgba(255,255,255,.58)', lineHeight:1.4, letterSpacing:'-0.1px' }}>{item.value}</div>
               </div>
@@ -351,6 +479,13 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
           <div style={{ width:'1px', height:'48px', background:'linear-gradient(to bottom,rgba(255,255,255,.14),transparent)' }} />
         </div>
       </section>
+
+      {/* ══ IMPACT AT A GLANCE ════════════════════════════════════ */}
+      <FzHighlights id="fz-impact-title" title="Impact at a glance" items={[
+        { lead:'Eliminated Specialist Bottlenecks', text:'Enabled retail staff with zero biomechanics training to run end-to-end custom saddle consultations and orders independently.' },
+        { lead:'Scaled Globally',                   text:'Shipped across international dealer networks in 6 languages with near-zero recommendation logic failures in live retail environments.' },
+        { lead:'Created Multi-Product Leverage',    text:'The workflow architecture and component system became the foundation for a second commercial product: an e-bike fitting app now in v2 (March 2026).' },
+      ]} />
 
       {/* ══ BODY ══════════════════════════════════════════════════ */}
       <div className="fz-body-layout">
@@ -369,84 +504,76 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
 
           {/* ── 01 PROBLEM ──────────────────────────────────── */}
           <section id="problem" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-lg)', display:'flex', flexDirection:'column', gap:'4px' }}>
-            <FzLabel n="01" text="The problem" />
+            <FzLabel n="01" text="The business problem" />
             <div style={{ display:'flex', flexDirection:'column', gap:'64px' }}>
-              <FzHeading>A service that couldn't scale without the right tool.</FzHeading>
-              <FzBody animSub style={{ marginBottom:0 }}>Fizik launched a service that lets cyclists receive a saddle personalized to their body geometry and riding data, custom 3D-printed based on in-store measurements. The service concept was strong. But for it to work in real retail environments, it needed a digital tool that didn't yet exist.</FzBody>
+              <FzHeading>A Great Service That Couldn't Scale</FzHeading>
+              <FzBody animSub style={{ marginBottom:0 }}>Fizik launched a bespoke service allowing cyclists to order custom 3D-printed saddles tailored to their body geometry and riding data. While the physical product was compelling, the service had a fatal operational bottleneck at the point of sale: inconsistency.</FzBody>
             </div>
-            <div className="fz-diagram-img" style={{ marginTop:'12px' }}>
+            <div style={{ marginTop:'var(--paragraph-spacing)' }}>
+              <FzList items={[
+                { text:'In stores with an experienced bike fitter, consultations were smooth and accurate.' },
+                { text:'In stores without a specialist, staff struggled to interpret pressure data and navigate 121 saddle configurations, resulting in slow consultations, hesitant recommendations, and lost sales.' },
+              ]} />
+              <FzBody style={{ marginBottom:0 }}>To scale globally, Fizik didn't just need a catalog app. They needed a foolproof consultation engine that could guarantee service quality regardless of who was working the shop floor.</FzBody>
+            </div>
+            <div className="fz-diagram-img" style={{ marginTop:'40px' }}>
               <img src="Fizik-1diagram-problem.png" alt="Service flow diagram" style={{ width:'100%', display:'block', borderRadius:'12px' }} />
             </div>
           </section>
 
-          {/* ── 02 USERS ────────────────────────────────────── */}
-          <section id="users" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-lg)' }}>
-            <FzLabel n="02" text="Users & context" />
+          {/* ── 02 STRATEGY ─────────────────────────────────── */}
+          <section id="strategy" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-lg)' }}>
+            <FzLabel n="02" text="Strategic bet" />
             <div style={{ display:'flex', flexDirection:'column', gap:'64px', marginBottom:'40px' }}>
-              <FzHeading>Designed for the full range of staff expertise, not the best-case user.</FzHeading>
-              <FzBody animSub style={{ marginBottom:0 }}>The primary users were bike shop staff, not product engineers or biomechanics specialists. Some had deep technical knowledge of bike fitting. Many did not.</FzBody>
+              <FzHeading>Designing for the Floor Associate, Not the Expert</FzHeading>
+              <FzBody animSub style={{ marginBottom:0 }}>Research across Fizik's dealer network revealed two distinct user profiles:</FzBody>
             </div>
 
             <div className="fz-user-grid">
               {/* Type A */}
               <div className="fz-user-card fz-user-card-a">
                 <div className="fz-user-eyebrow" style={{ color:'#666666' }}>User Type A</div>
-                <div className="fz-user-name"    style={{ color:'#1d1d1f' }}>Experienced fitter</div>
+                <h3 className="fz-user-name" style={{ color:'#1d1d1f' }}>Experienced Bike Fitters</h3>
                 <div className="fz-user-divider" />
-                {['Reads measurement data intuitively','Navigates 121 options confidently','Builds recommendation from experience'].map(t => (
-                  <div key={t} className="fz-user-trait" style={{ color:'#666666' }}>{t}</div>
-                ))}
-                <div className="fz-user-needs-label" style={{ color:'#666666' }}>Needs from the platform</div>
-                <div className="fz-user-tags">
-                  {['Flexibility','Depth','Override'].map(tag => (
-                    <span key={tag} className="fz-user-tag" style={{ background:'rgba(0,0,0,.08)', color:'#1d1d1f' }}>{tag}</span>
-                  ))}
-                </div>
-                <div className="fz-user-footnote" style={{ color:'#a63636' }}>↓ Lower priority in v1 design</div>
+                <p className="fz-user-trait" style={{ color:'#666666' }}>Interpret pressure maps intuitively, know the 121-SKU catalog inside out, and want granular control and manual overrides.</p>
               </div>
 
               <div className="fz-vs-label" style={{ fontFamily:"'Space Grotesk',system-ui,sans-serif", fontSize:'17px', fontWeight:500, color:'rgba(29,29,31,.65)', textAlign:'center' }}>vs</div>
 
-              {/* Type B */}
+              {/* Type B: primary use case */}
               <div className="fz-user-card fz-user-card-b">
                 <div className="fz-user-eyebrow" style={{ color:'#f5f5f7' }}>User Type B</div>
-                <div className="fz-user-name"    style={{ color:'#fff' }}>Less experienced staff</div>
+                <h3 className="fz-user-name" style={{ color:'#fff' }}>General Retail Staff</h3>
                 <div className="fz-user-divider" style={{ background:'rgba(0,0,0,.12)' }} />
-                {['Live consultation, customer present',"Can't hold full product logic in mind",'Needs a defensible answer to explain'].map(t => (
-                  <div key={t} className="fz-user-trait" style={{ color:'#f5f5f7' }}>{t}</div>
-                ))}
-                <div className="fz-user-needs-label" style={{ color:'#f5f5f7' }}>Needs from the platform</div>
-                <div className="fz-user-tags">
-                  {['Guided steps','Clear output'].map(tag => (
-                    <span key={tag} className="fz-user-tag" style={{ background:'#f5f5f7', color:'#1d1d1f' }}>{tag}</span>
-                  ))}
+                <p className="fz-user-trait" style={{ color:'#f5f5f7' }}>Conduct live consultations with a customer standing beside them, cannot memorize complex fit logic, and need a fast, defensible answer they can explain with confidence.</p>
+                <div className="fz-user-tags" style={{ marginTop:'20px' }}>
+                  <span className="fz-user-tag" style={{ background:'#f5f5f7', color:'#1d1d1f' }}>Primary Target</span>
                 </div>
-                <div className="fz-user-footnote" style={{ color:'#fff' }}>↑ Primary use case · drove all decisions</div>
               </div>
             </div>
 
-            <div className="fz-user-caption">Designing for type B was the core structural decision. Type A is the next iteration.</div>
-            <FzBody style={{ marginTop:'40px' }}>The failure mode was not that the service was unavailable. It was inconsistent. Good in some stores, unreliable in others. That inconsistency was what the platform had to solve.</FzBody>
+            <FzBody style={{ marginTop:'40px', marginBottom:0 }}><FzLead>The Core Strategic Decision:</FzLead> Rather than building a flexible power-tool that pleased experts (Type A) but overwhelmed everyone else, I anchored v1 entirely around Type B. Raising the baseline reliability of everyday store staff had a far higher business ROI than optimizing for specialists who could already sell the service manually.</FzBody>
           </section>
 
           {/* ── 03 CONSTRAINTS ──────────────────────────────── */}
           <section id="constraints" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-lg)' }}>
             <FzLabel n="03" text="Constraints" />
             <div style={{ display:'flex', flexDirection:'column', gap:'64px' }}>
-              <FzHeading>Four constraints that shaped every design decision.</FzHeading>
+              <FzHeading>Real-World Constraints</FzHeading>
+              <FzBody animSub style={{ marginBottom:0 }}>Every interaction was shaped by four hard constraints:</FzBody>
             </div>
             <div className="fz-constraints-row">
               {[
-                { title:'Catalog complexity',   body:'121 saddle variants, differentiated by geometry, material, and fit profile. Filtering logic had to be rigorous, but the result had to feel trustworthy, not algorithmically arbitrary.', Icon:IconBook },
-                { title:'Hardware integration', body:'The platform connected with on-site pressure measurement devices. Data capture had to embed in the consultation flow without creating a separate technical step.', Icon:IconHardware },
-                { title:'Brand context',        body:"Fizik is a premium cycling brand. The interface had to feel consistent with that positioning while remaining fast and legible in a live, customer-facing environment.", Icon:IconBrand },
-                { title:'Flutter delivery',     body:'Built in Flutter. Design decisions needed to be grounded in what Flutter could realistically support, shaping interaction choices through to handoff.', Icon:IconCode },
+                { title:'121-Variant Catalog Complexity',        body:'Filtering across geometry, materials, and fit profiles had to feel transparent and trustworthy, never like a "black box" algorithm.', Icon:IconBook },
+                { title:'Live Hardware Sync',                    body:'The app had to pair with on-site pressure measurement hardware mid-consultation without breaking conversational flow.', Icon:IconHardware },
+                { title:'High-Glare, Fast-Paced Retail Context', body:"Interfaces needed Fizik's premium aesthetic while remaining readable at arm's length with generous tap targets.", Icon:IconBrand },
+                { title:'Flutter Engineering Reality',           body:'All transitions, hardware states, and cross-platform layouts (iOS/Android) were scoped to ship cleanly within Flutter\'s widget architecture.', Icon:IconCode },
               ].map((c,ci) => {
                 const CIcon = c.Icon;
                 return (
                   <div key={c.title} className="fz-card">
-                    <div className="fz-card-icon">
-                      <span className="fz-card-title" style={{ marginBottom:0 }}>{c.title}</span>
+                    <div className="fz-card-icon" style={{ alignItems:'flex-start', gap:'10px' }}>
+                      <h3 className="fz-card-title" style={{ marginBottom:0, lineHeight:1.3 }}>{c.title}</h3>
                       <CIcon />
                     </div>
                     <p className="fz-card-body">{c.body}</p>
@@ -459,25 +586,34 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
         </main>
       </div>
 
-      {/* ══ 04 DECISIONS + 04-2 FLOW ══════════════════════════════ */}
+      {/* ══ 04 DECISIONS + FLOW ═══════════════════════════════════ */}
       <div className="fz-body-layout">
         <main>
           <section id="decisions" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-lg)' }}>
-            <FzLabel n="04" text="Key design decisions" />
+            <FzLabel n="04" text="Decisions" />
             <div style={{ display:'flex', flexDirection:'column', gap:'64px' }}>
-              <FzHeading>Four decisions that defined the product.</FzHeading>
+              <FzHeading>Key Product & Design Decisions</FzHeading>
             </div>
             <div className="fz-decisions-grid">
               {[
-                { n:'O1', title:'A guided linear flow, not a flexible navigation model.', body:'A flexible model would have felt more powerful to experienced fitters. But in a live consultation, an open navigation structure creates risk: steps get missed, data gets entered out of order, the recommendation loses integrity. I chose a guided, step-by-step flow that locked the sequence while keeping each step short and focused. The trade-off was reduced flexibility for expert users. The benefit was a consistent, reliable process any staff member could follow without prior training.' },
-                { n:'O2', title:'Translating 121 options into a recommendation the staff can explain.', body:'A catalog of 121 saddles is not a useful output for a customer-facing consultation. I worked with the team to define filtering criteria that actually mattered for fit: rider geometry from measurement data, riding style, and key anatomical inputs. The UI surfaced two to three recommended options with clear differentiation, each presented with fit rationale attached.' },
-                { n:'O3', title:'Embedding measurement data capture inside the workflow.', body:'Pressure and geometry data from the measurement hardware was essential to the recommendation. If data capture felt like a separate technical step, it would create friction and risk being skipped. I designed the measurement step as an integrated stage within the guided flow. The UI acknowledged the hardware, guided staff through the capture process, and immediately used the data to progress the workflow.' },
-                { n:'O4', title:'A design system built for retail, not marketing.', body:"Fizik's brand is premium: clean, restrained, high quality. But legibility in a retail environment required high contrast, generous tap targets, and minimal visual noise. The resolution was a design system built on Fizik's brand palette but with UI decisions tuned for the retail context. The interface feels premium without being precious." },
+                { n:'O1', title:'Locked Linear Flow Over Open Navigation',
+                  tradeoff:'Experienced fitters prefer jumping freely between screens. However, open navigation in a live retail setting creates fatal data errors: staff skip steps, enter measurements out of order, and corrupt the final recommendation.',
+                  decision:'I enforced a strict, linear step-by-step sequence with clear progress signposting. Expert users lost shortcut flexibility in v1, but every store gained a repeatable, error-proof consultation pipeline.' },
+                { n:'O2', title:'Translating 121 SKUs into a "Defensible Trio"',
+                  tradeoff:'Showing a filtered list of 15+ matching saddles still leaves a non-expert associate guessing. Showing only 1 option feels rigid if the customer dislikes the price or feel.',
+                  decision:'Working alongside fitting specialists and engineers, I distilled raw pressure and anatomical inputs into 2 to 3 curated recommendations. Each card surfaced plain-language fit rationale (e.g., "Recommended for forward pelvic rotation + high sit-bone pressure") so staff could explain why a saddle fit without needing a biomechanics degree.' },
+                { n:'O3', title:'Seamless Hardware Capture Inside the Consultation Flow',
+                  tradeoff:'Treating pressure sensor pairing and capture as a separate "setup utility" caused friction and tempted busy staff to bypass hardware readings altogether.',
+                  decision:'I embedded hardware pairing, live capture feedback, and validation directly as a native step inside the consultation sequence, automatically passing captured metrics straight into the recommendation engine.' },
+                { n:'O4', title:'A "Retail-First" Design System',
+                  tradeoff:null,
+                  decision:"Instead of porting Fizik's dark, editorial marketing look (which fails under bright shop lighting), I built a high-contrast, touch-friendly component library in Figma mapped directly to Flutter widgets. It preserved brand restraint while prioritizing speed and legibility during live customer interactions." },
               ].map((d,di) => (
                 <div key={d.n} className="fz-card">
                   <div className="fz-card-number">{d.n}</div>
-                  <div className="fz-card-title" style={{ whiteSpace:'normal', lineHeight:1.3, fontSize:'15px' }}>{d.title}</div>
-                  <p className="fz-card-body" style={{ marginTop:'4px' }}>{d.body}</p>
+                  <h3 className="fz-card-title" style={{ whiteSpace:'normal', lineHeight:1.3, fontSize:'15px' }}>{d.title}</h3>
+                  {d.tradeoff && <p className="fz-card-body" style={{ marginTop:'4px' }}><FzLead>The Trade-off:</FzLead> {d.tradeoff}</p>}
+                  <p className="fz-card-body" style={{ marginTop: d.tradeoff ? '10px' : '4px' }}><FzLead>The Decision:</FzLead> {d.decision}</p>
                   {d.n === 'O1' && (
                     <div style={{ marginTop:'auto', paddingTop:'12px', borderRadius:'16px', overflow:'hidden', background:'transparent' }}>
                       <img src="Fizik121/FIZIK-wireframe-screenshot02.png" alt="Loaders" style={{ width:'100%', display:'block', borderRadius:'16px', background:'transparent' }} />
@@ -507,53 +643,39 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
         </main>
       </div>
 
-      {/* ══ 04-2 FLOW ═════════════════════════════════════════════ */}
+      {/* ══ FLOW ══════════════════════════════════════════════════ */}
       <div data-snap style={{ background:'#fff', padding:'var(--section-spacing-sm) var(--page-padding)', display:'flex', flexDirection:'column', alignItems:'center' }}>
         <div className="fz-flow-img" style={{ width:'100%', maxWidth:'1178px' }}>
           <img src="Fizik121/KIT ORDER FLOW.png" alt="KIT order user flow" style={{ width:'100%', display:'block', borderRadius:'8px' }} />
-          <div className="fz-caption">KIT order user flow, mapped before any screen was designed</div>
+          <div className="fz-caption">System Architecture: End-to-end consultation and hardware capture flow mapped prior to UI execution to eliminate dead ends.</div>
         </div>
       </div>
 
-      {/* ══ 05 OUTCOME ════════════════════════════════════════════ */}
+      {/* ══ 05 OUTCOME + 06 REFLECTION ════════════════════════════ */}
       <div className="fz-body-layout">
         <section id="outcome" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-lg)' }}>
           <FzLabel n="05" text="Outcome" />
           <div style={{ display:'flex', flexDirection:'column', gap:'64px', marginBottom:'28px' }}>
-            <FzHeading>The platform delivered on its core product goal.</FzHeading>
-            <FzBody animSub style={{ marginBottom:0 }}>The platform delivered on its core product goal: enabling dealers to run the complete custom saddle service end-to-end without a specialist present.</FzBody>
+            <FzHeading>Outcome & Multi-Product Legacy</FzHeading>
           </div>
-          <FzBody>Feedback from an in-house bike fitting technician confirmed the platform served its purpose. The recommendation logic ran with minimal failures, and the guided workflow gave dealers a reliable, repeatable process regardless of prior fitting experience. For a service that had previously depended on individual expertise, that consistency was the prerequisite for it working at scale.</FzBody>
-          <FzBody>The platform supports six languages, reflecting the international scope of Fizik's dealer network.</FzBody>
-          <FzBody>The platform is live on the App Store and Google Play, and dealers use it to run the custom saddle service. I am the only designer on the product and I keep designing the updates that the developer team ships. It covers more than 60 screens, with Android and iOS adaptations.</FzBody>
-          <div className="fz-diagram-img" style={{ marginTop:'12px', textAlign:'center', background:'transparent' }}>
+          <FzList items={[
+            { lead:'Reliable Store-Level Execution', text:"Validated by Fizik's in-house fitting technicians, the platform enabled dealers to run end-to-end custom orders independently with minimal logic failures." },
+            { lead:'Global Production Rollout',      text:"Live on iOS and Android across 60+ screens and 6 languages, actively used by Fizik's international dealer network." },
+            { lead:'Architectural Reuse (2026)',     text:'The consultation workflow, hardware-sync patterns, and component system proved durable enough to power a second commercial product: an e-bike saddle pressure app (now in v2 as of March 2026).' },
+          ]} />
+          <div className="fz-diagram-img" style={{ marginTop:'40px', textAlign:'center', background:'transparent' }}>
             <img src="Fizik121/your custom saddle.png" alt="Your Customized Saddle" style={{ width:'100%', maxWidth:'380px', maxHeight:'500px', height:'auto', objectFit:'contain', display:'block', margin:'0 auto', borderRadius:'12px', background:'transparent' }} />
           </div>
         </section>
-      </div>
 
-      {/* ══ 06 LEGACY ═════════════════════════════════════════════ */}
-      <div className="fz-body-layout">
-        <section id="legacy" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-lg)' }}>
-          <FzLabel n="06" text="Product legacy" />
-          <div style={{ display:'flex', flexDirection:'column', gap:'64px', marginBottom:'28px' }}>
-            <FzHeading>Design decisions that travelled to a second product.</FzHeading>
-            <FzBody animSub style={{ marginBottom:0 }}>The Fizik 121 Platform did not stay a standalone project. The design system and product thinking developed here directly informed a second product, a saddle pressure app for electric bike fitting dealers, now in its second version as of March 2026, optimised for tablet and mobile.</FzBody>
-          </div>
-          <FzBody>The interaction patterns, component logic, and workflow structure from Fizik 121 proved reusable in a related but distinct product context. The design decisions were grounded well enough to travel.</FzBody>
-        </section>
-
-        {/* ── 07 REFLECTION ─────────────────────────────────── */}
+        {/* ── 06 REFLECTION ─────────────────────────────────── */}
         <section id="reflection" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-md)' }}>
-          <FzLabel n="07" text="What I'd do differently" />
-          <div style={{ display:'flex', flexDirection:'column', gap:'32px', marginBottom:'32px' }}>
-            <FzHeading>One thing I'd revisit.</FzHeading>
+          <FzLabel n="06" text="Reflection" />
+          <div style={{ display:'flex', flexDirection:'column', gap:'64px', marginBottom:'28px' }}>
+            <FzHeading>What I'd Build Next</FzHeading>
+            <FzBody animSub style={{ marginBottom:0 }}>While locking the flow solved the consistency problem for general staff, experienced fitters (Type A) occasionally felt boxed in when their intuition differed from the algorithm's top pick.</FzBody>
           </div>
-          <div className="fz-quote-card">
-            <p style={{ fontFamily:"'DM Sans',system-ui,sans-serif", fontSize:'clamp(16px,2vw,21px)', fontWeight:400, lineHeight:1.68, letterSpacing:'-0.25px', color:'rgba(255,255,255,.62)', textWrap:'pretty' }}>
-              "The recommendation output worked well for its primary purpose, but I'd want to revisit how it serves the most experienced fitters, the ones who know why they disagree with a suggestion and need the flexibility to override it with confidence. A next iteration should explore how to give expert users more transparent access to the underlying logic without adding complexity for everyone else."
-            </p>
-          </div>
+          <FzBody style={{ marginBottom:0 }}>In the next iteration, I would introduce a "Progressive Disclosure / Expert Mode" on the final recommendation screen, allowing certified fitters to inspect the underlying pressure thresholds and manually swap variables with an audit trail, without cluttering the default path for everyday associates.</FzBody>
         </section>
       </div>
 
@@ -584,4 +706,4 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
   );
 };
 
-Object.assign(window, { CaseStudyFizik, CaseSection, WordReveal, FzLabel, FzHeading, FzBody, VideoBlock });
+Object.assign(window, { CaseStudyFizik, CaseSection, WordReveal, FzLabel, FzHeading, FzBody, FzLead, FzList, FzHighlights, FzContents, VideoBlock });

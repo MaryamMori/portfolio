@@ -20,6 +20,10 @@ if (!document.getElementById('fw-case-styles')) {
     .fw-card-figure + .fw-card-figure { margin-top:0; }
     .fw-card-figure .fz-caption { font-size:12px; line-height:1.5; margin-top:10px; }
     .fw-measures-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:56px; }
+    .fw-subhead {
+      font-family:'Space Grotesk',system-ui,sans-serif; font-size:17px; font-weight:600;
+      line-height:1.3; letter-spacing:-0.2px; color:#1d1d1f; margin:40px 0 16px;
+    }
     .fw-note {
       font-family:'DM Sans',system-ui,sans-serif; font-size:var(--caption-font-size);
       line-height:var(--caption-line-height); letter-spacing:-0.1px; color:#666666;
@@ -48,6 +52,9 @@ const FwIconUncertainty = () => (
 const FwIconBlindSpots = () => (
   <FwIconBase><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></FwIconBase>
 );
+const FwIconSend = () => (
+  <FwIconBase><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></FwIconBase>
+);
 const FwIconTime = () => (
   <FwIconBase><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></FwIconBase>
 );
@@ -55,7 +62,7 @@ const FwIconTime = () => (
 // Screen with caption. Source files are 2880 x 1800 (2x of a 1440 x 900 frame).
 const FwFigure = ({ src, alt, caption, eager }) => (
   <React.Fragment>
-    <img className="fw-shot" src={src} alt={alt} width="2880" height="1800" loading={eager ? 'eager' : 'lazy'} decoding="async" />
+    <img className="fw-shot" src={src} alt={alt || caption} width="2880" height="1800" loading={eager ? 'eager' : 'lazy'} decoding="async" />
     {caption && <div className="fz-caption">{caption}</div>}
   </React.Fragment>
 );
@@ -71,12 +78,10 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
 
   const navItems = [
     { id:'problem',     label:'Problem' },
-    { id:'users',       label:'Users' },
-    { id:'constraints', label:'Constraints' },
+    { id:'context',     label:'Context' },
     { id:'decisions',   label:'Decisions' },
     { id:'process',     label:'How I worked' },
-    { id:'measures',    label:'Measures' },
-    { id:'next-steps',  label:'Next steps' },
+    { id:'validation',  label:'Validation' },
   ];
 
   useEffect(() => {
@@ -89,7 +94,7 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
 
     const handleScroll = () => {
       const first = document.getElementById('problem');
-      const last  = document.getElementById('next-steps');
+      const last  = document.getElementById('validation');
       if (!first || !last) return;
       setSidebarVisible(
         first.getBoundingClientRect().top < window.innerHeight * 0.9 &&
@@ -136,56 +141,57 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
   };
 
   const constraints = [
-    { title:'Density',     body:'51 open findings. The design had to work at 51, not at 11.', Icon:FwIconDensity },
-    { title:'Uncertainty', body:'About one in five inferred findings is wrong, so the tool can never present them as facts.', Icon:FwIconUncertainty },
-    { title:'Blind spots', body:'22 vehicles have no telematics, 6 devices have gone silent, and workshop records are patchy at two of three depots.', Icon:FwIconBlindSpots },
-    { title:'Time',        body:'The brief suggested 4 to 6 hours. I used 8, over one weekend.', Icon:FwIconTime },
+    { title:'Two 15-Minute Decision Windows', body:'The fleet manager reviews findings in short Monday and Thursday sessions, not all day.', Icon:FwIconTime },
+    { title:'Offline Execution',              body:'The people who actually fix issues (workshop leads and dispatchers) never log into the tool. Decisions have to leave the product via email, printout, or phone note, and external replies must find their way back.', Icon:FwIconSend },
+    { title:'High Density (51 Findings)',     body:'The layout had to stay calm and scannable at 51 active findings, not a sanitized 11-item demo.', Icon:FwIconDensity },
+    { title:'Uncertainty & Blind Spots',      body:'About one in five inferred findings is wrong. Meanwhile, 22 vehicles have no telematics, 6 devices have gone silent, and workshop records are patchy at two of the three depots.', Icon:FwIconBlindSpots },
   ];
 
   const decisions = [
     {
       n:'O1',
-      title:'A cockpit that shows three decisions, not 51 findings.',
-      body:'Showing everything would recreate the overload that killed her previous tool. I ranked findings by consequence: legal and safety first, then time-sensitive money, then impact with a clear next step. The cockpit shows the top three. A bar points to two more decisions for the week, and 39 small findings are grouped by type. Data coverage has its own card, because missing data changes how far she can trust everything else.',
-      tradeoff:'Trade-off: lower-ranked findings are not visible at first glance. Counts and a full list keep them one click away.',
+      title:'Consequence-Ranked Triage Over Full Alert Lists',
+      decision:'Instead of surfacing all 51 findings, the cockpit displays only the top three decisions, ranked strictly by consequence: legal and safety first, then time-sensitive financial impact, then high-impact items with a clear next step. A summary bar flags two additional weekly decisions, 39 minor findings are grouped by type, and a dedicated Data Coverage card surfaces blind spots upfront so she knows how much to trust the system.',
+      tradeoff:"Lower-ranked findings aren't visible on first glance, though counts and the full filtered list remain one click away.",
       figures:[
-        { src:'assets/fleetwatch/fleetwatch-all-findings.png', alt:'Full list of all 51 findings', caption:'All 51 findings in the same order as the cockpit. Filters change this list only, never the cockpit.' },
+        { src:'assets/fleetwatch/fleetwatch-all-findings.png', caption:'Full Inventory (51 Findings): Ranked in the exact consequence order as the cockpit. Filtering alters this view only, never the top-level cockpit.' },
       ],
     },
     {
       n:'O2',
-      title:'Evidence before action, and two separate scales for trust.',
-      body:'Confidence (inferred, confirmed, verified) and status (new, confirmed, resolved, ruled out, withdrawn) are different things, so I kept them apart on screen. There is no one-click confirm on the cockpit, because it would teach her to trust the system without checking. A finding opens with its evidence and the two explanations the data cannot tell apart. When she confirms, confidence rises to Confirmed, never to Verified. Verified needs a record.',
-      tradeoff:'Trade-off: two scales to learn and an extra step before acting. I accepted both to keep trust honest.',
+      title:'Separating "Confidence" from "Status" to Keep Trust Honest',
+      decision:'Because ~20% of system inferences are wrong, presenting inferred alerts as facts destroys credibility. I separated Confidence (Inferred, Confirmed, Verified) from Status (New, Confirmed, Resolved, Ruled out, Withdrawn) and deliberately removed one-click confirmation from the cockpit. Opening a finding presents the raw evidence alongside the two competing explanations the data cannot distinguish. Confirming an item elevates it to Confirmed, never Verified, which requires a hard record.',
+      tradeoff:'Introduces two scales to learn and an extra review step before acting, accepted intentionally to prevent blind automation bias.',
       figures:[
-        { src:'assets/fleetwatch/fleetwatch-evidence-and-decision.png', alt:'Finding detail with evidence and decision options', caption:'A finding opens with its evidence and two explanations the data cannot tell apart.' },
+        { src:'assets/fleetwatch/fleetwatch-evidence-and-decision.png', caption:'Evidence-First Review: Findings open with supporting data and the two plausible explanations the system cannot separate on its own.' },
       ],
     },
     {
       n:'O3',
-      title:'Hand-over for people who never log in.',
-      body:'Every finding ends in one of four outcomes: hand over, confirm as real, rule out or defer. Hand-over drafts an editable message and sends it by email, printout or phone note. The workshop lead gets a one-page evidence sheet. The dispatchers get plain language and dates, with no blame. The finding moves to "In hand", replies attach to it, and the tool prompts her again on the follow-up date.',
-      tradeoff:'Trade-off: an answer given by phone or on paper does not return to the finding by itself. I listed this as an open question.',
+      title:'Structured Hand-Offs for Non-Users',
+      decision:'Every finding resolves into one of four actions: hand over, confirm as real, rule out, or defer. Choosing Hand over generates an editable, role-tailored brief sent via email, printout, or phone note: a one-page evidence sheet for the workshop lead, and plain-language dates with zero blame for dispatchers. The finding moves to In hand, logs replies, and triggers a reminder on the follow-up date.',
+      tradeoff:'Offline answers received by phone or paper still require manual logging, explicitly flagged as an open product question.',
       figures:[
-        { src:'assets/fleetwatch/fleetwatch-hand-over.png', alt:'Hand-over screen with an editable message', caption:'Hand-over: an editable message for each person, sent by email, printout or phone note.' },
+        { src:'assets/fleetwatch/fleetwatch-hand-over.png', caption:'Offline Hand-Offs: Role-specific, editable briefs formatted for email, printout, or phone notes.' },
       ],
     },
     {
       n:'O4',
-      title:'Findings that live for months.',
-      body:'When a ruled-out pattern returns, the tool shows her earlier reason next to the new evidence and suggests "Known cause, keep watching" instead of asking her to rule it out again. When the system withdraws a finding, it says what changed and keeps it on record. Withdrawn is not the same as resolved. A finding open for 18 months is flagged for review, but age alone never moves it into the top three.',
-      tradeoff:'Trade-off: more states and rules to design and explain. I put them in one table of lifecycle rules.',
+      title:'Multi-Month Lifecycle Rules for Recurring & Stale Findings',
+      decision:'Fleet issues span months. When a previously ruled-out pattern resurfaces, the system displays her original rationale beside the new evidence and suggests "Known cause, keep watching" rather than forcing duplicate triage. Withdrawn findings log what changed rather than masquerading as resolved, and findings open for 18 months trigger a review flag without ever hijacking the top-three cockpit slots based on age alone.',
+      tradeoff:'Required defining and documenting a more nuanced state machine, consolidated into a clear table of lifecycle rules.',
+      // One caption covers both screens, so it sits under the second one
       figures:[
-        { src:'assets/fleetwatch/fleetwatch-finding-comes-back.png', alt:'Returned finding with the earlier decision', caption:'A finding that came back: the earlier decision stays next to the new evidence.' },
-        { src:'assets/fleetwatch/fleetwatch-lifecycle-rules.png', alt:'Table of lifecycle rules for findings', caption:'Lifecycle rules: how findings come back, get withdrawn or go stale.' },
+        { src:'assets/fleetwatch/fleetwatch-finding-comes-back.png', alt:'State Continuity: a previously ruled-out pattern shown with its prior rationale alongside new evidence.' },
+        { src:'assets/fleetwatch/fleetwatch-lifecycle-rules.png', alt:'State Continuity: the explicit lifecycle rules for recurring, withdrawn and stale findings.', caption:'State Continuity: Previously ruled-out patterns retain their prior rationale alongside new evidence, governed by explicit lifecycle rules. All figures and names shown are sample data.' },
       ],
     },
   ];
 
   const measures = [
-    { title:'Repeated use',        body:'She still opens it on Monday and Thursday after her third visit, and can name her priorities without browsing the full list.' },
-    { title:'Decision completion', body:'Most findings that need her attention get an outcome within seven days.' },
-    { title:'Trust',               body:'Fewer findings are ruled out again and again, and her decisions line up better with the evidence.' },
+    { title:'Habit Retention',   body:'Continued Monday/Thursday usage past the third session, with the manager able to name top priorities without scanning the full 51-item list.' },
+    { title:'Decision Velocity', body:'Majority of priority findings reaching a clear outcome within 7 days.' },
+    { title:'Trust Calibration', body:'Fewer repeat rule-outs and stronger alignment between human decisions and underlying evidence.' },
   ];
 
   return (
@@ -211,16 +217,15 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
             <WordReveal text="Cockpit"    startDelay={0.65} wordDelay={0.1} style={{ fontFamily:"'Space Grotesk',system-ui,sans-serif", fontSize:'clamp(52px,10vw,124px)', fontWeight:700, lineHeight:0.93, letterSpacing:'-0.035em', color:'#6E6E6E' }} />
           </h1>
           <div style={{ fontSize:'clamp(15px,1.8vw,19px)', color:'rgba(255,255,255,.46)', maxWidth:'460px', lineHeight:1.62, letterSpacing:'-0.2px', marginBottom:'56px', animation:'fizik-fade-up .85s cubic-bezier(.16,1,.3,1) .9s both', textWrap:'pretty' }}>
-            A weekly decision tool for a fleet manager, built to show what needs attention, how sure the system is, and what happens next.
+            Designing a low-noise decision space for fleet operations, shaped around uncertain data, blind spots, and offline team hand-offs.
           </div>
-          <div className="fz-meta-bar">
+          <div className="fz-meta-bar fz-meta-bar-3">
             {[
-              { label:'Role',     value:'Product Designer (solo)' },
-              { label:'Scope',    value:'Problem framing · Data model · UX · UI · Prototype' },
-              { label:'Industry', value:'Fleet management · Logistics' },
-              { label:'Format',   value:'Take-home design case study · 8 hours · sample data' },
+              { label:'Role',                  value:'Product Designer (Solo)' },
+              { label:'Scope',                 value:'Problem Framing · Data & State Model · UX/UI · Interactive Prototype' },
+              { label:'Context & Constraints', value:'Take-Home Design Challenge · 8 Hours · 140 Vehicles / 3 Depots · Sample Data' },
             ].map((item,i) => (
-              <div key={item.label} style={{ paddingLeft:i>0?'24px':0, paddingRight:i<3?'24px':0, borderRight:i<3?'1px solid rgba(255,255,255,.07)':'none' }}>
+              <div key={item.label} style={{ paddingLeft:i>0?'24px':0, paddingRight:i<2?'24px':0, borderRight:i<2?'1px solid rgba(255,255,255,.07)':'none' }}>
                 <div style={{ fontSize:'12px', color:'#A8A8A8', letterSpacing:'.13em', textTransform:'uppercase', marginBottom:'6px' }}>{item.label}</div>
                 <div style={{ fontSize:'13px', color:'rgba(255,255,255,.58)', lineHeight:1.4, letterSpacing:'-0.1px' }}>{item.value}</div>
               </div>
@@ -233,13 +238,20 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
         </div>
       </section>
 
+      {/* ══ CORE DESIGN THESIS ═══════════════════════════════════ */}
+      <FzHighlights id="fw-thesis-title" title="Core Design Thesis" items={[
+        { lead:'Reframed from Monitoring to Triage', text:'Designed a consequence-ranked decision space instead of another alert-heavy dashboard (which caused her to abandon a previous tool), tailored to two 15-minute weekly sessions (Monday & Thursday).' },
+        { lead:'Calibrated for Imperfect Data',      text:'Separated Confidence and Status scales to account for the reality that about one in five inferred findings is wrong and 22 vehicles have no telematics.' },
+        { lead:'Designed Beyond the Screen',         text:'Created structured offline hand-offs (email, printout, phone note) for dispatchers and workshop leads who never log into the software.' },
+      ]} />
+
       {/* ══ HERO IMAGE ════════════════════════════════════════════ */}
       <div data-snap style={{ background:'#fff', padding:'var(--section-spacing-sm) var(--page-padding)', display:'flex', flexDirection:'column', alignItems:'center' }}>
         <div style={{ width:'100%', maxWidth:'1178px' }}>
           <FwFigure eager
             src="assets/fleetwatch/fleetwatch-cockpit.png"
-            alt="Fleetwatch cockpit with three decisions for the week"
-            caption="The cockpit: three decisions in order of consequence, with data coverage and what changed since the last visit." />
+            alt="The Cockpit: top three decisions ranked by consequence, paired with data coverage visibility and changes since the last visit."
+            caption="The Cockpit: Top three decisions ranked by consequence, paired with data coverage visibility and changes since the last visit." />
         </div>
       </div>
 
@@ -262,34 +274,31 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
           <section id="problem" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-lg)' }}>
             <FzLabel n="01" text="The problem" />
             <div style={{ display:'flex', flexDirection:'column', gap:'64px', marginBottom:'28px' }}>
-              <FzHeading>A fleet tool people stop using when it shows everything.</FzHeading>
-              <FzBody animSub style={{ marginBottom:0 }}>The brief asks for a tool for a fleet manager who looks after 140 vehicles across three depots. The system collects data from telematics, fuel cards, workshop records, master data and route plans. At any time it holds about 51 open findings. She had already abandoned a previous tool because of alert overload.</FzBody>
+              <FzHeading>Alert Overload Kills Adoption</FzHeading>
+              <FzBody animSub style={{ marginBottom:0 }}>A fleet manager oversees 140 vehicles across three depots, pulling fragmented signals from telematics, fuel cards, workshop records, master data, and route plans. At any given moment, the system holds roughly 51 open findings. She had already abandoned a previous tool because the sheer volume of alerts made it unusable.</FzBody>
             </div>
-            <FzBody style={{ marginBottom:0 }}>I did not treat this as a monitoring dashboard. I treated it as a decision space and built it around three questions: what needs her attention this week, what decision or action is needed, and what the system can support with evidence.</FzBody>
+            <FzBody>Rather than designing another passive monitoring dashboard, I reframed the product as an active decision space anchored on three questions:</FzBody>
+            <FzList items={[
+              { text:'What needs her attention this week?' },
+              { text:'What specific decision or hand-off is required?' },
+              { text:'What evidence can the system actually verify versus merely infer?' },
+            ]} />
           </section>
 
-          {/* ── 02 USERS ────────────────────────────────────── */}
-          <section id="users" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-lg)' }}>
-            <FzLabel n="02" text="Users & context" />
+          {/* ── 02 CONTEXT & CONSTRAINTS ────────────────────── */}
+          <section id="context" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-lg)' }}>
+            <FzLabel n="02" text="Context & constraints" />
             <div style={{ display:'flex', flexDirection:'column', gap:'64px' }}>
-              <FzHeading>One person decides. The people who act never log in.</FzHeading>
-              <FzBody animSub style={{ marginBottom:0 }}>The fleet manager makes the decisions in a 15 minute session on Monday and Thursday. The workshop lead and the dispatchers do not use the tool at all. So anything meant for them has to leave the product by email, printout or phone note, and their answers have to find their way back.</FzBody>
-            </div>
-          </section>
-
-          {/* ── 03 CONSTRAINTS ──────────────────────────────── */}
-          <section id="constraints" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-lg)' }}>
-            <FzLabel n="03" text="Constraints" />
-            <div style={{ display:'flex', flexDirection:'column', gap:'64px' }}>
-              <FzHeading>Four constraints that shaped the design.</FzHeading>
+              <FzHeading>Operational Context & Hard Constraints</FzHeading>
+              <FzBody animSub style={{ marginBottom:0 }}>The design had to hold up under four operational constraints:</FzBody>
             </div>
             <div className="fz-constraints-row">
               {constraints.map(c => {
                 const CIcon = c.Icon;
                 return (
                   <div key={c.title} className="fz-card">
-                    <div className="fz-card-icon">
-                      <span className="fz-card-title" style={{ marginBottom:0 }}>{c.title}</span>
+                    <div className="fz-card-icon" style={{ alignItems:'flex-start', gap:'10px' }}>
+                      <h3 className="fz-card-title" style={{ marginBottom:0, lineHeight:1.3 }}>{c.title}</h3>
                       <CIcon />
                     </div>
                     <p className="fz-card-body">{c.body}</p>
@@ -299,19 +308,19 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
             </div>
           </section>
 
-          {/* ── 04 DECISIONS ────────────────────────────────── */}
+          {/* ── 03 DECISIONS ────────────────────────────────── */}
           <section id="decisions" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-lg)' }}>
-            <FzLabel n="04" text="Key design decisions" />
+            <FzLabel n="03" text="Decisions" />
             <div style={{ display:'flex', flexDirection:'column', gap:'64px' }}>
-              <FzHeading>Four decisions that shaped the product.</FzHeading>
+              <FzHeading>Key Product & System Decisions</FzHeading>
             </div>
             <div className="fz-decisions-grid">
               {decisions.map(d => (
                 <div key={d.n} className="fz-card">
                   <div className="fz-card-number">{d.n}</div>
-                  <div className="fz-card-title" style={{ whiteSpace:'normal', lineHeight:1.3, fontSize:'15px' }}>{d.title}</div>
-                  <p className="fz-card-body" style={{ marginTop:'4px' }}>{d.body}</p>
-                  <p className="fw-tradeoff">{d.tradeoff}</p>
+                  <h3 className="fz-card-title" style={{ whiteSpace:'normal', lineHeight:1.3, fontSize:'15px' }}>{d.title}</h3>
+                  <p className="fz-card-body" style={{ marginTop:'4px' }}><FzLead>The Decision:</FzLead> {d.decision}</p>
+                  <p className="fw-tradeoff"><FzLead>The Trade-off:</FzLead> {d.tradeoff}</p>
                   {d.figures.map(f => (
                     <div key={f.src} className="fw-card-figure">
                       <FwFigure src={f.src} alt={f.alt} caption={f.caption} />
@@ -320,44 +329,51 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
                 </div>
               ))}
             </div>
-            <div className="fz-caption" style={{ marginTop:'24px' }}>All figures and names in the screens are sample data.</div>
           </section>
 
-          {/* ── 05 HOW I WORKED ─────────────────────────────── */}
+          {/* ── 04 HOW I WORKED ─────────────────────────────── */}
           <section id="process" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-lg)' }}>
-            <FzLabel n="05" text="How I worked" />
-            <div style={{ display:'flex', flexDirection:'column', gap:'64px' }}>
-              <FzHeading>First drafts fast, then my own edits.</FzHeading>
-              <FzBody animSub style={{ marginBottom:0 }}>I used Claude for first-pass frames and drafting. The prioritisation, the scope decisions and the final edits are mine. After the first draft I went through every screen by hand and cut what did not earn its place: repeated information, speculative wording in the hand-over message, and an Outlook connection the brief never asked for. I also removed the first cockpit version, because it contradicted the final one (3 decisions and 138 vehicles against 5 decisions and 140).</FzBody>
+            <FzLabel n="04" text="How I worked" />
+            <div style={{ display:'flex', flexDirection:'column', gap:'64px', marginBottom:'28px' }}>
+              <FzHeading>AI-Assisted Workflow & Editorial Rigor</FzHeading>
+              <FzBody animSub style={{ marginBottom:0 }}>To move fast within an 8-hour constraint, I used Claude for first-pass frames and drafting. The prioritisation, the scope decisions and the final edits are mine. After the first draft, I went through every screen by hand and cut what did not earn its place:</FzBody>
             </div>
+            <FzList items={[
+              { text:'Cut repeated information and speculative wording inside the hand-over message.' },
+              { text:'Removed an Outlook connection the brief never asked for.' },
+              { text:'Discarded an early cockpit version that contradicted the final data model (3 decisions and 138 vehicles vs. 5 weekly decisions and 140 vehicles).' },
+            ]} />
           </section>
 
-          {/* ── 06 MEASURES ─────────────────────────────────── */}
-          <section id="measures" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-lg)' }}>
-            <FzLabel n="06" text="How we would know it works" />
+          {/* ── 05 VALIDATION ───────────────────────────────── */}
+          <section id="validation" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-md)' }}>
+            <FzLabel n="05" text="Validation" />
             <div style={{ display:'flex', flexDirection:'column', gap:'64px' }}>
-              <FzHeading>Proposed measures, not results.</FzHeading>
+              <FzHeading>Validation Plan & Open Questions</FzHeading>
+              <FzBody animSub style={{ marginBottom:0 }}>Because this was an unshipped design exercise, I defined concrete behavioral signals to measure success in production and identified key assumptions to test next.</FzBody>
             </div>
-            <div className="fw-measures-row">
+
+            <h3 className="fw-subhead">Proposed Success Metrics</h3>
+            <div className="fw-measures-row" style={{ marginTop:0 }}>
               {measures.map(m => (
                 <div key={m.title} className="fz-card">
-                  <div className="fz-card-title">{m.title}</div>
+                  <h4 className="fz-card-title">{m.title}</h4>
                   <p className="fz-card-body">{m.body}</p>
                 </div>
               ))}
             </div>
-          </section>
 
-          {/* ── 07 NEXT STEPS ───────────────────────────────── */}
-          <section id="next-steps" data-snap className="fz-section" style={{ marginBottom:'var(--section-spacing-md)' }}>
-            <FzLabel n="07" text="What I'd do with more time" />
-            <div style={{ display:'flex', flexDirection:'column', gap:'64px', marginBottom:'28px' }}>
-              <FzHeading>Test it with three fleet managers.</FzHeading>
-              <FzBody animSub style={{ marginBottom:0 }}>Can they name the key decisions within 30 seconds? Can they tell what the system verified from what it only inferred? I would refine the screens where they hesitate.</FzBody>
-            </div>
-            <FzBody>Open questions for the team: whether "Confirmed" should appear on both scales, how to record an answer given by phone or on paper, and who should see driver-level information.</FzBody>
+            <FzBody style={{ marginTop:'40px' }}><FzLead>Next Step, User Testing with 3 Fleet Managers:</FzLead> Validate whether managers can identify top decisions within 30 seconds and reliably distinguish inferred vs. verified findings without hesitation.</FzBody>
+
+            <h3 className="fw-subhead">Open Questions for Engineering & Ops</h3>
+            <FzList items={[
+              { text:'Should "Confirmed" exist on both the Confidence and Status scales, or does overlapping terminology create friction?' },
+              { text:'What is the lowest-friction way to capture phone or paper updates back into In hand findings?' },
+              { text:'Who across the organization should have visibility into driver-level data?' },
+            ]} />
+
             <p className="fw-note" style={{ marginTop:'32px' }}>
-              The clickable Figma prototype is <a href="/" onClick={goToContact}>available on request</a>.
+              Clickable Figma prototype <a href="/" onClick={goToContact}>available on request</a>.
             </p>
           </section>
 

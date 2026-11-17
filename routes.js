@@ -25,21 +25,21 @@ window.SITE_ROUTES = [
     "page": "fizik",
     "path": "/fizik",
     "title": "Fizik 121 Platform | Maryam Moradian, Product Designer",
-    "description": "Case study: a guided tool that makes a personalized saddle fitting service work reliably at the point of sale, for staff at any level of expertise.",
+    "description": "Turning a complex, specialist-dependent 3D-printed saddle service into a repeatable point-of-sale workflow for global bike retailers.",
     "image": "og-fizik.jpg"
   },
   {
     "page": "fleetwatch",
     "path": "/fleetwatch",
     "title": "Fleetwatch Cockpit | Maryam Moradian, Product Designer",
-    "description": "A weekly decision tool for a fleet manager, built to show what needs attention, how sure the system is, and what happens next.",
+    "description": "Designing a low-noise decision space for fleet operations, shaped around uncertain data, blind spots, and offline team hand-offs.",
     "image": "og-fleetwatch.jpg"
   },
   {
     "page": "footcare",
     "path": "/footcare",
     "title": "Preventive Foot Care Platform | Maryam Moradian, Product Designer",
-    "description": "Case study: a dual-user monitoring system that makes biomechanical foot health data interpretable for individuals and the professionals supporting them.",
+    "description": "Translating clinical biomechanics research into a dual-user digital architecture for early detection and longitudinal foot health monitoring.",
     "image": "og-footcare.jpg"
   }
 ];

@@ -131,6 +131,25 @@ const AboutPage = ({ goTo, goToWork }) => {
                 >
                   Download CV
                 </button>
+                <button
+                  onClick={() => window.location.href =
+                    'mailto:maryam.moradian38@gmail.com?subject=Product Designer: Let\'s connect'}
+                  className="tap-target"
+                  style={{
+                    background: '#a63636',
+                    color: '#ffffff',
+                    padding: '14px 28px',
+                    borderRadius: '980px',
+                    border: '1px solid #a63636',
+                    cursor: 'pointer',
+                    fontFamily: "'Space Grotesk', system-ui, sans-serif",
+                    fontSize: '15px',
+                    fontWeight: 500,
+                    lineHeight: 1,
+                  }}
+                >
+                  Get in touch
+                </button>
               </div>
             </div>
 
@@ -165,7 +184,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             color: '#666666',
             letterSpacing: '-0.12px',
           }}>
-            7+ years experience · 9 projects across 5 brands · B2B medtech &amp; biomechanics · Promoted to Product Designer in October 2023 · End-to-end from discovery to handoff
+            7+ years across Industrial &amp; Product Design · 9 projects across 5 brands · B2B MedTech &amp; Biomechanics · End-to-end from discovery to handoff
           </div>
 
         </div>
@@ -196,7 +215,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 textTransform: 'uppercase',
                 marginBottom: '20px',
               }}>
-                Background
+                Background · From physical systems to digital products
               </div>
               <h2 data-anim="work-label" style={{
                 fontFamily: "'Space Grotesk', system-ui, sans-serif",
@@ -222,7 +241,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 color: 'rgba(29,29,31,0.82)',
                 marginBottom: 'var(--paragraph-spacing)',
               }}>
-                That's still how I approach every digital product. Before I design a screen, I want to understand the workflow around it: the people using it, the physical environment it sits in, the constraints no one put in the brief.
+                That is still how I approach every digital product. Before I design a screen, I map the workflow around it: the people using it, the physical environment it sits in, and the constraints no one put in the brief.
               </p>
               <p style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -233,7 +252,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 color: 'rgba(29,29,31,0.82)',
                 marginBottom: 'var(--paragraph-spacing)',
               }}>
-                A Master's in Human-Computer Interaction added research methods and interaction theory to that foundation. Together, they shaped a perspective I haven't been able to unlearn: the interface is only one part of a much larger system.
+                An M.Sc. in Human-Computer Interaction added empirical research methods and interaction theory to that foundation. Together, they shaped a perspective I rely on daily: the interface is only one part of a much larger system.
               </p>
               <p style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -249,225 +268,107 @@ const AboutPage = ({ goTo, goToWork }) => {
                 padding: '14px 18px',
                 borderRadius: '0 8px 8px 0',
               }}>
-                My path: Industrial Design → Human-Computer Interaction → Product Design.
+                My Path: Industrial Design (B.Sc. &amp; M.Sc., 2011 to 2017) → Industrial &amp; 3D Design Practice (2017 to 2020) → M.Sc. Human-Computer Interaction, University of Siegen (2020 to 2024) → UX/UI &amp; Product Design (2022 to Present)
               </p>
 
               <div style={{ marginTop: '40px' }}>
 
-                {/* Three nodes in a flex row with arrows between */}
+                {/* Four timeline nodes in a row with arrows between. The last one is highlighted as current. */}
                 <div style={{
                   display: 'flex',
                   alignItems: 'flex-start',
                   gap: '0px',
                   flexWrap: 'nowrap',
                 }}>
-
-                  {/* Node 1 */}
-                  <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '8px',
-                  }}>
-                    <div style={{
-                      width: '64px',
-                      height: '64px',
-                      borderRadius: '12px',
-                      background: 'rgba(166,54,54,0.08)',
-                      border: '1px solid rgba(166,54,54,0.20)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '20px',
-                    }}>
-                      <span style={{
-                        fontFamily: "'Space Grotesk', system-ui, sans-serif",
-                        fontSize: '16px', fontWeight: 600, color: '#a63636',
-                        letterSpacing: '-0.2px'
-                      }}>ID</span>
-                    </div>
-                    <span style={{
-                      fontFamily: "'DM Sans', system-ui, sans-serif",
-                      fontSize: '12px',
-                      fontWeight: 500,
-                      color: '#1d1d1f',
-                      letterSpacing: '-0.1px',
-                      textAlign: 'center',
-                      maxWidth: '80px',
-                      lineHeight: 1.3,
-                    }}>
-                      Industrial Design
-                    </span>
-                    <span style={{
-                      fontFamily: "'DM Sans', system-ui, sans-serif",
-                      fontSize: '12px',
-                      fontWeight: 400,
-                      color: '#666666',
-                      textAlign: 'center',
-                    }}>
-                      2011–2019
-                    </span>
-                  </div>
-
-                  {/* Arrow 1 */}
-                  <div style={{
-                    flex: 1,
-                    minWidth: '8px',
-                    height: '64px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}>
-                    <div style={{
-                      height: '1px',
-                      flex: 1,
-                      background: 'rgba(29,29,31,0.12)',
-                      position: 'relative',
-                    }}>
+                  {[
+                    { abbr: 'ID',  abbrSize: '16px', title: 'Industrial Design',               lines: ['B.Sc. & M.Sc.', '2011 to 2017'] },
+                    { abbr: '3D',  abbrSize: '16px', title: 'Industrial & 3D Design Practice', lines: ['2017 to 2020'] },
+                    { abbr: 'HCI', abbrSize: '13px', title: 'Human-Computer Interaction',      lines: ['University of Siegen', 'M.Sc.', '2020 to 2024'] },
+                    { abbr: 'PD',  abbrSize: '16px', title: 'UX/UI & Product Design',          lines: ['2022 to present'], current: true },
+                  ].map((node, i, arr) => (
+                    <React.Fragment key={node.abbr}>
                       <div style={{
-                        position: 'absolute',
-                        right: '-1px',
-                        top: '-3px',
-                        width: '0',
-                        height: '0',
-                        borderTop: '4px solid transparent',
-                        borderBottom: '4px solid transparent',
-                        borderLeft: '6px solid rgba(29,29,31,0.20)',
-                      }} />
-                    </div>
-                  </div>
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '8px',
+                        flex: isMobile ? '1 1 0' : '0 1 auto',
+                        minWidth: 0,
+                      }}>
+                        <div style={{
+                          width: '64px',
+                          height: '64px',
+                          borderRadius: '12px',
+                          background: node.current ? '#a63636' : 'rgba(166,54,54,0.08)',
+                          border: node.current ? '1px solid #a63636' : '1px solid rgba(166,54,54,0.20)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                        }}>
+                          <span style={{
+                            fontFamily: "'Space Grotesk', system-ui, sans-serif",
+                            fontSize: node.abbrSize, fontWeight: 600,
+                            color: node.current ? '#ffffff' : '#a63636',
+                            letterSpacing: '-0.2px',
+                          }}>{node.abbr}</span>
+                        </div>
+                        <span style={{
+                          fontFamily: "'DM Sans', system-ui, sans-serif",
+                          fontSize: '12px',
+                          fontWeight: node.current ? 600 : 500,
+                          color: node.current ? '#a63636' : '#1d1d1f',
+                          letterSpacing: '-0.1px',
+                          textAlign: 'center',
+                          maxWidth: isMobile ? '100%' : '104px',
+                          lineHeight: 1.3,
+                        }}>
+                          {node.title}
+                        </span>
+                        {node.lines.map(line => (
+                          <span key={line} style={{
+                            fontFamily: "'DM Sans', system-ui, sans-serif",
+                            fontSize: '12px',
+                            fontWeight: 400,
+                            color: '#666666',
+                            textAlign: 'center',
+                            lineHeight: 1.3,
+                          }}>
+                            {line}
+                          </span>
+                        ))}
+                      </div>
 
-                  {/* Node 2 */}
-                  <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '8px',
-                  }}>
-                    <div style={{
-                      width: '64px',
-                      height: '64px',
-                      borderRadius: '12px',
-                      background: 'rgba(166,54,54,0.08)',
-                      border: '1px solid rgba(166,54,54,0.20)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '20px',
-                    }}>
-                      <span style={{
-                        fontFamily: "'Space Grotesk', system-ui, sans-serif",
-                        fontSize: '13px', fontWeight: 600, color: '#a63636',
-                        letterSpacing: '-0.2px'
-                      }}>HCI</span>
-                    </div>
-                    <span style={{
-                      fontFamily: "'DM Sans', system-ui, sans-serif",
-                      fontSize: '12px',
-                      fontWeight: 500,
-                      color: '#1d1d1f',
-                      letterSpacing: '-0.1px',
-                      textAlign: 'center',
-                      maxWidth: '110px',
-                      lineHeight: 1.3,
-                    }}>
-                      <span style={{ whiteSpace: 'nowrap' }}>Human-Computer</span> Interaction
-                    </span>
-                    <span style={{
-                      fontFamily: "'DM Sans', system-ui, sans-serif",
-                      fontSize: '12px',
-                      fontWeight: 400,
-                      color: '#666666',
-                      textAlign: 'center',
-                    }}>
-                      University of Siegen
-                    </span>
-                    <span style={{
-                      fontFamily: "'DM Sans', system-ui, sans-serif",
-                      fontSize: '12px',
-                      fontWeight: 400,
-                      color: '#666666',
-                      textAlign: 'center',
-                    }}>
-                      M.Sc. · 2020–2024
-                    </span>
-                  </div>
-
-                  {/* Arrow 2 */}
-                  <div style={{
-                    flex: 1,
-                    minWidth: '8px',
-                    height: '64px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}>
-                    <div style={{
-                      height: '1px',
-                      flex: 1,
-                      background: 'rgba(29,29,31,0.12)',
-                      position: 'relative',
-                    }}>
-                      <div style={{
-                        position: 'absolute',
-                        right: '-1px',
-                        top: '-3px',
-                        width: '0',
-                        height: '0',
-                        borderTop: '4px solid transparent',
-                        borderBottom: '4px solid transparent',
-                        borderLeft: '6px solid rgba(29,29,31,0.20)',
-                      }} />
-                    </div>
-                  </div>
-
-                  {/* Node 3 — highlighted as current */}
-                  <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '8px',
-                  }}>
-                    <div style={{
-                      width: '64px',
-                      height: '64px',
-                      borderRadius: '12px',
-                      background: '#a63636',
-                      border: '1px solid #a63636',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '20px',
-                    }}>
-                      <span style={{
-                        fontFamily: "'Space Grotesk', system-ui, sans-serif",
-                        fontSize: '16px', fontWeight: 600, color: '#ffffff',
-                        letterSpacing: '-0.2px'
-                      }}>PD</span>
-                    </div>
-                    <span style={{
-                      fontFamily: "'DM Sans', system-ui, sans-serif",
-                      fontSize: '12px',
-                      fontWeight: 600,
-                      color: '#a63636',
-                      letterSpacing: '-0.1px',
-                      textAlign: 'center',
-                      maxWidth: '80px',
-                      lineHeight: 1.3,
-                    }}>
-                      Product Design
-                    </span>
-                    <span style={{
-                      fontFamily: "'DM Sans', system-ui, sans-serif",
-                      fontSize: '12px',
-                      fontWeight: 400,
-                      color: '#666666',
-                      textAlign: 'center',
-                    }}>
-                      2022–present
-                    </span>
-                  </div>
-
+                      {i < arr.length - 1 && (
+                        <div aria-hidden="true" style={{
+                          flex: isMobile ? '0 0 10px' : 1,
+                          minWidth: '8px',
+                          height: '64px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}>
+                          <div style={{
+                            height: '1px',
+                            flex: 1,
+                            background: 'rgba(29,29,31,0.12)',
+                            position: 'relative',
+                          }}>
+                            <div style={{
+                              position: 'absolute',
+                              right: '-1px',
+                              top: '-3px',
+                              width: '0',
+                              height: '0',
+                              borderTop: '4px solid transparent',
+                              borderBottom: '4px solid transparent',
+                              borderLeft: '6px solid rgba(29,29,31,0.20)',
+                            }} />
+                          </div>
+                        </div>
+                      )}
+                    </React.Fragment>
+                  ))}
                 </div>
               </div>
             </div>
@@ -503,7 +404,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 textTransform: 'uppercase',
                 marginBottom: '20px',
               }}>
-                Domain
+                Domain · Where I do my best work
               </div>
               <h2 data-anim="work-label" style={{
                 fontFamily: "'Space Grotesk', system-ui, sans-serif",
@@ -514,7 +415,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 color: '#ffffff',
                 marginBottom: 0,
               }}>
-                The problems I find most interesting are the ones most designers find hardest to frame.
+                The problems I find most interesting are the ones hardest to frame.
               </h2>
             </div>
 
@@ -529,19 +430,38 @@ const AboutPage = ({ goTo, goToWork }) => {
                 color: 'rgba(255,255,255,0.70)',
                 marginBottom: 'var(--paragraph-spacing)',
               }}>
-                For the past few years at GEBIOM Group in Düsseldorf, I've been designing products where the complexity is real: biomechanical measurement data that needs to be interpretable by non-specialists, orthopedic service workflows that exist partly in physical space and partly in software, and B2B retail tools that have to work reliably for staff at every level of expertise.
+                Since 2022 at GEBIOM Group in Düsseldorf (promoted to Product Designer in October 2023), I have designed products where operational complexity is real:
               </p>
-              <p style={{
-                fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontSize: 'var(--body-font-size)',
-                fontWeight: 400,
-                lineHeight: 'var(--body-line-height)',
-                letterSpacing: '-0.374px',
-                color: 'rgba(255,255,255,0.70)',
-                marginBottom: 'var(--paragraph-spacing)',
-              }}>
-                I was promoted to Product Designer in October 2023 after demonstrating end-to-end ownership across several of these products. That kind of domain (messy, technical, multi-user) is where I do my best work.
-              </p>
+              {/* Three short items: same dot bullet as the Experience list, lighter dot for the dark background */}
+              <ul style={{ listStyle: 'none', margin: '0 0 var(--paragraph-spacing)', padding: 0 }}>
+                {[
+                  'Biomechanical measurement data that must be interpretable by non-specialists.',
+                  'Orthopedic service workflows that bridge physical hardware and digital software.',
+                  'B2B retail tools that work reliably for store staff at every level of expertise.',
+                ].map((item, i, arr) => (
+                  <li key={i} style={{
+                    display: 'flex',
+                    gap: '10px',
+                    alignItems: 'flex-start',
+                    marginBottom: i < arr.length - 1 ? '10px' : 0,
+                  }}>
+                    <span aria-hidden="true" style={{
+                      width: '5px', height: '5px', borderRadius: '50%',
+                      background: '#D27575', marginTop: '11px', flexShrink: 0,
+                    }} />
+                    <span style={{
+                      fontFamily: "'DM Sans', system-ui, sans-serif",
+                      fontSize: 'var(--body-font-size)',
+                      fontWeight: 400,
+                      lineHeight: 'var(--body-line-height)',
+                      letterSpacing: '-0.374px',
+                      color: 'rgba(255,255,255,0.70)',
+                    }}>
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
               <p style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
                 fontSize: 'clamp(18px, 2vw, 22px)',
@@ -555,7 +475,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 marginTop: '8px',
                 fontStyle: 'italic',
               }}>
-                I find a clean brief with a defined scope less interesting than a problem no one has fully structured yet.
+                I find a pre-packaged brief less compelling than an unstructured, multi-user problem that needs clear architecture from the ground up.
               </p>
             </div>
           </div>
@@ -636,7 +556,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 textTransform: 'uppercase',
                 marginBottom: '20px',
               }}>
-                Approach
+                Approach · End-to-end ownership
               </div>
               <h2 data-anim="work-label" style={{
                 fontFamily: "'Space Grotesk', system-ui, sans-serif",
@@ -647,7 +567,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 color: '#1d1d1f',
                 marginBottom: 0,
               }}>
-                End-to-end means I'm involved before the first screen and after the last handoff.
+                End-to-end means I am involved before the first screen and after the last handoff.
               </h2>
             </div>
 
@@ -656,18 +576,18 @@ const AboutPage = ({ goTo, goToWork }) => {
               {[
                 {
                   n: '1',
-                  heading: 'I map the workflow before I design the interface.',
-                  body: 'On the Fizik project, I spent the early phase understanding the full in-store service (the staff behavior, the measurement inputs, the catalog logic) before defining a single screen. Without that foundation, the UI would have solved the wrong problem.',
+                  heading: 'Map the workflow before the interface.',
+                  body: 'On the Fizik 121 project, I spent the early phase mapping the full in-store service (staff behavior, hardware measurement inputs, and catalog logic) before designing a single screen. Without that foundation, the UI would have solved the wrong problem.',
                 },
                 {
                   n: '2',
-                  heading: 'I treat constraints as design inputs, not blockers.',
-                  body: 'On the Foot Care platform, working without real patient data and designing for two very different user types forced explicit trade-offs. Making those decisions visible, rather than hiding them, is part of how I build trust with engineering and stakeholders.',
+                  heading: 'Treat constraints as design inputs, not blockers.',
+                  body: 'On the Preventive Foot Care platform, working without real patient data and designing for two distinct literacy levels forced explicit trade-offs. Making those decisions visible builds trust with engineering and stakeholders.',
                 },
                 {
                   n: '3',
-                  heading: 'I stay involved through implementation.',
-                  body: 'Handoff is not the end of the design process. I work with developers at component level during build, maintain design system documentation, and support clarification to reduce back-and-forth. In environments where I\'m the only designer, that\'s not unusual. It\'s the job.',
+                  heading: 'Stay involved through implementation.',
+                  body: 'Handoff is not the end of my job. I collaborate with developers at the component level during build, maintain design system documentation, and clarify edge cases to keep engineering moving, especially when I am the sole designer on a product.',
                 },
               ].map(({ n, heading, body }, i, arr) => (
                 <div key={n} style={{
@@ -746,7 +666,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 textTransform: 'uppercase',
                 marginBottom: '20px',
               }}>
-                Workflow
+                Workflow · How I work with AI
               </div>
               <h2 data-anim="work-label" style={{
                 fontFamily: "'Space Grotesk', system-ui, sans-serif",
@@ -764,10 +684,10 @@ const AboutPage = ({ goTo, goToWork }) => {
             {/* Right column */}
             <div style={{ flex: 1 }}>
               {[
-                { lead: null, text: 'I use AI to remove slow, repetitive work, so I can spend my time on the decisions that need judgment.' },
-                { lead: 'Build tools, not shortcuts.', text: 'When a task was slow and manual, I built my own tools for it. One example: a plugin, made with AI, that updates fonts and all their variants across a design system in a few clicks. A job that took about a day now takes a few minutes. I tested several plugins for color updates the same way, to find the one with the least manual work.' },
-                { lead: 'I still decide the design.', text: 'AI speeds up the work. It does not make the design choices. I go through the flow and prototype several times before handoff, to make sure it fits the user. If something is off, I adjust it, or I run a quick test to decide what works best.' },
-                { lead: 'Handoff that stands on its own.', text: 'My handoff has detailed specs and links, so developers do not need me in the room to build it. It is complete whether I am there or not.' },
+                { lead: null, text: 'I use AI to eliminate repetitive execution so I can focus on product judgment.' },
+                { lead: 'Build tools, not shortcuts:', text: 'When a task is slow and manual, I build tooling for it. For example, I used AI to build a custom Figma plugin that updates typography and all font variants across a design system in a few clicks, turning roughly a full day of manual work into a few minutes. I systematically benchmarked color-management plugins the same way to minimize repetitive maintenance.' },
+                { lead: 'Human judgment stays in charge:', text: 'AI accelerates drafting, but it does not make design decisions. I walk through flows and prototypes repeatedly before handoff, refining friction points or running quick usability tests whenever something feels off.' },
+                { lead: 'Specs that stand on their own:', text: 'My handoff files include clear component states, edge cases, and links so engineers can build confidently without waiting on me in a meeting.' },
               ].map(({ lead, text }, i, arr) => (
                 <p key={i} data-anim={i === 0 ? 'work-sub' : undefined} style={{
                   fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -814,7 +734,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 textTransform: 'uppercase',
                 marginBottom: '20px',
               }}>
-                Next Role
+                What I'm looking for next
               </div>
               <h2 data-anim="work-label" style={{
                 fontFamily: "'Space Grotesk', system-ui, sans-serif",
@@ -825,7 +745,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 color: '#1d1d1f',
                 marginBottom: 0,
               }}>
-                I'm looking for a team that takes product complexity seriously.
+                A team that takes product complexity seriously.
               </h2>
             </div>
 
@@ -840,7 +760,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 color: 'rgba(29,29,31,0.82)',
                 marginBottom: 'var(--paragraph-spacing)',
               }}>
-                B2B platforms, healthtech, medtech, data-heavy workflow products: these are the contexts where my background is strongest and where I can contribute from day one. I work best alongside PMs, developers, and domain experts who want a designer involved in the thinking, not just the delivery.
+                I do my strongest work on B2B platforms, HealthTech, MedTech, and data-heavy workflow products, collaborating closely with PMs, engineers, and domain specialists who want a designer involved in framing the problem, not just polishing pixels.
               </p>
               <p style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -851,14 +771,14 @@ const AboutPage = ({ goTo, goToWork }) => {
                 color: 'rgba(29,29,31,0.82)',
                 marginBottom: 0,
               }}>
-                Remote or hybrid in Germany or Europe works well for me.
+                Open to Product Designer roles in Germany (remote or hybrid).
               </p>
 
               {/* Tag chips */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '40px' }}>
                 {[
-                  'B2B SaaS', 'Healthtech', 'Medtech', 'Workflow products',
-                  'Germany', 'Remote or hybrid', 'Product Designer', 'End-to-end ownership',
+                  'B2B SaaS', 'HealthTech', 'MedTech', 'Workflow Products',
+                  'Design Systems', 'End-to-End Ownership', 'Germany', 'Remote or Hybrid',
                 ].map(chip => (
                   <span key={chip} style={{
                     background: '#f5f5f7',
@@ -921,61 +841,61 @@ const AboutPage = ({ goTo, goToWork }) => {
             {
               role: 'Product Designer',
               company: 'GEBIOM Group',
-              dates: 'Oct 2023 – Present',
+              dates: 'Oct 2023 to Present',
               promotion: 'Full-time. Promoted from UX/UI Designer.',
               bullets: [
-                'Own product design end-to-end across web and mobile (from problem definition and early discovery through to implementation-ready specs) for B2B medtech tools and B2C retail experiences.',
-                'Led user research and usability testing across the full product lifecycle; findings directly shaped workflow redesigns and informed go/no-go decisions on key feature directions.',
+                'Own product design end-to-end across web and mobile (from early discovery and workflow definition to implementation-ready specs) for B2B MedTech tools and B2C retail experiences.',
+                'Led user research and usability testing across the product lifecycle; findings directly shaped workflow redesigns and informed go/no-go decisions on key features.',
                 'Built and evolved scalable design system foundations across 9 projects spanning 5 brands, improving cross-team consistency and reducing design-to-development friction.',
-                'Created product pitches and presentation materials for three products across web, iOS and Android.',
-                'Partnered with the University of Siegen research group to integrate academic findings into product decisions.',
+                'Created product pitches and presentation materials for three products across web, iOS, and Android.',
+                'Partnered with the University of Siegen research group to translate academic biomechanics findings into product decisions.',
               ],
             },
             {
               role: 'UX/UI Designer',
               company: 'GEBIOM Group',
-              dates: 'Feb 2022 – Aug 2023',
-              promotion: 'Part-time, before moving to full-time Product Designer.',
-              bullets: [],
+              dates: 'Feb 2022 to Aug 2023',
+              promotion: 'Part-time.',
+              bullets: [
+                'Designed core user flows, interface components, and prototypes across web and mobile applications while completing graduate studies in HCI.',
+              ],
             },
             {
-              role: 'Research Assistant, Web Content Manager',
+              role: 'Research Assistant & Web Content Manager',
               company: 'University of Siegen',
-              dates: 'Sep 2021 – May 2023',
-              promotion: 'Part-time, alongside my M.Sc.',
+              dates: 'Sep 2021 to May 2023',
+              promotion: 'Part-time.',
               bullets: [
-                'Managed and updated university website content, improving usability and navigation for student-facing information.',
-                'Implemented HTML and responsive layout updates to improve content presentation and accessibility.',
+                'Managed and restructured student-facing web content to improve navigation and usability, implementing HTML and responsive layout updates for accessibility.',
               ],
             },
             {
               role: 'Freelance 3D Designer',
               company: 'Independent',
-              dates: 'Feb 2019 – Sep 2020',
+              dates: 'Feb 2019 to Sep 2020',
               promotion: null,
-              text: '3D modeling in Rhino for several clients on varied topics, alongside English study for graduate admission in Germany.',
-              bullets: [],
+              bullets: [
+                'Delivered 3D modeling in Rhino for diverse client projects while completing language preparation for graduate admission in Germany.',
+              ],
             },
             {
               role: 'Lead Industrial Designer',
               company: 'Mesina Group',
-              dates: 'Jul 2018 – Jan 2019',
+              dates: 'Jul 2018 to Jan 2019',
               promotion: null,
               bullets: [
-                'Led an industrial design team developing ergonomic, user-centred hardware products from concept through production refinement.',
-                'Ran user research and market analysis to shape product strategy and prioritise design directions.',
-                'Built and tested prototypes to validate concepts early, reducing iteration cycles before manufacturing.',
-                'Collaborated closely with engineering and manufacturing to balance form, function, and delivery constraints.',
+                'Led an industrial design team developing ergonomic, user-centered hardware products from initial concept through production refinement.',
+                'Ran user research and market analysis to prioritize product directions, building and testing physical prototypes early to reduce pre-manufacturing iteration cycles.',
+                'Partnered with engineering and manufacturing teams to balance form, ergonomics, and production constraints.',
               ],
             },
             {
               role: 'Lead Industrial Designer',
               company: 'NTP Design',
-              dates: 'Aug 2017 – May 2018',
+              dates: 'Aug 2017 to May 2018',
               promotion: null,
               bullets: [
-                'Developed 3D models and supported design validation to translate concepts into production-ready directions.',
-                'Researched and proposed new product concepts aligned with user needs and business opportunities.',
+                'Developed 3D models and validated concepts into production-ready directions aligned with user needs and business goals.',
               ],
             },
           ].map((job, i) => (
@@ -1127,19 +1047,19 @@ const AboutPage = ({ goTo, goToWork }) => {
             {
               degree: 'M.Sc. Human-Computer Interaction',
               institution: 'University of Siegen, Germany',
-              dates: 'Oct 2020 – 2024',
-              description: 'Thesis: Promoting regular care for preventing diabetic foot diseases using foot mapping technologies and artificial intelligence. Thesis grade 1.0.',
+              dates: '2020 to 2024',
+              description: 'Thesis (Grade: 1.0): Promoting regular care for preventing diabetic foot diseases using foot mapping technologies and artificial intelligence.',
             },
             {
               degree: 'M.Sc. Industrial Design',
               institution: 'Alzahra Art University, Tehran',
-              dates: 'Jan 2016 – Jul 2017',
+              dates: '2016 to 2017',
               description: '',
             },
             {
               degree: 'B.Sc. Industrial Design',
               institution: 'Tabriz Art University, Tabriz',
-              dates: 'Jan 2011 – Sep 2015',
+              dates: '2011 to 2015',
               description: '',
             },
           ].map((ed, i) => (
@@ -1255,22 +1175,20 @@ const AboutPage = ({ goTo, goToWork }) => {
                 textTransform: 'uppercase',
                 marginBottom: '20px',
               }}>
-                Skills
+                Product &amp; UX
               </div>
               {[
-                'Complex workflow design',
-                'UX research & usability testing',
-                'Design systems',
-                'Information architecture',
-                'Interaction design',
-                'Stakeholder alignment',
-                'B2B & B2C product design',
-                'Prototyping & wireframing',
-                'Cross-functional collaboration',
-                'Developer handoff',
+                'Complex Workflow Design',
+                'Discovery & Problem Framing',
+                'Information Architecture',
+                'Interaction Design',
+                'Prototyping & Wireframing',
+                'UX Research & Usability Testing',
+                'A/B Testing',
                 'Accessibility (WCAG)',
-                'Discovery & definition',
-                'A/B tests on features',
+                'Design Systems',
+                'Developer Handoff',
+                'Stakeholder Alignment',
               ].map(s => (
                 <div key={s} style={{
                   fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -1399,8 +1317,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             lineHeight: 'var(--body-line-height)', letterSpacing: '-0.374px',
             marginBottom: '48px',
           }}>
-            Open to Product Designer roles
-            in Germany, remote or hybrid.
+            Open to Product Designer roles in Germany · Remote or Hybrid
           </p>
 
           {/* Contact details — one line */}

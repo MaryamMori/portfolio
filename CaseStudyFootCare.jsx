@@ -40,120 +40,75 @@ if (!document.getElementById('fc-case-styles')) {
 const CaseStudyFootCare = ({ goTo, goToWork }) => {
   const sections = [
     {
-      id: 'context',
-      label: '01 · Context',
-      heading: 'Foot conditions are among the most manageable when caught early, and most costly when caught late.',
-      body: [
-        'For people with diabetes in particular, late detection is a leading cause of serious complications.',
-        'The technology to detect early warning signals exists. Pressure mapping, gait analysis, and foot geometry measurement are established clinical methods. What does not exist at scale is a digital system that makes those signals interpretable and actionable for the people who need them.',
-        'This project explored what that system could look like.',
-      ],
-    },
-    {
       id: 'problem',
-      label: '02 · The problem',
-      heading: 'Current approaches are built around symptoms, not patterns.',
+      label: '01 · The Problem',
+      heading: 'Care Built Around Symptoms, Not Patterns',
       body: [
-        'Current approaches are built around symptoms, not patterns. A person visits a clinic when something hurts. A clinician interprets the data. An intervention is recommended. The process is reactive, episodic, and dependent on in-person expertise at every step.',
-        React.createElement('span', null,
-          React.createElement('em', null, 'The gap:'),
-          ' subtle changes in pressure or gait that precede visible symptoms by weeks or months are either never captured outside clinical settings, or captured but never translated into something a non-specialist can act on.'
-        ),
-        'The design challenge was not to build a diagnostic tool. It was to make biomechanical data interpretable enough to support earlier awareness for both individuals and the professionals working with them.',
+        'Foot conditions, particularly for people managing diabetes, are far easier to treat when caught early, yet current care pathways are largely reactive and episodic. A person visits a clinic once something already hurts, a specialist interprets the measurements, and an intervention follows.',
+        'While pressure mapping, gait analysis, and foot geometry tools can detect subtle biomechanical shifts weeks or months before symptoms appear, those signals either go uncaptured outside the clinic or remain too technical for a non-specialist to interpret. The challenge was not to design a diagnostic device, but a system that makes longitudinal biomechanical data interpretable enough to prompt earlier awareness for both individuals and their care providers.',
       ],
     },
     {
       id: 'users',
-      label: '03 · Users & Context',
-      heading: 'Two user types, one system, a need for both to trust the output.',
+      label: '02 · Users & Context',
+      heading: 'Two Literacy Levels, One Shared Event',
       body: [
-        'Two distinct user types. Overlapping needs, different data literacy, and a shared requirement to trust the output for different reasons.',
+        'The system needed to serve two distinct user groups looking at the exact same measurement sessions for different reasons:',
       ],
       users: [
         {
-          type: 'Individuals',
-          desc: 'People managing ongoing foot health risks, often without specialist knowledge. They need a clear signal. Is this normal, or is this something to pay attention to? Not raw pressure or gait data.',
+          type: 'Individuals (Primary Daily Users)',
+          desc: 'People managing ongoing foot health risks without specialist training. They do not need raw sensor maps, they need a clear, calm signal answering: Is this normal, or does this warrant attention?',
         },
         {
-          type: 'Professionals',
-          desc: 'Clinicians, orthotists, and foot care specialists. They want interpretive depth and a shared reference point for conversations with patients who are not specialists.',
+          type: 'Professionals (Clinicians, Orthotists & Foot Care Specialists)',
+          desc: 'Practitioners who need interpretive depth and a shared visual reference during patient conversations.',
         },
       ],
-      bodyAfter: 'The design challenge: one system, two levels of data literacy, both needing to trust the same output for different reasons.',
     },
     {
       id: 'constraints',
-      label: '04 · Constraints',
-      heading: 'Four constraints that shaped the architecture.',
+      label: '03 · Hard Constraints',
+      heading: 'Four constraints governed the system architecture',
       constraints: [
         {
-          title: 'No access to real patient data',
-          body: 'Validation was limited to expert evaluation of design plausibility, not real longitudinal use. The work produced a tested architecture, not a clinically proven system.',
+          title: 'No Access to Real Patient Data',
+          body: 'Validation relied on expert evaluation of design plausibility rather than longitudinal clinical trials, producing a tested product architecture rather than a clinically proven product.',
         },
         {
-          title: 'The boundary between monitoring and diagnosis.',
-          body: 'A system that surfaces anomalies can easily harm by overclaiming. Defining where the system\'s responsibility ends was as important as the interface itself.',
+          title: 'The Boundary Between Monitoring and Diagnosis',
+          body: "Surfacing biomechanical anomalies carries real risk of causing unwarranted anxiety or clinical overreach; defining where the software's responsibility stops was a core design constraint.",
         },
         {
-          title: 'Long-term engagement as a design requirement',
-          body: 'A one-time measurement is not preventive care. Sustained use over time places demands on motivation, habit formation, and how the system communicates progress.',
+          title: 'Longitudinal Engagement',
+          body: 'A one-time reading has limited preventive value; communicating gradual change over time was essential to encourage sustained monitoring.',
         },
         {
-          title: 'Dual-user design within one coherent system',
-          body: 'Building separate products for individuals and professionals was out of scope. The challenge was serving both without compromising clarity for one or depth for the other.',
+          title: 'Dual-User Scope Within One System',
+          body: 'Building two separate applications was out of scope; one coherent interface had to serve both lay users and specialists without diluting clarity or depth.',
         },
       ],
     },
     {
       id: 'decisions',
-      label: '05 · Key design decisions',
-      heading: 'Four decisions that defined the product.',
-    },
-    {
-      id: 'trust',
-      label: '06 · Trust',
-      heading: 'Designing for trust in a health context',
-      body: [
-        'I designed this as an early warning tool, not a diagnostic one. These are the choices that made that clear.',
-      ],
-      points: [
-        {
-          title: 'Early warning, not diagnosis',
-          body: 'Every message says what was detected, how it compares to the person\'s own baseline, and what they might consider. Clinical judgment stays with the professional.',
-        },
-        {
-          title: 'Insight before data',
-          body: 'Pressure and gait maps are accurate, but hard to read without training. The tool shows named insights and a simple trend: improving, stable, or needs attention.',
-        },
-        {
-          title: 'Two layers, one system',
-          body: 'The default view gives a simple signal. More detail is available on demand for professionals. Both look at the same screen and can talk about the same event.',
-        },
-        {
-          title: 'Honest about the limits',
-          body: 'I had no access to real patient data. I tested the concept with experts in clinical foot care, orthopedic shoe technology, product development and biomechanics. The structure and navigation held up. They also pointed to next steps: clearer feedback states, more flexible recommendation editing, secure data sharing and better visualisation. Whether people would keep using it over weeks is still untested.',
-        },
-      ],
+      label: '04 · Decisions',
+      heading: 'Key Product & System Decisions',
     },
     {
       id: 'validation',
-      label: '07 · Validation',
-      heading: 'Expert usability testing with professionals across clinical foot care and biomechanics.',
+      label: '05 · Validation, Limitations & Next Steps',
+      heading: 'What the expert testing showed, and what is still untested',
       body: [
-        'Expert usability testing with professionals across clinical foot care, orthopedic shoe technology, product development, and biomechanics-adjacent practice.',
-        'Three questions guided the sessions: was the workflow structure navigable, was the information hierarchy useful to professional users, and did the core interaction patterns support the kind of clinical reasoning the system was designed to facilitate.',
-        'Findings confirmed the structure and navigation held up for professional users. They also surfaced concrete areas for a next iteration.',
+        'Because real patient data was outside thesis scope, I conducted expert usability testing with practitioners across clinical foot care, orthopedic shoe technology, product development, and biomechanics-adjacent practice.',
+        React.createElement(React.Fragment, null, React.createElement(FzLead, null, 'What Held Up:'), ' Evaluations confirmed that the core workflow structure, navigation, and layered information hierarchy were clear, navigable, and supportive of clinical reasoning for professional users.'),
       ],
-    },
-    {
-      id: 'outcome',
-      label: 'Outcome & Reflection',
-      heading: 'A tested product architecture for a dual-user preventive monitoring system.',
-      body: [
-        'Expert evaluation confirmed that the workflow structure, core navigation, and information hierarchy were understandable and useful for professional users, the higher-literacy of the two user types the system was designed to serve.',
-        'Four concrete areas for a next iteration: feedback states needed more clarity, recommendation editing required greater flexibility, secure data sharing was missing, and data visualisation needed refinement for clinical interpretation. Scoped, solvable problems, not structural failures.',
-        'The most significant open question is the individual user engagement model. Whether a real person managing ongoing foot health risk would return to a monitoring tool consistently requires longitudinal behavioral research outside the scope of this project. The architecture is designed to support that validation. The behavioral hypothesis has not yet been tested.',
+      priorities: [
+        { lead: 'Feedback States', text: 'Sharpening system status and confirmation cues.' },
+        { lead: 'Recommendation Editing', text: 'Giving specialists greater flexibility to adjust suggested actions.' },
+        { lead: 'Secure Data Sharing', text: 'Designing explicit consent and sharing flows between individuals and clinics.' },
+        { lead: 'Clinical Data Visualization', text: 'Refining chart density and visual hierarchy for faster specialist interpretation.' },
       ],
+      bodyAfter: React.createElement(React.Fragment, null, React.createElement(FzLead, null, 'Biggest Open Question (Untested Hypothesis):'), ' While the architecture was validated with experts, sustained engagement by individuals over weeks and months requires longitudinal behavioral testing with real patients.'),
     },
   ];
 
@@ -205,17 +160,16 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
             <WordReveal text="Platform" startDelay={0.72} wordDelay={0.1} style={{ fontFamily: "'Space Grotesk',system-ui,sans-serif", fontSize: 'clamp(40px,7vw,96px)', fontWeight: 700, lineHeight: 0.93, letterSpacing: '-0.03em', color: '#6E6E6E' }} />
           </h1>
           <div style={{ fontSize: 'clamp(15px,1.8vw,19px)', color: 'rgba(255,255,255,.46)', maxWidth: '460px', lineHeight: 1.62, letterSpacing: '-0.2px', marginBottom: '56px', animation: 'fizik-fade-up .85s cubic-bezier(.16,1,.3,1) .9s both', textWrap: 'pretty' }}>
-            Translating biomechanical research into a digital system for early detection and proactive monitoring.
+            Translating clinical biomechanics research into a dual-user digital architecture for early detection and longitudinal foot health monitoring.
           </div>
           {/* Meta bar */}
-          <div className="fz-meta-bar" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', paddingTop: '32px', borderTop: '1px solid rgba(255,255,255,.08)', animation: 'fizik-fade-up .8s cubic-bezier(.16,1,.3,1) 1.1s both' }}>
+          <div className="fz-meta-bar fz-meta-bar-3">
             {[
-              { label: 'Role',     value: "Product Designer (HCI Master's Thesis)" },
-              { label: 'Scope',    value: 'Domain Research · Product Strategy · UX · Prototyping' },
-              { label: 'Industry', value: 'Healthcare · Biomechanics' },
-              { label: 'Context',  value: 'University of Siegen, with clinical & academic experts' },
+              { label: 'Role',                 value: "Product Designer (HCI Master's Thesis)" },
+              { label: 'Scope',                value: 'Domain Research · Product Strategy · System Architecture · UX/UI · Prototyping' },
+              { label: 'Context & Validation', value: 'University of Siegen · Developed with Clinical & Academic Experts · Expert Usability Testing' },
             ].map((item, i) => (
-              <div key={item.label} style={{ paddingLeft: i > 0 ? '24px' : 0, paddingRight: i < 3 ? '24px' : 0, borderRight: i < 3 ? '1px solid rgba(255,255,255,.07)' : 'none' }}>
+              <div key={item.label} style={{ paddingLeft: i > 0 ? '24px' : 0, paddingRight: i < 2 ? '24px' : 0, borderRight: i < 2 ? '1px solid rgba(255,255,255,.07)' : 'none' }}>
                 <div style={{ fontSize: '12px', color: '#A8A8A8', letterSpacing: '.13em', textTransform: 'uppercase', marginBottom: '6px' }}>{item.label}</div>
                 <div style={{ fontSize: '13px', color: 'rgba(255,255,255,.58)', lineHeight: 1.4, letterSpacing: '-0.1px' }}>{item.value}</div>
               </div>
@@ -229,6 +183,22 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
         </div>
       </section>
 
+
+      {/* ── Core Design Thesis ── */}
+      <FzHighlights id="fc-thesis-title" title="Core Design Thesis" items={[
+        { lead: 'From Reactive Symptoms to Longitudinal Patterns', text: 'Designed an early-awareness monitoring system to surface subtle pressure and gait shifts weeks or months before visible foot complications appear.' },
+        { lead: 'Single Layered System for Two Literacy Levels',   text: 'Replaced separate patient/clinician interfaces with one shared architecture that defaults to plain-language directional signals for individuals while exposing clinical pressure maps on demand.' },
+        { lead: 'Explicit Clinical Boundaries',                    text: 'Structured every system output around baseline comparison and early awareness rather than diagnosis, keeping medical judgment with professionals.' },
+      ]} />
+
+      {/* ── Contents side navigation (shared component) ── */}
+      <FzContents contentSelector=".fc-col" items={[
+        { id: 'problem',     label: 'Problem' },
+        { id: 'users',       label: 'Users' },
+        { id: 'constraints', label: 'Constraints' },
+        { id: 'decisions',   label: 'Decisions' },
+        { id: 'validation',  label: 'Validation' },
+      ]} />
 
       {/* ── Body sections ── */}
       <div style={{ background: '#ffffff' }}>
@@ -367,11 +337,12 @@ const FootCareSection = ({ section, idx }) => {
     {
       id: 'd1',
       n: '01',
-      title: 'Layered detail rather than separate views',
-      text: 'One option was two separate interfaces, one simplified for individuals, one detailed for professionals. The problem: a person and their clinician looking at different representations of the same data creates communication friction rather than reducing it.\n\nI chose a single layered system instead. The default view surfaces a clear signal accessible to anyone. A deeper layer, available on demand, exposes the full data for professional interpretation. Both users see the same event at different depths.',
-      tradeoff: 'Trade-off: the default layer loses some interpretive nuance for expert users. The benefit: individual and professional can look at the same screen and have a meaningful conversation.',
+      title: 'One Layered Interface Over Separate Patient & Clinician Apps',
+      decision: 'Designed a single layered architecture where the default view presents an accessible signal for individuals, and an on-demand detail layer exposes raw pressure maps and trend charts for professionals.',
+      tradeoff: 'Specialists have to expand a secondary layer to reach full clinical nuance, accepted so that patients and clinicians can look at the exact same screen and hold a grounded conversation around the same event.',
+      caption: 'System Structure: Choosing a single layered system (Option B) over separate interfaces (Option A) removes translation friction during consultations.',
       diagram: (
-        <svg viewBox="0 0 560 310" xmlns="http://www.w3.org/2000/svg" style={{ width:'100%', height:'auto', display:'block', fontFamily:"'DM Sans', system-ui, sans-serif" }}>
+        <svg viewBox="0 0 560 310" xmlns="http://www.w3.org/2000/svg" style={{ width:'100%', minWidth:'560px', height:'auto', display:'block', fontFamily:"'DM Sans', system-ui, sans-serif" }}>
           <defs>
             <marker id="d1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
               <path d="M1 2L8 5L1 8" fill="none" stroke="#bbb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -389,28 +360,29 @@ const FootCareSection = ({ section, idx }) => {
           {/* Option A */}
           <rect x="30" y="120" width="220" height="68" rx="14" fill="white" stroke="#C43B3B" strokeWidth="1.5"/>
           <text x="140" y="149" textAnchor="middle" fontSize="13" fontWeight="600" fill="#1a1a1a" fontFamily="inherit">Option A</text>
-          <text x="140" y="169" textAnchor="middle" fontSize="12" fill="#888" fontFamily="inherit">Separate interfaces</text>
+          <text x="140" y="169" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">Separate interfaces</text>
           {/* Option B — chosen */}
           <rect x="310" y="120" width="220" height="68" rx="14" fill="#2B7A56"/>
           <text x="420" y="149" textAnchor="middle" fontSize="13" fontWeight="600" fill="white" fontFamily="inherit">Option B, chosen</text>
-          <text x="420" y="169" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.72)" fontFamily="inherit">Single layered system</text>
+          <text x="420" y="169" textAnchor="middle" fontSize="12" fill="white" fontFamily="inherit">Single layered system</text>
           {/* Arrow down from B */}
           <line x1="420" y1="188" x2="420" y2="230" stroke="#2B7A56" strokeWidth="1" markerEnd="url(#d1ag)"/>
           {/* Individual + Professional */}
           <rect x="310" y="230" width="220" height="60" rx="14" fill="#2B7A56"/>
           <text x="420" y="256" textAnchor="middle" fontSize="13" fontWeight="600" fill="white" fontFamily="inherit">Individual + Professional</text>
-          <text x="420" y="276" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.72)" fontFamily="inherit">Same screen, different depth</text>
+          <text x="420" y="276" textAnchor="middle" fontSize="12" fill="white" fontFamily="inherit">Same screen, different depth</text>
         </svg>
       ),
     },
     {
       id: 'd2',
       n: '02',
-      title: 'Insight framing, not raw data display',
-      text: 'Pressure maps and gait outputs are accurate but largely uninterpretable without training. Showing raw sensor data to a general user produces either anxiety without context, or indifference without meaning.\n\nThe system translates patterns into named insights: areas of concern, changes over time, comparisons to previous readings. The interface communicates what the data means, not what the data is.',
-      tradeoff: 'Trade-off: expert users lose direct access to raw data in the primary flow. Acceptable, because the professional layer provides it on demand.',
+      title: 'Insight Framing Over Raw Sensor Visualization',
+      decision: 'Placed an interpretation layer between raw sensor outputs and the primary UI, translating pressure and gait readings into named, plain-language insights (areas of concern, directional changes, and baseline comparisons) that explain what the data means rather than what the sensor recorded.',
+      tradeoff: 'Expert users lose immediate raw data in the primary flow, mitigated by keeping full sensor views one layer deep.',
+      caption: 'From Signal to Meaning: Raw pressure and gait data passes through an interpretation layer before surfacing as a named insight.',
       diagram: (
-        <svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg" style={{ width:'100%', height:'auto', display:'block', fontFamily:"'DM Sans', system-ui, sans-serif" }}>
+        <svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg" style={{ width:'100%', minWidth:'720px', height:'auto', display:'block', fontFamily:"'DM Sans', system-ui, sans-serif" }}>
           <defs>
             <marker id="d2a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
               <path d="M1 2L8 5L1 8" fill="none" stroke="#bbb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -419,37 +391,38 @@ const FootCareSection = ({ section, idx }) => {
           {/* Left: Raw data */}
           <rect x="20" y="55" width="172" height="80" rx="14" fill="white" stroke="#C43B3B" strokeWidth="1.5"/>
           <text x="106" y="88" textAnchor="middle" fontSize="13" fontWeight="600" fill="#1a1a1a" fontFamily="inherit">Raw data</text>
-          <text x="106" y="108" textAnchor="middle" fontSize="11" fill="#888" fontFamily="inherit">Pressure maps, gait outputs</text>
-          <text x="106" y="158" textAnchor="middle" fontSize="11" fill="#bbb" fontFamily="inherit">Accurate but uninterpretable</text>
-          <text x="106" y="174" textAnchor="middle" fontSize="11" fill="#bbb" fontFamily="inherit">without training</text>
+          <text x="106" y="108" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">Pressure maps, gait outputs</text>
+          <text x="106" y="158" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">Accurate but uninterpretable</text>
+          <text x="106" y="174" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">without training</text>
           {/* Arrow */}
           <line x1="192" y1="95" x2="224" y2="95" stroke="#bbb" strokeWidth="1" markerEnd="url(#d2a)"/>
           {/* Center: Interpretation Layer */}
           <rect x="224" y="36" width="272" height="118" rx="14" fill="#9B3030"/>
           <text x="360" y="82" textAnchor="middle" fontSize="13" fontWeight="600" fill="white" fontFamily="inherit">Interpretation Layer</text>
-          <text x="360" y="102" textAnchor="middle" fontSize="11" fill="rgba(255,255,255,0.8)" fontFamily="inherit">Patterns named, changes flagged,</text>
-          <text x="360" y="118" textAnchor="middle" fontSize="11" fill="rgba(255,255,255,0.8)" fontFamily="inherit">readings compared</text>
+          <text x="360" y="102" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.8)" fontFamily="inherit">Patterns named, changes flagged,</text>
+          <text x="360" y="118" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.8)" fontFamily="inherit">readings compared</text>
           {/* Arrow */}
-          <line x1="496" y1="95" x2="528" y2="95" stroke="#bbb" strokeWidth="1" markerEnd="url(#d2a)"/>
+          <line x1="496" y1="95" x2="514" y2="95" stroke="#bbb" strokeWidth="1" markerEnd="url(#d2a)"/>
           {/* Right: Named insight */}
-          <rect x="528" y="55" width="172" height="80" rx="14" fill="white" stroke="#e0e0e0" strokeWidth="1"/>
+          <rect x="514" y="55" width="200" height="80" rx="14" fill="white" stroke="#e0e0e0" strokeWidth="1"/>
           <text x="614" y="88" textAnchor="middle" fontSize="13" fontWeight="600" fill="#1a1a1a" fontFamily="inherit">Named insight</text>
-          <text x="614" y="108" textAnchor="middle" fontSize="11" fill="#888" fontFamily="inherit">What it means, what to consider</text>
-          <text x="614" y="158" textAnchor="middle" fontSize="11" fill="#666" fontFamily="inherit">Readable by anyone.</text>
-          <text x="614" y="174" textAnchor="middle" fontSize="11" fill="#666" fontFamily="inherit">Detail available on demand.</text>
+          <text x="614" y="108" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">What it means, what to consider</text>
+          <text x="614" y="158" textAnchor="middle" fontSize="12" fill="#666" fontFamily="inherit">Readable by anyone.</text>
+          <text x="614" y="174" textAnchor="middle" fontSize="12" fill="#666" fontFamily="inherit">Detail available on demand.</text>
           {/* Bottom caption */}
-          <text x="360" y="210" textAnchor="middle" fontSize="11" fill="#aaa" fontFamily="inherit">The interface communicates what the data means, not what the data is.</text>
+          <text x="360" y="210" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">The interface communicates what the data means, not what the data is.</text>
         </svg>
       ),
     },
     {
       id: 'd3',
       n: '03',
-      title: 'Positioning as an early warning tool, not a diagnostic one',
-      text: 'A system that surfaces anomalies can easily harm users by overclaiming. Framing a pressure change as a warning creates anxiety that may not be warranted. Framing it as "something has changed" invites attention without clinical overreach.\n\nEvery output was structured the same way: here is what we detected, here is how it compares to your baseline, here is what you might consider doing. Clinical judgment stays with the professional, not the product.',
-      tradeoff: 'Trade-off: the most consequential decision in the project is also the least visible in the interface. That invisibility is the point.',
+      title: 'Calibrated Early-Awareness Framing Over Diagnostic Verdicts',
+      decision: "Positioned the system strictly as an early-awareness tool rather than a diagnostic engine. Every system message follows a strict three-part structure: what changed, how it compares to the user's personal baseline, and what next step to consider, leaving clinical diagnosis entirely to professionals.",
+      tradeoff: 'Avoids decisive "red-alert" verdicts that could feel more dramatic or authoritative in a demo, deliberately trading visual urgency for clinical safety and honest trust boundaries.',
+      caption: 'Calibrating Clinical Tone: Balancing between overclaiming (diagnostic verdicts that trigger anxiety) and under-communicating (vague outputs with no clear action).',
       diagram: (
-        <svg viewBox="0 0 720 270" xmlns="http://www.w3.org/2000/svg" style={{ width:'100%', height:'auto', display:'block', fontFamily:"'DM Sans', system-ui, sans-serif" }}>
+        <svg viewBox="0 0 720 270" xmlns="http://www.w3.org/2000/svg" style={{ width:'100%', minWidth:'720px', height:'auto', display:'block', fontFamily:"'DM Sans', system-ui, sans-serif" }}>
           {/* Horizontal axis */}
           <line x1="36" y1="128" x2="684" y2="128" stroke="#ddd" strokeWidth="1.5"/>
           <circle cx="36" cy="128" r="5" fill="#ddd"/>
@@ -460,36 +433,37 @@ const FootCareSection = ({ section, idx }) => {
           {/* Left: Diagnostic verdict */}
           <rect x="20" y="24" width="200" height="64" rx="14" fill="#9B3030"/>
           <text x="120" y="52" textAnchor="middle" fontSize="13" fontWeight="600" fill="white" fontFamily="inherit">Diagnostic verdict</text>
-          <text x="120" y="72" textAnchor="middle" fontSize="11" fill="rgba(255,255,255,0.75)" fontFamily="inherit">Overclaims clinical significance</text>
+          <text x="120" y="72" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.75)" fontFamily="inherit">Overclaims clinical significance</text>
           <line x1="120" y1="88" x2="120" y2="123" stroke="#ddd" strokeWidth="1"/>
-          <text x="120" y="152" textAnchor="middle" fontSize="11" fill="#bbb" fontFamily="inherit">Creates anxiety,</text>
-          <text x="120" y="168" textAnchor="middle" fontSize="11" fill="#bbb" fontFamily="inherit">Harms trust</text>
+          <text x="120" y="152" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">Creates anxiety,</text>
+          <text x="120" y="168" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">Harms trust</text>
           {/* Center: Chosen awareness tool */}
           <rect x="240" y="16" width="240" height="64" rx="14" fill="#2B7A56"/>
           <text x="360" y="52" textAnchor="middle" fontSize="13" fontWeight="600" fill="white" fontFamily="inherit">Chosen: awareness tool</text>
-          <text x="360" y="152" textAnchor="middle" fontSize="12" fill="#444" fontFamily="inherit">Here is what we decided.</text>
+          <text x="360" y="152" textAnchor="middle" fontSize="12" fill="#444" fontFamily="inherit">Here is what changed.</text>
           <text x="360" y="170" textAnchor="middle" fontSize="12" fill="#444" fontFamily="inherit">Here is how it compares to your baseline.</text>
-          <text x="360" y="188" textAnchor="middle" fontSize="12" fill="#444" fontFamily="inherit">Here is what you might consider doing</text>
+          <text x="360" y="188" textAnchor="middle" fontSize="12" fill="#444" fontFamily="inherit">Here is what you might consider doing.</text>
           {/* Right: Too cautious */}
           <rect x="500" y="24" width="200" height="64" rx="14" fill="white" stroke="#C43B3B" strokeWidth="1.5"/>
           <text x="600" y="52" textAnchor="middle" fontSize="13" fontWeight="600" fill="#1a1a1a" fontFamily="inherit">Too cautious</text>
-          <text x="600" y="72" textAnchor="middle" fontSize="11" fill="#888" fontFamily="inherit">No actionable signal</text>
+          <text x="600" y="72" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">No actionable signal</text>
           <line x1="600" y1="88" x2="600" y2="123" stroke="#ddd" strokeWidth="1"/>
-          <text x="600" y="152" textAnchor="middle" fontSize="11" fill="#bbb" fontFamily="inherit">Reduces utility.</text>
-          <text x="600" y="168" textAnchor="middle" fontSize="11" fill="#bbb" fontFamily="inherit">No reason to return.</text>
+          <text x="600" y="152" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">Reduces utility.</text>
+          <text x="600" y="168" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">No reason to return.</text>
           {/* Bottom caption */}
-          <text x="360" y="244" textAnchor="middle" fontSize="11" fill="#aaa" fontFamily="inherit">The interface communicates what the data means, not what the data is.</text>
+          <text x="360" y="244" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">The interface communicates what the data means, not what the data is.</text>
         </svg>
       ),
     },
     {
       id: 'd4',
       n: '04',
-      title: 'Designing for change over time, not a single session',
-      text: 'A monitoring system that only reports current state has limited preventive value. Making change visible required a temporal data model: every measurement stored, compared against previous readings, communicated as a trend rather than a snapshot.\n\nI prioritized a simple directional signal (improving, stable, attention needed) over a detailed historical chart. The chart is available in the professional layer. The individual user sees a clear direction.',
-      tradeoff: 'Trade-off: simplifying the longitudinal view means expert users see less detail by default. The individual engagement model is also the biggest untested hypothesis in the project.',
+      title: 'Longitudinal Direction Over Single-Session Snapshots',
+      decision: 'Built the data model around temporal comparison rather than isolated readings, surfacing a simple directional status (improving, stable, or attention needed) for individuals while reserving detailed historical trend charts for the professional layer.',
+      tradeoff: 'Simplifying the default longitudinal view hides granular historical curves from immediate view, and the hypothesis that directional feedback sustains long-term patient habit remains untested outside clinical trials.',
+      caption: 'Designing for Time: A single snapshot shows state; a longitudinal record makes gradual drift visible before symptoms emerge.',
       diagram: (
-        <svg viewBox="0 0 720 310" xmlns="http://www.w3.org/2000/svg" style={{ width:'100%', height:'auto', display:'block', fontFamily:"'DM Sans', system-ui, sans-serif" }}>
+        <svg viewBox="0 0 720 310" xmlns="http://www.w3.org/2000/svg" style={{ width:'100%', minWidth:'720px', height:'auto', display:'block', fontFamily:"'DM Sans', system-ui, sans-serif" }}>
           <defs>
             <marker id="d4a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
               <path d="M1 2L8 5L1 8" fill="none" stroke="#bbb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -506,16 +480,16 @@ const FootCareSection = ({ section, idx }) => {
           {/* Right: Longitudinal record */}
           <rect x="460" y="16" width="240" height="52" rx="14" fill="#2B7A56"/>
           <text x="580" y="36" textAnchor="middle" fontSize="13" fontWeight="600" fill="white" fontFamily="inherit">Longitudinal record</text>
-          <text x="580" y="54" textAnchor="middle" fontSize="11" fill="rgba(255,255,255,0.72)" fontFamily="inherit">Chosen approach</text>
+          <text x="580" y="54" textAnchor="middle" fontSize="12" fill="white" fontFamily="inherit">Chosen approach</text>
           {/* Arrows down */}
           <line x1="140" y1="68" x2="140" y2="104" stroke="#ccc" strokeWidth="1" markerEnd="url(#d4a)"/>
           <line x1="580" y1="68" x2="580" y2="104" stroke="#2B7A56" strokeWidth="1" markerEnd="url(#d4ag)"/>
           {/* Left card */}
           <rect x="20" y="104" width="240" height="114" rx="14" fill="#f8f8f8" stroke="#e8e8e8" strokeWidth="1"/>
           <circle cx="140" cy="150" r="28" fill="white" stroke="#ddd" strokeWidth="1"/>
-          <text x="140" y="155" textAnchor="middle" fontSize="12" fill="#bbb" fontFamily="inherit">Reading</text>
-          <text x="140" y="240" textAnchor="middle" fontSize="11" fill="#bbb" fontFamily="inherit">No baseline. No context.</text>
-          <text x="140" y="256" textAnchor="middle" fontSize="11" fill="#bbb" fontFamily="inherit">Is this normal? Unknown</text>
+          <text x="140" y="155" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">Reading</text>
+          <text x="140" y="240" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">No baseline. No context.</text>
+          <text x="140" y="256" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">Is this normal? Unknown</text>
           {/* Right card */}
           <rect x="460" y="104" width="240" height="114" rx="14" fill="#f2faf6" stroke="#b8e8d0" strokeWidth="1"/>
           {/* Chart */}
@@ -528,20 +502,20 @@ const FootCareSection = ({ section, idx }) => {
           <line x1="522" y1="178" x2="554" y2="164" stroke="#2B7A56" strokeWidth="1.5"/>
           <line x1="554" y1="164" x2="586" y2="150" stroke="#2B7A56" strokeWidth="1.5"/>
           <line x1="586" y1="150" x2="618" y2="138" stroke="#2B7A56" strokeWidth="2"/>
-          <text x="580" y="240" textAnchor="middle" fontSize="11" fill="#555" fontFamily="inherit">Direction visible over time.</text>
-          <text x="580" y="256" textAnchor="middle" fontSize="11" fill="#555" fontFamily="inherit">Improving, stable, or attention needed</text>
+          <text x="580" y="240" textAnchor="middle" fontSize="12" fill="#555" fontFamily="inherit">Direction visible over time.</text>
+          <text x="580" y="256" textAnchor="middle" fontSize="12" fill="#555" fontFamily="inherit">Improving, stable, or attention needed</text>
           {/* Bottom caption */}
-          <text x="360" y="292" textAnchor="middle" fontSize="11" fill="#aaa" fontFamily="inherit">A one-time measurement is not preventive care.</text>
+          <text x="360" y="292" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">A one-time measurement is not preventive care.</text>
         </svg>
       ),
     },
   ];
 
   return (
-    <section ref={sectionRef} style={{ background: bg, borderTop: '1px solid rgba(0,0,0,0.05)' }}>
+    <section ref={sectionRef} id={section.id} style={{ background: bg, borderTop: '1px solid rgba(0,0,0,0.05)' }}>
 
       {/* ── Constrained column: label + heading + body ── */}
-      <div style={{ ...col, paddingTop: '72px', paddingBottom: '0' }}>
+      <div className="fc-col" style={{ ...col, paddingTop: '72px', paddingBottom: '0' }}>
         <div style={{
           fontSize: '12px', fontWeight: 400, color: '#a63636',
           letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '16px',
@@ -563,7 +537,7 @@ const FootCareSection = ({ section, idx }) => {
             fontFamily: "'DM Sans', system-ui, sans-serif",
             fontSize: 'var(--body-font-size)', fontWeight: 400, lineHeight: 'var(--body-line-height)',
             letterSpacing: '-0.374px', color: '#1d1d1f', opacity: 0.82,
-            marginBottom: i < section.body.length - 1 ? '20px' : (section.users || section.bodyAfter || section.points ? '24px' : 0),
+            marginBottom: i < section.body.length - 1 ? '20px' : (section.users || section.bodyAfter || section.priorities ? '24px' : 0),
             textWrap: 'pretty',
           }}>
             {para}
@@ -581,13 +555,13 @@ const FootCareSection = ({ section, idx }) => {
                 padding: '20px 24px', background: isAlt ? '#ffffff' : '#f5f5f7',
                 borderRadius: '11px', border: '1px solid rgba(0,0,0,0.07)',
               }}>
-                <div style={{
+                <h3 style={{
                   fontFamily: "'DM Sans', system-ui, sans-serif",
-                  fontSize: '13px', fontWeight: 600, color: '#a63636',
+                  fontSize: '13px', fontWeight: 600, lineHeight: 1.4, color: '#a63636',
                   letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '10px',
                 }}>
                   {u.type}
-                </div>
+                </h3>
                 <p style={{
                   fontFamily: "'DM Sans', system-ui, sans-serif",
                   fontSize: 'var(--secondary-font-size)', fontWeight: 400, lineHeight: 'var(--secondary-line-height)',
@@ -602,60 +576,61 @@ const FootCareSection = ({ section, idx }) => {
 
         {/* Users diagram — rendered before bodyAfter */}
         {section.id === 'users' && (
-          <div style={{ marginTop: '32px', marginBottom: '32px' }}>
-            <svg viewBox="0 0 900 530" xmlns="http://www.w3.org/2000/svg" style={{ width:'100%', height:'auto', display:'block', fontFamily:"'DM Sans', system-ui, sans-serif" }}>
+          <figure style={{ margin: '32px 0' }}>
+            <div role="img" tabIndex={0} style={{ overflowX: 'auto' }} aria-label="One Session, Two Levels of Access: Both users reference the same measurement event. Individuals see simplified directional insights by default, while professionals access pressure maps and trend charts on demand.">
+            <svg viewBox="40 0 820 480" xmlns="http://www.w3.org/2000/svg" style={{ width:'100%', minWidth:'820px', height:'auto', display:'block', fontFamily:"'DM Sans', system-ui, sans-serif" }}>
               <defs>
                 <marker id="s3a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
                   <path d="M1 2L8 5L1 8" fill="none" stroke="#aaa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </marker>
               </defs>
               {/* Top label */}
-              <text x="450" y="18" textAnchor="middle" fontSize="12" fill="#999" fontFamily="inherit">Shared measurement session</text>
+              <text x="450" y="18" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">Shared measurement session</text>
               {/* Top box */}
               <rect x="175" y="28" width="550" height="72" rx="18" fill="white" stroke="#C43B3B" strokeWidth="1.5"/>
               <text x="450" y="59" textAnchor="middle" fontSize="15" fontWeight="600" fill="#1a1a1a" fontFamily="inherit">Foot pressure + gait data</text>
-              <text x="450" y="79" textAnchor="middle" fontSize="11" fill="#888" fontFamily="inherit">Pattern detection · Baseline comparison · Change over time</text>
+              <text x="450" y="79" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">Pattern detection · Baseline comparison · Change over time</text>
               {/* Fork */}
               <line x1="450" y1="100" x2="450" y2="146" stroke="#bbb" strokeWidth="1.5"/>
               <line x1="175" y1="146" x2="725" y2="146" stroke="#bbb" strokeWidth="1.5"/>
               <line x1="175" y1="146" x2="175" y2="168" stroke="#bbb" strokeWidth="1.5" markerEnd="url(#s3a)"/>
               <line x1="725" y1="146" x2="725" y2="168" stroke="#bbb" strokeWidth="1.5" markerEnd="url(#s3a)"/>
               {/* Individual */}
-              <rect x="55" y="168" width="240" height="70" rx="18" fill="#3A9A6A"/>
+              <rect x="55" y="168" width="240" height="70" rx="18" fill="#2B7A56"/>
               <text x="175" y="199" textAnchor="middle" fontSize="14" fontWeight="600" fill="white" fontFamily="inherit">Individual</text>
-              <text x="175" y="220" textAnchor="middle" fontSize="11" fill="rgba(255,255,255,0.78)" fontFamily="inherit">No biomechanical literacy assumed</text>
+              <text x="175" y="220" textAnchor="middle" fontSize="12" fill="white" fontFamily="inherit">No biomechanical literacy assumed</text>
               {/* Professional */}
               <rect x="605" y="168" width="240" height="70" rx="18" fill="#4A6BAF"/>
               <text x="725" y="199" textAnchor="middle" fontSize="14" fontWeight="600" fill="white" fontFamily="inherit">Professional</text>
-              <text x="725" y="220" textAnchor="middle" fontSize="11" fill="rgba(255,255,255,0.78)" fontFamily="inherit">Clinician, orthotist, foot care specialist</text>
+              <text x="725" y="220" textAnchor="middle" fontSize="12" fill="white" fontFamily="inherit">Clinician, orthotist, foot care specialist</text>
               {/* Arrows */}
               <line x1="175" y1="238" x2="175" y2="268" stroke="#bbb" strokeWidth="1.5" markerEnd="url(#s3a)"/>
               <line x1="725" y1="238" x2="725" y2="268" stroke="#bbb" strokeWidth="1.5" markerEnd="url(#s3a)"/>
               {/* Simplified insight */}
-              <rect x="55" y="268" width="240" height="70" rx="18" fill="#3A9A6A"/>
+              <rect x="55" y="268" width="240" height="70" rx="18" fill="#2B7A56"/>
               <text x="175" y="299" textAnchor="middle" fontSize="14" fontWeight="600" fill="white" fontFamily="inherit">Simplified insight (default)</text>
-              <text x="175" y="320" textAnchor="middle" fontSize="11" fill="rgba(255,255,255,0.78)" fontFamily="inherit">Pattern, change signal, next step</text>
+              <text x="175" y="320" textAnchor="middle" fontSize="12" fill="white" fontFamily="inherit">Pattern, change signal, next step</text>
               {/* Detailed data */}
               <rect x="605" y="268" width="240" height="70" rx="18" fill="#4A6BAF"/>
               <text x="725" y="299" textAnchor="middle" fontSize="14" fontWeight="600" fill="white" fontFamily="inherit">Detailed data (default)</text>
-              <text x="725" y="320" textAnchor="middle" fontSize="11" fill="rgba(255,255,255,0.78)" fontFamily="inherit">Pressure maps, trend charts, readings</text>
+              <text x="725" y="320" textAnchor="middle" fontSize="12" fill="white" fontFamily="inherit">Pressure maps, trend charts, readings</text>
               {/* Arrows */}
               <line x1="175" y1="338" x2="175" y2="376" stroke="#bbb" strokeWidth="1.5" markerEnd="url(#s3a)"/>
               <line x1="725" y1="338" x2="725" y2="376" stroke="#bbb" strokeWidth="1.5" markerEnd="url(#s3a)"/>
               {/* Detail on demand */}
               <rect x="55" y="376" width="240" height="70" rx="18" fill="white" stroke="#C43B3B" strokeWidth="1.5"/>
               <text x="175" y="407" textAnchor="middle" fontSize="14" fontWeight="600" fill="#1a1a1a" fontFamily="inherit">Detail on demand</text>
-              <text x="175" y="428" textAnchor="middle" fontSize="11" fill="#888" fontFamily="inherit">Same data, more context if needed</text>
+              <text x="175" y="428" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">Same data, more context if needed</text>
               {/* Shared view */}
               <rect x="605" y="376" width="240" height="70" rx="18" fill="white" stroke="#C43B3B" strokeWidth="1.5"/>
               <text x="725" y="407" textAnchor="middle" fontSize="14" fontWeight="600" fill="#1a1a1a" fontFamily="inherit">Shared view</text>
-              <text x="725" y="428" textAnchor="middle" fontSize="11" fill="#888" fontFamily="inherit">Same session, basis for conversation</text>
+              <text x="725" y="428" textAnchor="middle" fontSize="12" fill="#666666" fontFamily="inherit">Same session, basis for conversation</text>
               {/* Dashed connector */}
               <line x1="295" y1="411" x2="605" y2="411" stroke="#ccc" strokeWidth="1" strokeDasharray="6 4"/>
-              {/* Caption */}
-              <text x="450" y="498" textAnchor="middle" fontSize="11" fill="#999" fontFamily="inherit">One session, two levels of access – both users see the same event, at different depths</text>
             </svg>
-          </div>
+            </div>
+            <figcaption className="fz-caption">One Session, Two Levels of Access: Both users reference the same measurement event. Individuals see simplified directional insights by default, while professionals access pressure maps and trend charts on demand.</figcaption>
+          </figure>
         )}
 
         {section.id === 'users' && (
@@ -665,6 +640,20 @@ const FootCareSection = ({ section, idx }) => {
               alt="Results"
               style={{ maxWidth: 'min(600px, 100%)', display: 'block', margin: '0 auto', borderRadius: '12px' }}
             />
+          </div>
+        )}
+
+        {/* Next-iteration priorities: subheading + short items with bold lead-ins */}
+        {section.priorities && (
+          <div style={{ marginBottom: section.bodyAfter ? '24px' : 0 }}>
+            <h3 style={{
+              fontFamily: "'DM Sans', system-ui, sans-serif",
+              fontSize: '18px', fontWeight: 600, lineHeight: 1.3, letterSpacing: '-0.374px',
+              color: '#1d1d1f', margin: '8px 0 16px',
+            }}>
+              Four Concrete Priorities for Next Iteration
+            </h3>
+            <FzList items={section.priorities} />
           </div>
         )}
 
@@ -690,50 +679,20 @@ const FootCareSection = ({ section, idx }) => {
                 borderRadius: '11px',
                 border: '1px solid rgba(0,0,0,0.07)',
               }}>
-                <div style={{
+                <h3 style={{
                   fontFamily: "'DM Sans', system-ui, sans-serif",
-                  fontSize: '11px', fontWeight: 600,
+                  fontSize: '12px', fontWeight: 600, lineHeight: 1.4,
                   letterSpacing: '0.08em', textTransform: 'uppercase',
                   color: '#a63636', marginBottom: '10px',
                 }}>
                   {c.title}
-                </div>
-                <p style={{
-                  fontFamily: "'DM Sans', system-ui, sans-serif",
-                  fontSize: 'var(--secondary-font-size)', fontWeight: 400, lineHeight: 'var(--secondary-line-height)',
-                  letterSpacing: '-0.2px', color: 'rgba(29,29,31,0.72)',
-                }}>
-                  {c.body}
-                </p>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Trust points: same 2×2 card grid as constraints, titles as h3 under the section h2 */}
-        {section.points && (
-          <div className="fc-constraints-grid">
-            {section.points.map(p => (
-              <div key={p.title} style={{
-                padding: '20px 24px',
-                background: isAlt ? '#ffffff' : '#f5f5f7',
-                borderRadius: '11px',
-                border: '1px solid rgba(0,0,0,0.07)',
-              }}>
-                <h3 style={{
-                  fontFamily: "'DM Sans', system-ui, sans-serif",
-                  fontSize: '12px', fontWeight: 600, lineHeight: 'inherit',
-                  letterSpacing: '0.08em', textTransform: 'uppercase',
-                  color: '#a63636', margin: '0 0 10px',
-                }}>
-                  {p.title}
                 </h3>
                 <p style={{
                   fontFamily: "'DM Sans', system-ui, sans-serif",
                   fontSize: 'var(--secondary-font-size)', fontWeight: 400, lineHeight: 'var(--secondary-line-height)',
                   letterSpacing: '-0.2px', color: 'rgba(29,29,31,0.72)',
                 }}>
-                  {p.body}
+                  {c.body}
                 </p>
               </div>
             ))}
@@ -772,7 +731,7 @@ const FootCareSection = ({ section, idx }) => {
                       color: '#a63636', fontWeight: 500,
                       paddingTop: '3px', minWidth: '24px', flexShrink: 0,
                     }}>{d.n}</span>
-                    <span className="fc-decision-title" style={{
+                    <span role="heading" aria-level="3" className="fc-decision-title" style={{
                       fontFamily: "'DM Sans', system-ui, sans-serif",
                       fontSize: '18px', fontWeight: 600, lineHeight: 1.3,
                       color: '#1d1d1f', flex: 1,
@@ -808,28 +767,29 @@ const FootCareSection = ({ section, idx }) => {
                         flexDirection: 'column',
                         gap: '20px',
                       }}>
-                        {d.text.split('\n\n').map((para, pi) => (
-                          <p key={pi} style={{
-                            fontFamily: "'DM Sans', system-ui, sans-serif",
-                            fontSize: 'var(--secondary-font-size)', lineHeight: 'var(--secondary-line-height)',
-                            color: '#3d3d3a', margin: 0,
-                          }}>{para}</p>
-                        ))}
+                        <p style={{
+                          fontFamily: "'DM Sans', system-ui, sans-serif",
+                          fontSize: 'var(--secondary-font-size)', lineHeight: 'var(--secondary-line-height)',
+                          color: '#3d3d3a', margin: 0,
+                        }}><FzLead>The Decision:</FzLead> {d.decision}</p>
                         <p style={{
                           fontFamily: "'DM Sans', system-ui, sans-serif",
                           fontSize: 'var(--caption-font-size)', lineHeight: 'var(--caption-line-height)',
                           color: '#666666', margin: 0,
                           paddingLeft: '14px',
                           borderLeft: '2px solid #e0ddd8',
-                        }}>{d.tradeoff}</p>
-                        <div style={{
-                          borderRadius: '10px',
-                          overflow: 'hidden',
-                          background: '#fff',
-                          padding: '28px 24px 20px',
-                        }}>
-                          {d.diagram}
-                        </div>
+                        }}><FzLead>The Trade-off:</FzLead> {d.tradeoff}</p>
+                        <figure style={{ margin: 0 }}>
+                          <div role="img" aria-label={d.caption} tabIndex={0} style={{
+                            borderRadius: '10px',
+                            overflowX: 'auto',
+                            background: '#fff',
+                            padding: '28px 24px 20px',
+                          }}>
+                            {d.diagram}
+                          </div>
+                          <figcaption className="fz-caption">{d.caption}</figcaption>
+                        </figure>
 
                         {d.id === 'd1' && (
                           <img

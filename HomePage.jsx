@@ -107,15 +107,13 @@ const HomePage = ({ goTo }) => {
       id: 'fizik',
       label: 'B2B Retail Tech · Hardware + Software · 0→1',
       title: 'Fizik 121 Platform',
-      tagline: 'A guided tool that makes a personalized saddle fitting service work reliably at the point of sale, for staff at any level of expertise.',
+      tagline: 'A guided point-of-sale tool that makes a custom 3D-printed saddle fitting service work reliably in retail stores, for staff at any level of expertise.',
       outcomes: [
-        'Live on the App Store and Google Play, used by dealers, with continuous updates',
-        'Translated a 121-option catalog into a clear, explainable staff-facing recommendation flow',
-        'Enabled consistent delivery of the service across dealers without specialist knowledge',
-        'Delivered implementation-ready Flutter specs; product now supports six languages',
-        'Design decisions from this project directly informed a second product: a saddle pressure app for electric bike fitting dealers, now in its second version as of 2026',
+        { lead: 'Shipped & Scaled',         text: 'Live on iOS and Android (Flutter) across 60+ screens and 6 languages, with ongoing post-launch updates.' },
+        { lead: 'Simplified 121 Options',   text: 'Translated complex pressure and rider geometry inputs into 2 to 3 explainable recommendations store staff can stand behind.' },
+        { lead: 'System Reuse',             text: 'Established a retail-ready design system and workflow architecture that directly informed a second product: an e-bike saddle pressure app (v2, 2026).' },
       ],
-      decisionSignal: 'The core decision: a locked linear flow over a flexible navigation model, so any staff member could run the full service regardless of prior fitting experience.',
+      decisionSignal: 'The core decision: A locked linear flow over open navigation, trading expert shortcut flexibility for consistent, error-free consultations across every store.',
       dark: false,
       customBg: '#f9f9f7',
     },
@@ -123,27 +121,27 @@ const HomePage = ({ goTo }) => {
       id: 'fleetwatch',
       label: 'B2B Fleet Tech · Decision Support · Design Case Study',
       title: 'Fleetwatch Cockpit',
-      tagline: 'A weekly decision tool for a fleet manager, built to show what needs attention, how sure the system is, and what happens next.',
+      tagline: 'A low-noise weekly decision tool for a fleet manager overseeing 140 vehicles, built to surface what needs attention, how sure the system is, and what happens next.',
       outcomesLabel: 'Design decisions',
       outcomes: [
-        'Ranked 51 findings into three decisions for the week, in order of consequence',
-        'Kept confidence and status apart, with evidence before action and no one-click confirm',
-        'Designed hand-over by email, printout or phone note for people who never log in',
+        { lead: 'Triage Over Alert Overload', text: 'Ranked 51 open findings down to three weekly decisions in order of consequence, tailored to two 15-minute review sessions.' },
+        { lead: 'Calibrated Trust',           text: 'Separated Confidence from Status and required evidence before action, accounting for roughly one in five inferred findings being wrong.' },
+        { lead: 'Offline Hand-Offs',          text: 'Designed structured email, printout, and phone-note briefs for workshop leads and dispatchers who never log into the software.' },
       ],
-      decisionSignal: 'The core decision: evidence before action, so an inferred finding is never trusted without a check.',
+      decisionSignal: 'The core decision: Evidence before action with no one-click confirm on the cockpit, keeping trust honest when underlying data is incomplete.',
       dark: false,
     },
     {
       id: 'footcare',
       label: "HCI Master's Thesis · Healthtech · Biomechanics · Research-to-Product",
       title: 'Preventive Foot Care Platform',
-      tagline: 'A dual-user monitoring system that makes biomechanical data interpretable: for individuals managing foot health risk, and the professionals supporting them.',
+      tagline: 'A dual-user monitoring system that makes longitudinal biomechanical data interpretable for both individuals managing foot health risks and the clinicians supporting them.',
       outcomes: [
-        'Designed for two user types with different data literacy within a single coherent system',
-        'Expert evaluation confirmed workflow structure and information hierarchy held up for professional users',
-        'Established a product architecture for AI-assisted preventive monitoring',
+        { lead: 'Two Literacy Levels, One Event', text: 'Designed a single layered architecture where individuals see plain-language directional signals and clinicians access pressure maps on demand.' },
+        { lead: 'Safe Clinical Boundaries',       text: 'Structured every insight around personal baseline comparison and early awareness rather than diagnostic verdicts.' },
+        { lead: 'Expert-Validated Architecture',  text: 'Usability testing with specialists across clinical foot care, orthopedic shoe technology, and biomechanics confirmed the workflow and hierarchy held up.' },
       ],
-      decisionSignal: 'The core decision: a single layered system over separate interfaces, so an individual and their clinician could look at the same data and have a meaningful conversation.',
+      decisionSignal: 'The core decision: One shared layered system over separate patient and clinician apps, giving both users a common visual reference during consultations.',
       dark: true,
     },
   ];
@@ -193,7 +191,7 @@ const HomePage = ({ goTo }) => {
                 fontFamily: "'DM Sans', system-ui, sans-serif",
               }}
             >
-              Product Designer, Düsseldorf, Germany
+              Product Designer · Düsseldorf, Germany
             </div>
             <span data-anim="hero-line" className="heading-underline" style={{ marginBottom: '24px' }} />
 
@@ -210,7 +208,7 @@ const HomePage = ({ goTo }) => {
                 textWrap: 'pretty',
               }}
             >
-              I'm Maryam. I shape complex products into clear, useable systems.
+              I'm Maryam. I shape complex products into clear, usable systems.
             </h1>
 
             {/* CTAs */}
@@ -255,7 +253,7 @@ const HomePage = ({ goTo }) => {
                 onMouseDown={e => e.currentTarget.style.transform = 'scale(0.95)'}
                 onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
               >
-                Contact
+                Get in Touch
               </button>
             </div>
 
@@ -273,7 +271,7 @@ const HomePage = ({ goTo }) => {
                 textWrap: 'pretty',
               }}
             >
-              I work end-to-end, from early discovery and workflow mapping through to implementation-ready handoff.
+              I work end-to-end, from early discovery and workflow mapping through to implementation-ready handoff, specializing in B2B, hardware-connected tools, and data-heavy workflows.
             </p>
 
             {/* ── Frosted glass credential cards — single horizontal row ── */}
@@ -284,11 +282,11 @@ const HomePage = ({ goTo }) => {
               gap: '10px',
             }}>
               {[
-                { label: 'Domain',        value: 'B2B & Medtech',         delay: '0.6s' },
-                { label: 'Design System', value: '9 Projects · 5 Brands', delay: '0.8s' },
-                { label: 'Ownership',     value: 'End-to-end',             delay: '1.0s' },
-                { label: 'Handoff',       value: 'Dev-ready specs',        delay: '1.2s' },
-                { label: 'Platforms',     value: 'Web, iOS and Android',   delay: '1.4s' },
+                { label: 'Domain',         value: 'B2B, MedTech & Hardware-Software',  delay: '0.6s' },
+                { label: 'Design Systems', value: '9 Projects · 5 Brands',             delay: '0.8s' },
+                { label: 'Ownership',      value: 'End-to-end (Discovery → Handoff)',  delay: '1.0s' },
+                { label: 'Handoff',        value: 'Implementation-ready specs',        delay: '1.2s' },
+                { label: 'Platforms',      value: 'Web, iOS & Android',                delay: '1.4s' },
               ].map(({ label, value, delay }) => (
                 <div key={label} style={{
                   flex: '1 1 0',
@@ -306,7 +304,7 @@ const HomePage = ({ goTo }) => {
                 }}>
                   <span style={{
                     fontFamily: "'DM Sans', system-ui, sans-serif",
-                    fontSize: '10px',
+                    fontSize: '12px',
                     fontWeight: 600,
                     letterSpacing: '0.1em',
                     textTransform: 'uppercase',
@@ -371,7 +369,7 @@ const HomePage = ({ goTo }) => {
               margin: '0 auto',
             }}
           >
-            Selected projects that show how I think, decide, and deliver.
+            Selected projects showing how I frame messy problems, make deliberate trade-offs, and deliver clear systems.
           </p>
         </div>
       </div>
@@ -440,7 +438,7 @@ const HomePage = ({ goTo }) => {
               marginBottom: 'var(--paragraph-spacing)',
               textWrap: 'pretty',
             }}>
-              I'm a Product Designer with a background in Industrial Design and Human-Computer Interaction. I focus on products where the complexity is real: multi-step workflows, technical data, stakeholders with different mental models, and where structure and clarity in the design process make the difference.
+              I'm a Product Designer with a background in Industrial Design and Human-Computer Interaction. I focus on products where complexity is real: multi-step workflows, uncertain or technical data, and stakeholders with different mental models.
             </p>
             <p style={{
               fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -453,7 +451,7 @@ const HomePage = ({ goTo }) => {
               marginBottom: 'var(--paragraph-spacing)',
               textWrap: 'pretty',
             }}>
-              Biomechanical data, clinical workflows, and digital tools for preventive foot care: that's the domain that brought me to GEBIOM Group, where I was promoted to Product Designer in October 2023.
+              Biomechanical data, clinical workflows, and digital tools for preventive foot care brought me to GEBIOM Group, where I was promoted to Product Designer in October 2023.
             </p>
             <p style={{
               fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -466,7 +464,7 @@ const HomePage = ({ goTo }) => {
               marginBottom: 'var(--paragraph-spacing)',
               textWrap: 'pretty',
             }}>
-              Currently looking for my next Product Designer role in Germany, remote or hybrid.
+              Currently looking for my next Product Designer role in Germany (remote or hybrid).
             </p>
             <button
               onClick={() => goTo('about')}
@@ -488,7 +486,7 @@ const HomePage = ({ goTo }) => {
               onMouseDown={e => e.currentTarget.style.transform = 'scale(0.95)'}
               onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
             >
-              Read more
+              More about me
             </button>
           </div>
         </div>
@@ -518,7 +516,7 @@ const HomePage = ({ goTo }) => {
             marginBottom: '20px',
             fontFamily: "'DM Sans', system-ui, sans-serif",
           }}>
-            Get in touch
+            Get in Touch
           </div>
           <h2 data-anim="work-label" style={{
             fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -542,7 +540,7 @@ const HomePage = ({ goTo }) => {
             marginBottom: 'var(--paragraph-spacing)',
             textWrap: 'pretty',
           }}>
-            Open to Product Designer roles in Germany, remote or hybrid.
+            Open to Product Designer roles in Germany · Remote or Hybrid
           </p>
           <a
             href="mailto:maryam.moradian38@gmail.com"
@@ -616,7 +614,7 @@ const ProjectCard = ({ proj, idx, goTo }) => {
         {/* Left: info */}
         <div>
           <div style={{
-            fontSize: '11px',
+            fontSize: '12px',
             fontWeight: 400,
             color: metaColor,
             letterSpacing: '0.1em',
@@ -690,7 +688,7 @@ const ProjectCard = ({ proj, idx, goTo }) => {
                   letterSpacing: '-0.2px',
                   color: bodyColor,
                 }}>
-                  {o}
+                  <strong style={{ fontWeight: 600, color: headColor }}>{o.lead}:</strong> {o.text}
                 </span>
               </div>
             ))}
