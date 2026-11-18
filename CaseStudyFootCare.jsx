@@ -236,7 +236,7 @@ const CaseStudyFootCare = ({ goTo, goToWork }) => {
           </h2>
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
             <a
-              href="mailto:maryam.moradian38@gmail.com"
+              href={mailtoHref(DEFAULT_SUBJECT)}
               className="tap-target"
               style={{
                 background: '#a63636',
@@ -636,9 +636,10 @@ const FootCareSection = ({ section, idx }) => {
         {section.id === 'users' && (
           <div style={{ marginBottom: '32px' }}>
             <img
-              src="assets/foot-care/results.png"
+              src="assets/foot-care/results.webp"
               alt="Results"
-              style={{ maxWidth: 'min(600px, 100%)', display: 'block', margin: '0 auto', borderRadius: '12px' }}
+              width="1200" height="838" decoding="async" loading="lazy"
+              style={{ height: 'auto', maxWidth: 'min(600px, 100%)', display: 'block', margin: '0 auto', borderRadius: '12px' }}
             />
           </div>
         )}
@@ -793,40 +794,45 @@ const FootCareSection = ({ section, idx }) => {
 
                         {d.id === 'd1' && (
                           <img
-                            src="assets/foot-care/ux-sitemap.png"
+                            src="assets/foot-care/ux-sitemap.webp"
                             alt="UX sitemap"
-                            style={{ maxWidth: '100%', display: 'block', margin: '0 auto', borderRadius: '12px' }}
+                            width="1576" height="669" decoding="async" loading="lazy"
+                            style={{ height: 'auto', maxWidth: '100%', display: 'block', margin: '0 auto', borderRadius: '12px' }}
                           />
                         )}
 
                         {d.id === 'd2' && (
                           <div style={{ display: 'flex', gap: '16px' }}>
                             <img
-                              src="assets/foot-care/questionnaire-pre-examination.png"
+                              src="assets/foot-care/questionnaire-pre-examination.webp"
                               alt="Questionnaire and pre-examination screen"
-                              style={{ width: '48%', borderRadius: '12px', objectFit: 'contain' }}
+                              width="756" height="528" decoding="async" loading="lazy"
+                              style={{ height: 'auto', width: '48%', borderRadius: '12px', objectFit: 'contain' }}
                             />
                             <img
-                              src="assets/foot-care/questionnaire-pre-examination-modal.png"
+                              src="assets/foot-care/questionnaire-pre-examination-modal.webp"
                               alt="Questionnaire and pre-examination screen with tooltip open"
-                              style={{ width: '48%', borderRadius: '12px', objectFit: 'contain' }}
+                              width="756" height="528" decoding="async" loading="lazy"
+                              style={{ height: 'auto', width: '48%', borderRadius: '12px', objectFit: 'contain' }}
                             />
                           </div>
                         )}
 
                         {d.id === 'd3' && (
                           <img
-                            src="assets/foot-care/new-customer-popup.png"
+                            src="assets/foot-care/new-customer-popup.webp"
                             alt="New customer pop-up"
-                            style={{ maxWidth: 'min(480px, 100%)', display: 'block', margin: '0 auto', borderRadius: '12px' }}
+                            width="960" height="671" decoding="async" loading="lazy"
+                            style={{ height: 'auto', maxWidth: 'min(480px, 100%)', display: 'block', margin: '0 auto', borderRadius: '12px' }}
                           />
                         )}
 
                         {d.id === 'd4' && (
                           <img
-                            src="assets/foot-care/Data-History-3.png"
+                            src="assets/foot-care/data-history-3.webp"
                             alt="Data history view"
-                            style={{ maxWidth: 'min(480px, 100%)', display: 'block', margin: '0 auto', borderRadius: '12px' }}
+                            width="960" height="686" decoding="async" loading="lazy"
+                            style={{ height: 'auto', maxWidth: 'min(480px, 100%)', display: 'block', margin: '0 auto', borderRadius: '12px' }}
                           />
                         )}
                       </div>
@@ -843,9 +849,10 @@ const FootCareSection = ({ section, idx }) => {
       {section.id === 'problem' && (
         <div style={{ ...col, marginTop: '48px', paddingBottom: '0' }}>
           <img
-            src="assets/foot-care/patient-process-1.png"
+            src="assets/foot-care/patient-process-1.webp"
             alt="Patient process diagram"
-            style={{ width: '100%', display: 'block', borderRadius: '10px' }}
+            width="1672" height="1053" decoding="async" loading="lazy"
+            style={{ height: 'auto', width: '100%', display: 'block', borderRadius: '10px' }}
           />
         </div>
       )}
@@ -854,9 +861,10 @@ const FootCareSection = ({ section, idx }) => {
       {section.id === 'validation' && (
         <div style={{ ...col, marginTop: '32px', paddingBottom: '0' }}>
           <img
-            src="assets/foot-care/drs-diagnosis-v2.png"
+            src="assets/foot-care/drs-diagnosis-v2.webp"
             alt="Doctor's diagnosis view"
-            style={{ maxWidth: 'min(600px, 100%)', display: 'block', margin: '0 auto', borderRadius: '12px' }}
+            width="1200" height="838" decoding="async" loading="lazy"
+            style={{ height: 'auto', maxWidth: 'min(600px, 100%)', display: 'block', margin: '0 auto', borderRadius: '12px' }}
           />
         </div>
       )}

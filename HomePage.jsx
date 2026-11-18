@@ -41,6 +41,16 @@ const HomePage = ({ goTo }) => {
     return mountSplineEl(splineRef.current);
   }, [splineMounted]);
 
+  // Hero illustration is only rendered from 769 px up (two-column hero)
+  const heroMq = '(min-width: 769px)';
+  const [isDesktopHero, setIsDesktopHero] = useState(() => window.matchMedia(heroMq).matches);
+  useEffect(() => {
+    const mq = window.matchMedia(heroMq);
+    const onChange = () => setIsDesktopHero(mq.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
   // ── Animation refs ──
   const heroRef        = useRef(null);
   const workHeadRef    = useRef(null);
@@ -58,7 +68,7 @@ const HomePage = ({ goTo }) => {
     pos();
     window.addEventListener('resize', pos);
     return () => window.removeEventListener('resize', pos);
-  }, []);
+  }, [isDesktopHero]);
 
   // Hero: fires immediately on mount (no scroll trigger)
   useEffect(() => {
@@ -155,15 +165,26 @@ const HomePage = ({ goTo }) => {
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
-        background: '#f5ede8',
-        backgroundImage: "url('landing_illustration_2560x1440.png')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'right center',
-        backgroundRepeat: 'no-repeat',
+        background: '#fdefea',
         isolation: 'isolate',
       }}>
 
-        {/* ── Two-column hero content — no overlay ── */}
+        {/* Illustration: fills the hero from the start of the right column to the right edge.
+            object-position left keeps the character next to the text column and crops the
+            right side (cards, plant) on narrower screens. Not rendered on phone, so it is never downloaded there. */}
+        {isDesktopHero && (
+          <div className="hero-art" aria-hidden="true">
+            <img
+              src="hero-illustration.webp"
+              alt=""
+              width="1467" height="1440"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+        )}
+
+        {/* ── Two-column hero content ── */}
         <div ref={heroRef} style={{
           position: 'relative',
           zIndex: 1,
@@ -234,9 +255,11 @@ const HomePage = ({ goTo }) => {
               >
                 View Work
               </button>
-              <button
-                onClick={() => goTo('about')}
+              <a
+                href={mailtoHref(DEFAULT_SUBJECT)}
                 style={{
+                  display: 'inline-block',
+                  textDecoration: 'none',
                   background: 'transparent',
                   color: '#3D1A1A',
                   fontSize: '17px',
@@ -254,7 +277,7 @@ const HomePage = ({ goTo }) => {
                 onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
               >
                 Get in Touch
-              </button>
+              </a>
             </div>
 
             {/* Supporting line */}
@@ -295,10 +318,8 @@ const HomePage = ({ goTo }) => {
                   gap: '5px',
                   padding: '12px 16px',
                   borderRadius: '12px',
-                  background: 'rgba(255,255,255,0.45)',
-                  border: '1px solid rgba(255,255,255,0.6)',
-                  backdropFilter: 'blur(16px)',
-                  WebkitBackdropFilter: 'blur(16px)',
+                  background: '#fffaf8',
+                  border: '1px solid rgba(61,26,14,0.10)',
                   boxShadow: '0 2px 12px rgba(61,26,14,0.07)',
                   animation: `heroCardUp 0.5s ease-out ${delay} both`,
                 }}>
@@ -329,7 +350,7 @@ const HomePage = ({ goTo }) => {
 
           </div>
 
-          {/* ── Right column: illustration fills via background-image ── */}
+          {/* ── Right column: kept empty, the illustration (.hero-art) sits behind it ── */}
           <div />
 
         </div>
@@ -391,11 +412,14 @@ const HomePage = ({ goTo }) => {
         position: 'relative',
         overflow: 'visible',
       }}>
-        {/* Spanning character: positioned absolutely, waist at section bottom (JS sets bottom) */}
-        <img
+        {/* Spanning character: positioned absolutely, waist at section bottom (JS sets bottom).
+            Hidden on phone, so it is only rendered (and downloaded) from 769 px up. */}
+        {isDesktopHero && <img
           ref={splitCharRef}
-          src="character_Contact.png"
+          src="character_Contact.webp"
           alt=""
+          width="1126" height="1720"
+          loading="lazy" decoding="async"
           className="about-split-char"
           style={{
             position: 'absolute',
@@ -407,7 +431,7 @@ const HomePage = ({ goTo }) => {
             userSelect: 'none',
             zIndex: 5,
           }}
-        />
+        />}
         {/* Flex row: spacer (width = character width) + text */}
         <div style={{ display: 'flex', gap: '48px', alignItems: 'flex-start' }}>
           {/* Spacer — same width as the character so text clears it */}
@@ -543,7 +567,7 @@ const HomePage = ({ goTo }) => {
             Open to Product Designer roles in Germany · Remote or Hybrid
           </p>
           <a
-            href="mailto:maryam.moradian38@gmail.com"
+            href={mailtoHref(DEFAULT_SUBJECT)}
             className="tap-target"
             style={{
               background: '#a63636',
@@ -781,23 +805,25 @@ const ProjectCard = ({ proj, idx, goTo }) => {
         }}>
           {proj.id === 'fizik' && (
             <img
-              src="Fizik-cover-1.png"
+              src="Fizik-cover-1.webp"
               alt="Fizik 121 Platform"
+              width="1060" height="794" loading="lazy" decoding="async"
               style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px', display: 'block' }}
             />
           )}
           {proj.id === 'fleetwatch' && (
             <img
-              src="assets/fleetwatch/fleetwatch-cockpit.png"
+              src="assets/fleetwatch/fleetwatch-card.webp"
               alt="Fleetwatch Cockpit"
-              width="2880" height="1800" loading="lazy"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'left top', borderRadius: '12px', display: 'block' }}
+              width="1060" height="795" loading="lazy" decoding="async"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px', display: 'block' }}
             />
           )}
           {proj.id === 'footcare' && (
             <img
-              src="footcare-cover-2.png"
+              src="footcare-cover-2.webp"
               alt="Preventive Foot Care Platform"
+              width="1054" height="790" loading="lazy" decoding="async"
               style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px', display: 'block' }}
             />
           )}
@@ -900,10 +926,34 @@ homeStyle.textContent = `
     .cred-cards > div {
       flex: 1 1 calc(50% - 5px) !important;
     }
-    /* Illustration overlaps hero text once columns stack — hide it below the two-column breakpoint */
-    .hero-section {
-      background-image: none !important;
+    /* Phone: the hero is as tall as its content, so the facts cards start on the first screen */
+    .hero-section, .hero-grid {
+      min-height: 0 !important;
     }
+  }
+  /* Hero illustration: starts a little before the right grid column (same maths as the
+     1.25fr / 1fr grid inside the page padding) and runs to the right edge. The left edge
+     fades out so the loose lines never sit hard against the text column. */
+  .hero-art {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: calc(var(--page-padding) + (100% - 2 * var(--page-padding)) * 0.5556 - 24px);
+    z-index: 0;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 18%);
+    mask-image: linear-gradient(to right, transparent 0, #000 18%);
+  }
+  .hero-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left bottom;
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .hero-art { display: none; }
   }
   /* Pinned panels: sticky stacking applied by animPinnedPanels on desktop */
   .panel-pinned {

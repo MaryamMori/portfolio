@@ -135,7 +135,7 @@ const Footer = ({ goTo, goToWork }) => {
               </button>
             ))}
             <a
-              href="mailto:maryam.moradian38@gmail.com"
+              href={mailtoHref(DEFAULT_SUBJECT)}
               className="tap-target"
               style={{
                 display: 'block',
@@ -192,7 +192,7 @@ const Footer = ({ goTo, goToWork }) => {
               LinkedIn
             </a>
             <a
-              href="mailto:maryam.moradian38@gmail.com"
+              href={mailtoHref(DEFAULT_SUBJECT)}
               className="tap-target"
               style={{
                 display: 'block',
@@ -211,7 +211,8 @@ const Footer = ({ goTo, goToWork }) => {
             </a>
             <a
               href="Maryam_Moradian_CV.pdf"
-              download
+              target="_blank"
+              rel="noopener noreferrer"
               className="tap-target"
               style={{
                 display: 'block',

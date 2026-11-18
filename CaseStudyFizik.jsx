@@ -33,6 +33,47 @@ if (!document.getElementById('fz-case-styles')) {
     }
     .fz-sidebar.fz-sidebar-hidden { opacity:0; pointer-events:none; transform:translateX(12px); }
 
+    /* Phone Contents bar (FzContentsBar) */
+    .fz-cbar {
+      position:fixed; left:0; right:0; z-index:9998;
+      background:#f9f9f7; border-bottom:1px solid rgba(29,29,31,0.10);
+      font-family:'DM Sans',system-ui,sans-serif;
+      transition:opacity .25s, visibility 0s;
+    }
+    .fz-cbar.fz-cbar-open { box-shadow:0 12px 24px rgba(29,29,31,0.10); }
+    .fz-cbar.fz-cbar-hidden { opacity:0; visibility:hidden; pointer-events:none; transition:opacity .25s, visibility 0s .25s; }
+    .fz-cbar-row {
+      height:44px; display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding:0 calc(var(--page-padding) / 2) 0 var(--page-padding);
+    }
+    .fz-cbar-current {
+      font-size:14px; font-weight:500; color:#1d1d1f; letter-spacing:-0.2px;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;
+    }
+    .fz-cbar-toggle {
+      display:inline-flex; align-items:center; gap:6px; flex-shrink:0;
+      min-height:44px; padding:0 12px; background:none; border:none; cursor:pointer;
+      font-family:inherit; font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+      color:#6B3030;
+    }
+    .fz-cbar-toggle:hover { color:#a63636; }
+    .fz-cbar-list {
+      list-style:none; margin:0; padding:4px 0 8px;
+      border-top:1px solid rgba(29,29,31,0.08);
+      max-height:calc(100vh - 160px); overflow-y:auto;
+    }
+    .fz-cbar-link {
+      display:flex; align-items:center; gap:10px; width:100%; min-height:44px;
+      padding:0 var(--page-padding); background:none; border:none; cursor:pointer; text-align:left;
+      font-family:inherit; font-size:15px; color:rgba(29,29,31,0.72); letter-spacing:-0.2px;
+    }
+    .fz-cbar-link::before {
+      content:''; width:3px; height:18px; border-radius:2px; background:transparent; flex-shrink:0;
+    }
+    .fz-cbar-link:hover { color:#1d1d1f; }
+    .fz-cbar-link.fz-cbar-link-active { color:#a63636; font-weight:500; }
+    .fz-cbar-link.fz-cbar-link-active::before { background:#a63636; }
+
     .fz-back-btn {
       background:none; border:none; padding:0; color:#A8A8A8;
       font-size:13px; letter-spacing:.04em; cursor:pointer;
@@ -297,7 +338,10 @@ const FzContents = ({ items, contentSelector }) => {
   };
 
   const visible = inRange && fits;
+  const narrow = typeof window !== 'undefined' && window.matchMedia('(max-width: 900px)').matches;
   return (
+    <React.Fragment>
+    <FzContentsBar items={items} show={narrow || !fits} />
     <nav ref={navRef} aria-label="Contents" className={`fz-sidebar fz-contents${visible ? '' : ' fz-contents-hidden'}`} style={{ position:'fixed', right:0, top:'136px', zIndex:50, textAlign:'right' }}>
       <div aria-hidden="true" style={{ fontSize:'12px', color:'#666666', letterSpacing:'.15em', textTransform:'uppercase', marginBottom:'18px' }}>Contents</div>
       {items.map(item => (
@@ -306,6 +350,124 @@ const FzContents = ({ items, contentSelector }) => {
         </button>
       ))}
     </nav>
+    </React.Fragment>
+  );
+};
+
+// Shared phone "Contents" bar for case study pages: a slim bar under the header that names
+// the current section, with a toggle that opens the list of section links.
+// Shown only where the desktop side nav is hidden (show prop; default: 900 px and below)
+// and only while the case study sections are on screen.
+const FZ_BAR_H = 44;
+const FzContentsBar = ({ items, show }) => {
+  const { useState, useEffect, useRef } = React;
+  const [active, setActive] = useState(items[0].id);
+  const [inRange, setInRange] = useState(false);
+  const [narrow, setNarrow] = useState(() => window.matchMedia('(max-width: 900px)').matches);
+  const [open, setOpen] = useState(false);
+  const [top, setTop] = useState(72);
+  const toggleRef = useRef(null);
+  const barRef = useRef(null);
+  const listId = 'fz-contents-list';
+
+  const enabled = show === undefined ? narrow : show;
+  const visible = enabled && inRange;
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 900px)');
+    const onMq = () => setNarrow(mq.matches);
+    mq.addEventListener('change', onMq);
+    const update = () => {
+      const els = items.map(i => document.getElementById(i.id)).filter(Boolean);
+      if (!els.length) return;
+      const vh = window.innerHeight;
+      let current = els[0].id;
+      els.forEach(el => { if (el.getBoundingClientRect().top < vh * 0.4) current = el.id; });
+      const lastEl = els[els.length - 1];
+      if (lastEl.getBoundingClientRect().bottom <= vh) current = lastEl.id;
+      setActive(current);
+      setInRange(els[0].getBoundingClientRect().top < vh * 0.6 && lastEl.getBoundingClientRect().bottom > FZ_BAR_H + 72);
+    };
+    update();
+    window.addEventListener('scroll', update, { passive:true });
+    window.addEventListener('resize', update);
+    return () => {
+      mq.removeEventListener('change', onMq);
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, []);
+
+  // Sit directly under the site header, which slides away on scroll down and back on scroll up
+  useEffect(() => {
+    if (!visible) return;
+    const header = document.querySelector('[data-site-header]');
+    let raf;
+    const follow = () => {
+      const b = header ? Math.max(0, Math.round(header.getBoundingClientRect().bottom)) : 0;
+      setTop(t => (t === b ? t : b));
+      raf = requestAnimationFrame(follow);
+    };
+    follow();
+    return () => cancelAnimationFrame(raf);
+  }, [visible]);
+
+  // Close when the bar hides, on Escape, and on a tap outside
+  useEffect(() => { if (!visible) setOpen(false); }, [visible]);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = e => { if (e.key === 'Escape') { setOpen(false); toggleRef.current && toggleRef.current.focus(); } };
+    const onDown = e => { if (barRef.current && !barRef.current.contains(e.target)) setOpen(false); };
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onDown);
+    return () => { document.removeEventListener('keydown', onKey); document.removeEventListener('pointerdown', onDown); };
+  }, [open]);
+
+  const go = id => {
+    setOpen(false);
+    const el = document.getElementById(id); if (!el) return;
+    // Clear the header (72) and this bar, with a little air
+    const target = el.getBoundingClientRect().top + window.scrollY - (72 + FZ_BAR_H + 16);
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const lenis = window.__lenis;
+    if (lenis) lenis.scrollTo(target, reduce ? { immediate:true } : { duration:1.4 });
+    else window.scrollTo({ top:target, behavior: reduce ? 'auto' : 'smooth' });
+  };
+
+  const current = items.find(i => i.id === active) || items[0];
+  return (
+    <div ref={barRef} className={`fz-cbar${visible ? '' : ' fz-cbar-hidden'}${open ? ' fz-cbar-open' : ''}`} style={{ top: top + 'px' }}>
+      <div className="fz-cbar-row">
+        <span className="fz-cbar-current" aria-live="polite">{current.label}</span>
+        <button
+          ref={toggleRef}
+          type="button"
+          className="fz-cbar-toggle"
+          aria-expanded={open}
+          aria-controls={listId}
+          onClick={() => setOpen(o => !o)}
+        >
+          Contents
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style={{ transform: open ? 'rotate(180deg)' : 'none', transition:'transform 200ms' }}>
+            <path d="M2 4.5 6 8.5 10 4.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      </div>
+      <ul id={listId} className="fz-cbar-list" hidden={!open}>
+        {items.map(item => (
+          <li key={item.id}>
+            <button
+              type="button"
+              className={`fz-cbar-link${item.id === active ? ' fz-cbar-link-active' : ''}`}
+              aria-current={item.id === active ? 'true' : undefined}
+              onClick={() => go(item.id)}
+            >
+              {item.label}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
@@ -491,6 +653,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
       <div className="fz-body-layout">
 
         {/* Sidebar */}
+        <FzContentsBar items={navItems} />
         <aside className={`fz-sidebar${sidebarVisible?'':' fz-sidebar-hidden'}`} style={{ position:'fixed', right:0, top:'136px', zIndex:50, textAlign:'right' }}>
           <div style={{ fontSize:'12px', color:'#666666', letterSpacing:'.15em', textTransform:'uppercase', marginBottom:'18px' }}>Contents</div>
           {navItems.map(item => (
@@ -517,7 +680,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
               <FzBody style={{ marginBottom:0 }}>To scale globally, Fizik didn't just need a catalog app. They needed a foolproof consultation engine that could guarantee service quality regardless of who was working the shop floor.</FzBody>
             </div>
             <div className="fz-diagram-img" style={{ marginTop:'40px' }}>
-              <img src="Fizik-1diagram-problem.png" alt="Service flow diagram" style={{ width:'100%', display:'block', borderRadius:'12px' }} />
+              <img src="Fizik-1diagram-problem.webp" alt="Service flow diagram" width="1672" height="444" decoding="async" loading="lazy" style={{ width:'100%', height:'auto', display:'block', borderRadius:'12px' }} />
             </div>
           </section>
 
@@ -616,12 +779,12 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
                   <p className="fz-card-body" style={{ marginTop: d.tradeoff ? '10px' : '4px' }}><FzLead>The Decision:</FzLead> {d.decision}</p>
                   {d.n === 'O1' && (
                     <div style={{ marginTop:'auto', paddingTop:'12px', borderRadius:'16px', overflow:'hidden', background:'transparent' }}>
-                      <img src="Fizik121/FIZIK-wireframe-screenshot02.png" alt="Loaders" style={{ width:'100%', display:'block', borderRadius:'16px', background:'transparent' }} />
+                      <img src="Fizik121/FIZIK-wireframe-screenshot02.webp" alt="Loaders" width="742" height="1487" decoding="async" loading="lazy" style={{ width:'100%', height:'auto', display:'block', borderRadius:'16px', background:'transparent' }} />
                     </div>
                   )}
                   {d.n === 'O2' && (
                     <div style={{ marginTop:'auto', paddingTop:'12px', borderRadius:'16px', overflow:'hidden', background:'transparent' }}>
-                      <img src="Fizik121/Saddle selection 1.png" alt="Saddle Selection" style={{ width:'100%', display:'block', borderRadius:'16px', background:'transparent' }} />
+                      <img src="Fizik121/saddle-selection-1.webp" alt="Saddle Selection" width="742" height="1478" decoding="async" loading="lazy" style={{ width:'100%', height:'auto', display:'block', borderRadius:'16px', background:'transparent' }} />
                     </div>
                   )}
                   {d.n === 'O3' && (
@@ -633,7 +796,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
                   )}
                   {d.n === 'O4' && (
                     <div style={{ marginTop:'auto', paddingTop:'12px', borderRadius:'16px', overflow:'hidden', background:'transparent' }}>
-                      <img src="Fizik121/FIZIK-final-screenshot04.png" alt="Fizik 121 questionnaire screen" style={{ width:'100%', display:'block', borderRadius:'16px', background:'transparent' }} />
+                      <img src="Fizik121/FIZIK-final-screenshot04.webp" alt="Fizik 121 questionnaire screen" width="742" height="1449" decoding="async" loading="lazy" style={{ width:'100%', height:'auto', display:'block', borderRadius:'16px', background:'transparent' }} />
                     </div>
                   )}
                 </div>
@@ -646,7 +809,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
       {/* ══ FLOW ══════════════════════════════════════════════════ */}
       <div data-snap style={{ background:'#fff', padding:'var(--section-spacing-sm) var(--page-padding)', display:'flex', flexDirection:'column', alignItems:'center' }}>
         <div className="fz-flow-img" style={{ width:'100%', maxWidth:'1178px' }}>
-          <img src="Fizik121/KIT ORDER FLOW.png" alt="KIT order user flow" style={{ width:'100%', display:'block', borderRadius:'8px' }} />
+          <img src="Fizik121/kit-order-flow.webp" alt="KIT order user flow" width="2000" height="914" decoding="async" loading="lazy" style={{ width:'100%', height:'auto', display:'block', borderRadius:'8px' }} />
           <div className="fz-caption">System Architecture: End-to-end consultation and hardware capture flow mapped prior to UI execution to eliminate dead ends.</div>
         </div>
       </div>
@@ -664,7 +827,7 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
             { lead:'Architectural Reuse (2026)',     text:'The consultation workflow, hardware-sync patterns, and component system proved durable enough to power a second commercial product: an e-bike saddle pressure app (now in v2 as of March 2026).' },
           ]} />
           <div className="fz-diagram-img" style={{ marginTop:'40px', textAlign:'center', background:'transparent' }}>
-            <img src="Fizik121/your custom saddle.png" alt="Your Customized Saddle" style={{ width:'100%', maxWidth:'380px', maxHeight:'500px', height:'auto', objectFit:'contain', display:'block', margin:'0 auto', borderRadius:'12px', background:'transparent' }} />
+            <img src="Fizik121/your-custom-saddle.webp" alt="Your Customized Saddle" width="760" height="1512" decoding="async" loading="lazy" style={{ width:'100%', maxWidth:'380px', maxHeight:'500px', height:'auto', objectFit:'contain', display:'block', margin:'0 auto', borderRadius:'12px', background:'transparent' }} />
           </div>
         </section>
 
@@ -706,4 +869,4 @@ const CaseStudyFizik = ({ goTo, goToWork }) => {
   );
 };
 
-Object.assign(window, { CaseStudyFizik, CaseSection, WordReveal, FzLabel, FzHeading, FzBody, FzLead, FzList, FzHighlights, FzContents, VideoBlock });
+Object.assign(window, { CaseStudyFizik, CaseSection, WordReveal, FzLabel, FzHeading, FzBody, FzLead, FzList, FzHighlights, FzContents, FzContentsBar, VideoBlock });

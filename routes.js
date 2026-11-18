@@ -45,3 +45,12 @@ window.SITE_ROUTES = [
 ];
 
 window.SITE_ORIGIN = "https://maryammoradian.com";
+
+// Shared mail helper: the one place the contact address and email subjects live.
+// Every email link on the site uses mailtoHref(...) with one of these subjects.
+window.MAIL_ADDRESS = "maryam.moradian38@gmail.com";
+window.DEFAULT_SUBJECT = "Product Designer: Let's connect";
+window.PROTOTYPE_SUBJECT = "Fleetwatch prototype request";
+window.mailtoHref = function (subject) {
+  return "mailto:" + window.MAIL_ADDRESS + "?subject=" + encodeURIComponent(subject);
+};

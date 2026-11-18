@@ -29,8 +29,8 @@ const AboutPage = ({ goTo, goToWork }) => {
   }, []);
 
   const contactLinks = [
-    { label: 'Email', text: 'maryam.moradian38@gmail.com', href: 'mailto:maryam.moradian38@gmail.com', external: false, suffix: '' },
-    { label: 'LinkedIn', text: 'linkedin.com/in/maryam-moradian', href: 'https://linkedin.com/in/maryam-moradian', external: true, suffix: '' },
+    { label: 'Email', text: 'maryam.moradian38@gmail.com', href: mailtoHref(DEFAULT_SUBJECT), external: false, suffix: '' },
+    { label: 'LinkedIn', text: 'linkedin.com/in/maryam-moradian', href: 'https://www.linkedin.com/in/maryam-moradian', external: true, suffix: '' },
     { label: 'CV', text: 'Download PDF', href: '#', external: false, suffix: ' ↓' },
   ];
 
@@ -131,11 +131,13 @@ const AboutPage = ({ goTo, goToWork }) => {
                 >
                   Download CV
                 </button>
-                <button
-                  onClick={() => window.location.href =
-                    'mailto:maryam.moradian38@gmail.com?subject=Product Designer: Let\'s connect'}
+                <a
+                  href={mailtoHref(DEFAULT_SUBJECT)}
                   className="tap-target"
                   style={{
+                    display: 'inline-block',
+                    textDecoration: 'none',
+                    letterSpacing: 'normal',
                     background: '#a63636',
                     color: '#ffffff',
                     padding: '14px 28px',
@@ -149,7 +151,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                   }}
                 >
                   Get in touch
-                </button>
+                </a>
               </div>
             </div>
 
@@ -159,9 +161,12 @@ const AboutPage = ({ goTo, goToWork }) => {
               flexShrink: 0,
             }}>
               <img
-                src="profile.png"
+                src="profile.webp"
                 alt="Maryam Moradian, Product Designer"
+                width="560" height="646"
+                decoding="async"
                 style={{
+                  height: 'auto',
                   width: '100%',
                   aspectRatio: '4/5',
                   objectFit: 'cover',
@@ -1328,7 +1333,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             flexWrap: 'wrap',
             marginBottom: '48px',
           }}>
-            <a href="mailto:maryam.moradian38@gmail.com"
+            <a href={mailtoHref(DEFAULT_SUBJECT)}
               className="tap-target"
               style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -1340,7 +1345,7 @@ const AboutPage = ({ goTo, goToWork }) => {
               maryam.moradian38@gmail.com
             </a>
             <span style={{ color: 'rgba(255,255,255,0.20)' }}>·</span>
-            <a href="https://linkedin.com/in/maryam-moradian"
+            <a href="https://www.linkedin.com/in/maryam-moradian"
               target="_blank" rel="noopener noreferrer"
               className="tap-target"
               style={{
@@ -1354,7 +1359,7 @@ const AboutPage = ({ goTo, goToWork }) => {
             </a>
             <span style={{ color: 'rgba(255,255,255,0.20)' }}>·</span>
             <a href="Maryam_Moradian_CV.pdf"
-              download
+              target="_blank" rel="noopener noreferrer"
               className="tap-target"
               style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -1399,11 +1404,12 @@ const AboutPage = ({ goTo, goToWork }) => {
             </div>
 
             {/* Get in touch button */}
-            <button
-              onClick={() => window.location.href =
-                'mailto:maryam.moradian38@gmail.com?subject=Product Designer: Let\'s connect'}
+            <a
+              href={mailtoHref(DEFAULT_SUBJECT)}
               className="tap-target"
               style={{
+                display: 'inline-block', textDecoration: 'none',
+                letterSpacing: 'normal', lineHeight: 'normal',
                 background: '#a63636', color: 'white',
                 padding: '14px 32px', borderRadius: '980px',
                 border: 'none', cursor: 'pointer',
@@ -1411,7 +1417,7 @@ const AboutPage = ({ goTo, goToWork }) => {
                 fontSize: '15px', fontWeight: 500,
               }}>
               Get in touch
-            </button>
+            </a>
 
             {/* Download CV button */}
             <button

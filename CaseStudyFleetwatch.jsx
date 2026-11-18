@@ -62,7 +62,7 @@ const FwIconTime = () => (
 // Screen with caption. Source files are 2880 x 1800 (2x of a 1440 x 900 frame).
 const FwFigure = ({ src, alt, caption, eager }) => (
   <React.Fragment>
-    <img className="fw-shot" src={src} alt={alt || caption} width="2880" height="1800" loading={eager ? 'eager' : 'lazy'} decoding="async" />
+    <img className="fw-shot" src={src} alt={alt || caption} width="2000" height="1250" loading={eager ? 'eager' : 'lazy'} decoding="async" />
     {caption && <div className="fz-caption">{caption}</div>}
   </React.Fragment>
 );
@@ -130,16 +130,6 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
     else window.scrollTo({ top:target, behavior:'smooth' });
   };
 
-  // "available on request" goes to the contact section on the home page
-  const goToContact = e => {
-    e.preventDefault();
-    goTo('home');
-    setTimeout(() => {
-      const el = document.getElementById('get-in-touch');
-      if (el) el.scrollIntoView({ behavior:'smooth' });
-    }, 100);
-  };
-
   const constraints = [
     { title:'Two 15-Minute Decision Windows', body:'The fleet manager reviews findings in short Monday and Thursday sessions, not all day.', Icon:FwIconTime },
     { title:'Offline Execution',              body:'The people who actually fix issues (workshop leads and dispatchers) never log into the tool. Decisions have to leave the product via email, printout, or phone note, and external replies must find their way back.', Icon:FwIconSend },
@@ -154,7 +144,7 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
       decision:'Instead of surfacing all 51 findings, the cockpit displays only the top three decisions, ranked strictly by consequence: legal and safety first, then time-sensitive financial impact, then high-impact items with a clear next step. A summary bar flags two additional weekly decisions, 39 minor findings are grouped by type, and a dedicated Data Coverage card surfaces blind spots upfront so she knows how much to trust the system.',
       tradeoff:"Lower-ranked findings aren't visible on first glance, though counts and the full filtered list remain one click away.",
       figures:[
-        { src:'assets/fleetwatch/fleetwatch-all-findings.png', caption:'Full Inventory (51 Findings): Ranked in the exact consequence order as the cockpit. Filtering alters this view only, never the top-level cockpit.' },
+        { src:'assets/fleetwatch/fleetwatch-all-findings.webp', caption:'Full Inventory (51 Findings): Ranked in the exact consequence order as the cockpit. Filtering alters this view only, never the top-level cockpit.' },
       ],
     },
     {
@@ -163,7 +153,7 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
       decision:'Because ~20% of system inferences are wrong, presenting inferred alerts as facts destroys credibility. I separated Confidence (Inferred, Confirmed, Verified) from Status (New, Confirmed, Resolved, Ruled out, Withdrawn) and deliberately removed one-click confirmation from the cockpit. Opening a finding presents the raw evidence alongside the two competing explanations the data cannot distinguish. Confirming an item elevates it to Confirmed, never Verified, which requires a hard record.',
       tradeoff:'Introduces two scales to learn and an extra review step before acting, accepted intentionally to prevent blind automation bias.',
       figures:[
-        { src:'assets/fleetwatch/fleetwatch-evidence-and-decision.png', caption:'Evidence-First Review: Findings open with supporting data and the two plausible explanations the system cannot separate on its own.' },
+        { src:'assets/fleetwatch/fleetwatch-evidence-and-decision.webp', caption:'Evidence-First Review: Findings open with supporting data and the two plausible explanations the system cannot separate on its own.' },
       ],
     },
     {
@@ -172,7 +162,7 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
       decision:'Every finding resolves into one of four actions: hand over, confirm as real, rule out, or defer. Choosing Hand over generates an editable, role-tailored brief sent via email, printout, or phone note: a one-page evidence sheet for the workshop lead, and plain-language dates with zero blame for dispatchers. The finding moves to In hand, logs replies, and triggers a reminder on the follow-up date.',
       tradeoff:'Offline answers received by phone or paper still require manual logging, explicitly flagged as an open product question.',
       figures:[
-        { src:'assets/fleetwatch/fleetwatch-hand-over.png', caption:'Offline Hand-Offs: Role-specific, editable briefs formatted for email, printout, or phone notes.' },
+        { src:'assets/fleetwatch/fleetwatch-hand-over.webp', caption:'Offline Hand-Offs: Role-specific, editable briefs formatted for email, printout, or phone notes.' },
       ],
     },
     {
@@ -182,8 +172,8 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
       tradeoff:'Required defining and documenting a more nuanced state machine, consolidated into a clear table of lifecycle rules.',
       // One caption covers both screens, so it sits under the second one
       figures:[
-        { src:'assets/fleetwatch/fleetwatch-finding-comes-back.png', alt:'State Continuity: a previously ruled-out pattern shown with its prior rationale alongside new evidence.' },
-        { src:'assets/fleetwatch/fleetwatch-lifecycle-rules.png', alt:'State Continuity: the explicit lifecycle rules for recurring, withdrawn and stale findings.', caption:'State Continuity: Previously ruled-out patterns retain their prior rationale alongside new evidence, governed by explicit lifecycle rules. All figures and names shown are sample data.' },
+        { src:'assets/fleetwatch/fleetwatch-finding-comes-back.webp', alt:'State Continuity: a previously ruled-out pattern shown with its prior rationale alongside new evidence.' },
+        { src:'assets/fleetwatch/fleetwatch-lifecycle-rules.webp', alt:'State Continuity: the explicit lifecycle rules for recurring, withdrawn and stale findings.', caption:'State Continuity: Previously ruled-out patterns retain their prior rationale alongside new evidence, governed by explicit lifecycle rules. All figures and names shown are sample data.' },
       ],
     },
   ];
@@ -249,7 +239,7 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
       <div data-snap style={{ background:'#fff', padding:'var(--section-spacing-sm) var(--page-padding)', display:'flex', flexDirection:'column', alignItems:'center' }}>
         <div style={{ width:'100%', maxWidth:'1178px' }}>
           <FwFigure eager
-            src="assets/fleetwatch/fleetwatch-cockpit.png"
+            src="assets/fleetwatch/fleetwatch-cockpit.webp"
             alt="The Cockpit: top three decisions ranked by consequence, paired with data coverage visibility and changes since the last visit."
             caption="The Cockpit: Top three decisions ranked by consequence, paired with data coverage visibility and changes since the last visit." />
         </div>
@@ -259,6 +249,7 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
       <div className="fz-body-layout">
 
         {/* Sidebar */}
+        <FzContentsBar items={navItems} />
         <aside className={`fz-sidebar${sidebarVisible?'':' fz-sidebar-hidden'}`} style={{ position:'fixed', right:0, top:'136px', zIndex:50, textAlign:'right' }}>
           <div style={{ fontSize:'12px', color:'#666666', letterSpacing:'.15em', textTransform:'uppercase', marginBottom:'18px' }}>Contents</div>
           {navItems.map(item => (
@@ -373,7 +364,7 @@ const CaseStudyFleetwatch = ({ goTo, goToWork }) => {
             ]} />
 
             <p className="fw-note" style={{ marginTop:'32px' }}>
-              Clickable Figma prototype <a href="/" onClick={goToContact}>available on request</a>.
+              Clickable Figma prototype <a href={mailtoHref(PROTOTYPE_SUBJECT)}>available on request</a>.
             </p>
           </section>
 

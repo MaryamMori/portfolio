@@ -44,11 +44,13 @@ const Nav = ({ page, goTo, goToWork }) => {
     };
   }, []);
 
+  // Header palette: solid off-white bar (same as the Selected Work background), dark text
+  const linkColor = (id) => page === id ? '#1d1d1f' : 'rgba(29,29,31,0.72)';
   const linkStyle = (id) => ({
-    fontSize: '12px',
+    fontSize: '15px',
     fontWeight: 400,
-    color: page === id ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.68)',
-    letterSpacing: '-0.12px',
+    color: linkColor(id),
+    letterSpacing: '-0.2px',
     textDecoration: 'none',
     lineHeight: 1,
     cursor: 'pointer',
@@ -60,16 +62,14 @@ const Nav = ({ page, goTo, goToWork }) => {
   });
 
   return (
-    <nav ref={navRef} style={{
+    <nav ref={navRef} data-site-header style={{
       position: 'fixed',
       top: 0,
       left: 0,
       right: 0,
       height: '72px',
-      background: 'rgba(5, 5, 5, 0.8)',
-      backdropFilter: 'blur(16px)',
-      WebkitBackdropFilter: 'blur(16px)',
-      borderBottom: '1px solid rgba(255,255,255,0.08)',
+      background: '#f9f9f7',
+      borderBottom: '1px solid rgba(29,29,31,0.10)',
       display: 'flex',
       alignItems: 'center',
       padding: '0 calc(var(--page-padding) / 2)',
@@ -103,18 +103,46 @@ const Nav = ({ page, goTo, goToWork }) => {
           <img
             src="logo.png"
             alt="Maryam Moradian"
+            width="40" height="40"
+            decoding="async"
             style={{ height: '40px', width: '40px', objectFit: 'contain' }}
           />
         </button>
 
-        {/* Right: About link */}
-        <button
-          onClick={() => goTo('about')}
-          className="tap-target"
-          style={linkStyle('about')}
-        >
-          About
-        </button>
+        {/* Right: About link + Contact (email) */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+          <button
+            onClick={() => goTo('about')}
+            className="tap-target"
+            style={linkStyle('about')}
+            onMouseEnter={e => e.currentTarget.style.color = '#a63636'}
+            onMouseLeave={e => e.currentTarget.style.color = linkColor('about')}
+          >
+            About
+          </button>
+          <a
+            href={mailtoHref(DEFAULT_SUBJECT)}
+            className="tap-target"
+            style={{
+              display: 'inline-block',
+              fontSize: '15px',
+              fontWeight: 500,
+              letterSpacing: '-0.2px',
+              lineHeight: 1,
+              color: '#3D1A1A',
+              textDecoration: 'none',
+              padding: '8px 16px',
+              borderRadius: '9999px',
+              border: '1.5px solid #3D1A1A',
+              fontFamily: "'DM Sans', system-ui, sans-serif",
+              transition: 'color 150ms, border-color 150ms',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.color = '#a63636'; e.currentTarget.style.borderColor = '#a63636'; }}
+            onMouseLeave={e => { e.currentTarget.style.color = '#3D1A1A'; e.currentTarget.style.borderColor = '#3D1A1A'; }}
+          >
+            Contact
+          </a>
+        </div>
       </div>
     </nav>
   );
